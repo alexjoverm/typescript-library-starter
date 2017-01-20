@@ -1,0 +1,9 @@
+node_modules
+coverage
+.nyc_output
+.DS_Store
+*.js
+*.js.map
+.vscode
+.idea
+/dist/

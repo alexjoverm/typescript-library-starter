@@ -1,0 +1,43 @@
+{
+  "name": "shortcutjs",
+  "version": "0.0.0-semantic-release",
+  "description": "Keyboard manager for javascript, made for humans",
+  "main": "dist/shortcut.js",
+  "repository": "https://github.com/coosto/ShortcutJS",
+  "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
+  "license": "Apache 2.0",
+  "scripts": {
+
+    "test": "jest"
+  },
+  "typescript": {
+    "definition": "dist/shortcut.d.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^16.0.4",
+    "@types/node": "^7.0.0",
+    "commitizen": "^2.9.5",
+    "coveralls": "^2.11.15",
+    "cz-conventional-changelog": "^1.2.0",
+    "jest": "^18.1.0",
+    "ts-jest": "^18.0.1",
+    "ts-loader": "^1.3.3",
+    "ts-node": "^2.0.0",
+    "tslint": "^4.3.1",
+    "tslint-config-standard": "^3.0.0",
+    "typescript": "^2.1.5",
+    "webpack": "^2.2.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js"
+  }
+}
