@@ -17,9 +17,9 @@
 import keys from './keymap'
 
 /**
- * First Version of a KeyManager.
+ * First Version of a ShortcutJS.
  *
- * Ideally, KeyManager could hold the keydown and keyup events, and execute the actions according
+ * Ideally, ShortcutJS could hold the keydown and keyup events, and execute the actions according
  * to the key combos.
  *
  * WARNING: careful when adding combos with CTRL key on it. If you happen to trigger a by-default
@@ -30,10 +30,10 @@ import keys from './keymap'
  *  - Avoid repetition of mouseDownEvents if the last key is the same
  *  - Performance of processActionCombos
  *
- * @class KeyManager
+ * @class ShortcutJS
  */
 
-class KeyManager {
+class ShortcutJS {
   public actions: Map<string, Action>
   public keyMap: Map<string, boolean>
   public debugMode: boolean
@@ -42,7 +42,7 @@ class KeyManager {
   /**
    * Private constructor
    *
-   * @memberOf KeyManager
+   * @memberOf ShortcutJS
    */
   constructor () {
     // With Maps we avoid events duplication, achieve immutability and performance
@@ -168,7 +168,7 @@ export class KeyCombo {
 }
 
 /**
- * Action class to use for the KeyManager
+ * Action class to use for the ShortcutJS
  * @export
  * @class Action
  */
@@ -193,6 +193,6 @@ export class Action {
 }
 
 // Singleton pattern
-export const keyManager = new KeyManager()
+export const shortcutJS = new ShortcutJS()
 
 export const keyCodes = keys

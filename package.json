@@ -1,6 +1,6 @@
 {
   "name": "shortcutjs",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.0-development",
   "description": "Keyboard manager for javascript, made for humans",
   "main": "dist/shortcut.js",
   "repository": "https://github.com/coosto/ShortcutJS",
@@ -8,12 +8,27 @@
   "license": "Apache 2.0",
   "scripts": {
     "lint": "tslint -e node_modules/** **/*.ts ",
-    "coverage": "jest --coverage",
+    "commit": "git-cz",
     "test": "jest",
-    "test:prod": "npm run lint && npm run test"
+    "test:prod": "npm run lint && npm run test -- --coverage",
+    "prebuild": "rimraf dist",
+    "build": "webpack",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "typescript": {
     "definition": "dist/shortcut.d.ts"
+  },
+  "files": [
+    "dist",
+    "readme.md"
+  ],
+  "config": {
+    "ghooks": {
+      "/pre-commit": "npm run test:prod"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@types/jest": "^16.0.4",
@@ -21,6 +36,7 @@
     "commitizen": "^2.9.5",
     "coveralls": "^2.11.15",
     "cz-conventional-changelog": "^1.2.0",
+    "ghooks": "^2.0.0",
     "jest": "^18.1.0",
     "ts-jest": "^18.0.1",
     "ts-loader": "^1.3.3",
@@ -28,7 +44,8 @@
     "tslint": "^4.3.1",
     "tslint-config-standard": "^3.0.0",
     "typescript": "^2.1.5",
-    "webpack": "^2.2.0"
+    "webpack": "^2.2.0",
+    "semantic-release": "^6.3.2"
   },
   "jest": {
     "transform": {
@@ -40,6 +57,14 @@
       "tsx",
       "js"
     ],
-    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js"
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    }
   }
 }
