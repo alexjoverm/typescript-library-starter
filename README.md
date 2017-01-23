@@ -1,5 +1,5 @@
 # ShortcutJS
-Keyboard manager for javascript, made for humans :sunglasses:
+Keyboard manager for javascript and typescript, made for humans :sunglasses:
 
 Do you have a very interactive app with lots of shortcuts? ShortcutJS makes defining all your shortcuts very easy, by defining **Combos** bound to **Actions**. Even better, you can define them all **in JSON file**.
 
@@ -18,7 +18,6 @@ Define a `shortcuts.json` file with all your shortcuts
     "combo": "ctrl a",
     "action": "selectAll"
   }
-  ...
 ]
 ```
 
@@ -65,4 +64,4 @@ WIP
 
 ## Credits
 
-Made with :heart: by (@alexjoverm)[https://twitter.com/alexjoverm]
+Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm)
