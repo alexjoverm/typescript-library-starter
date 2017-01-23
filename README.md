@@ -6,9 +6,9 @@ Do you have a very interactive app with lots of shortcuts? ShortcutJS makes defi
 ## Usage
 
 ```bash
-npm install shortcutjs
-# or
 yarn add shortcutjs
+# or
+npm install shortcutjs --save
 ```
 Define a `shortcuts.json` file with all your shortcuts
 
