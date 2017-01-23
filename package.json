@@ -44,6 +44,7 @@
     "cz-conventional-changelog": "^1.2.0",
     "ghooks": "^2.0.0",
     "jest": "^18.1.0",
+    "rimraf": "^2.5.4",
     "semantic-release": "^6.3.2",
     "ts-jest": "^18.0.1",
     "ts-node": "^2.0.0",

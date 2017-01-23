@@ -14,7 +14,8 @@
   limitations under the License.
  */
 
-import keys from './keymap'
+import { keyContainer } from './key-container'
+import { JsonParser } from './json-parser'
 import { KeyCombo } from './key-combo'
 import { Action } from './action'
 
@@ -28,16 +29,15 @@ import { Action } from './action'
  * browser shortcut (like CTRL-T) the keyup event will not be performed
  *
  * @todo Improvements:
- *  - Allow loading actions from json
  *  - Avoid repetition of mouseDownEvents if the last key is the same
  *  - Performance of processActionCombos
  *
  * @class ShortcutJS
  */
-class ShortcutJS {
+export class ShortcutJS {
   public actions: Map<string, Action>
   public keyMap: Map<string, boolean>
-  public debugMode: boolean
+  public options: any
 
   // ********* PRIVATE API (only internal use) **********
   /**
@@ -49,77 +49,29 @@ class ShortcutJS {
     // With Maps we avoid events duplication, achieve immutability and performance
     this.actions = new Map()
     this.keyMap = new Map()
-    this.debugMode = false
-  }
-
-  addEventToQueue (ev) {
-    if (this.keyMap.has(ev.keyCode)) {
-      return false
-    } else {
-      this.keyMap.set(ev.keyCode, true)
-      return true
+    this.options = {
+      debug: false
     }
   }
 
-  /**
-   * Checks whether the que matches a particular action
-   * @todo Performance improvement
-   *   - Idea 1: Using binary operators for comparison
-   *   - Idea 2: Generating uuid's per KeyCombo
-   * @param {any} action
-   */
-  isQueueInAction (action) {
-    const diff = new Set([...action.keyCombo.keys.keys()].filter(key => !this.keyMap.has(key)))
-    return !diff.size // return boolean from size
-  }
+  public init (options) {
+    // @todo do some checking here
+    this.options = Object.assign({}, this.options, options)
 
-  /**
-   * Cleans the event Queue
-   */
-  removeKey (ev) {
-    this.keyMap.delete(ev.keyCode)
-    if (this.debugMode) {
-      console.log('Removed key: ', ev.keyCode)
-      console.log('Queue: ', [...this.keyMap.keys()])
-    }
-  }
 
-  /**
-   * Search for the right action, given a keyCombo, and execute its callbacks
-   */
-  processActionCombos () {
-    for (let action of this.actions.values()) {
-      if (this.isQueueInAction(action)) {
-        for (let cb of action.callbacks) {
-          cb()
-        }
-        // Don't continue after finding it
-        return false
-      }
-    }
-  }
-
-  processEvent (ev) {
-    const wasAppended = this.addEventToQueue(ev)
-
-    if (this.debugMode) {
-      console.log('Current: ', ev.keyCode)
-      console.log('Queue: ', [...this.keyMap.keys()])
-    }
-
-    if (wasAppended) {
-      this.processActionCombos()
-    }
-  }
-
-  // *********** PUBLIC API ************
-
-  init () {
     window.addEventListener('keydown', this.processEvent.bind(this))
-    window.addEventListener('keyup', this.removeKey.bind(this))
+    window.addEventListener('keyup', this.removeAllKeys.bind(this))
   }
 
-  addAction (action) {
+  public loadFromJson(json, options = null) {
+    if (options) {
+      this.init(options)
+    }
+
+    JsonParser.parse(this, json)
+  }
+
+  public addAction (action) {
     if (!(action instanceof Action)) {
       throw new Error('You must pass an Action instance object')
     }
@@ -127,7 +79,7 @@ class ShortcutJS {
     this.actions.set(action.name, action)
   }
 
-  subscribe (actionName, cb) {
+  public subscribe (actionName, cb) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
       action.callbacks.add(cb)
@@ -136,7 +88,7 @@ class ShortcutJS {
     }
   }
 
-  unsubscribe (actionName, cb = null) {
+  public unsubscribe (actionName, cb = null) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
 
@@ -147,6 +99,80 @@ class ShortcutJS {
       }
     } else {
       throw new Error(`Action ${actionName} does not exists`)
+    }
+  }
+
+  private addEventToQueue (ev) {
+    if (this.keyMap.has(ev.keyCode)) {
+      return false
+    } else {
+      this.keyMap.set(ev.keyCode, true)
+      return true
+    }
+  }
+
+  /**
+   * Cleans the event Queue
+   */
+  private removeAllKeys (ev) {
+    this.keyMap.clear()
+    if (this.options.debug) {
+      console.log('ShortcutJS: Cleaned keyMap')
+    }
+  }
+
+  /**
+   * Checks whether the que matches a particular action
+   * @todo Performance improvement
+   *   - Idea 1: Using binary operators for comparison
+   *   - Idea 2: Generating uuid's per KeyCombo
+   * @param {any} action
+   */
+  private isQueueInAction (action) {
+    const diff = new Set([...action.keyCombo.keys.keys()].filter(key => !this.keyMap.has(key)))
+    return !diff.size // return boolean from size
+  }
+
+  /**
+   * Search for the right action, given a keyCombo, and execute its callbacks
+   */
+  private processActionCombos () {
+    for (let action of this.actions.values()) {
+      if (this.isQueueInAction(action)) {
+        this.printDebugActionFound(action)
+        for (let cb of action.callbacks) {
+          cb()
+        }
+        // Don't continue after finding it
+        return false
+      }
+    }
+  }
+
+  private printDebugKeyPressed (ev: KeyboardEvent) {
+    console.group('ShortcutJS: KeyPressed')
+    console.log('Key: ', ev.keyCode)
+    console.log('Current keyMap: ', [...this.keyMap.keys()])
+    console.groupEnd()
+  }
+
+  private printDebugActionFound (action: Action) {
+    console.group('ShortcutJS: Action Matched')
+    console.log('Action: ', action.name)
+    console.log('Current keyMap: ', [...this.keyMap.keys()])
+    console.log(`${action.callbacks.size} callbacks found`)
+    console.groupEnd()
+  }
+
+  private processEvent (ev) {
+    const wasAppended = this.addEventToQueue(ev)
+
+    if (this.options.debug) {
+      this.printDebugKeyPressed(ev)
+    }
+
+    if (wasAppended) {
+      this.processActionCombos()
     }
   }
 }

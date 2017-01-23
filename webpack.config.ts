@@ -15,11 +15,19 @@ export default {
   module: {
     rules: [{
       test: /\.ts$/,
-      use: ['babel-loader', 'awesome-typescript-loader'],
+      use: [
+        {
+          loader: 'babel-loader',
+          options: { presets: ['es2015'] }
+        },
+        {
+          loader: 'awesome-typescript-loader'
+        }
+      ],
       exclude: /node_modules/
     }]
   },
   plugins: [
-    new optimize.UglifyJsPlugin ()
+    new optimize.UglifyJsPlugin()
   ]
 }

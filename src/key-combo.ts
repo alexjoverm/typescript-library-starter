@@ -14,6 +14,7 @@
   limitations under the License.
  */
 
+import { keyContainer } from './key-container'
 
 /**
  * Simple KeyCombo class
@@ -22,17 +23,21 @@
  */
 export class KeyCombo {
   public keys: Set<number>
+  private comboStr: string
+
 
   /**
    * Creates an instance of KeyCombo.
    * @param {array} keys
    */
-  constructor (keys: number[]) {
-    this.keys = new Set(keys)
+  constructor (comboStr: string) {
+    this.comboStr = comboStr
+    this.keys = new Set(this.parse(comboStr))
   }
 
-  //
-  private parse (combostr: string) {
-    return combostr.trim().replace(/\s+/g, ' ').split(' ')
+  private parse (comboStr: string) {
+    let comboArr: number[]|string[] = comboStr.trim().replace(/\s+/g, ' ').split(' ')
+    let comboArrParsed = comboArr.map(combo => keyContainer.getValue(combo))
+    return comboArrParsed
   }
 }
