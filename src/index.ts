@@ -19,6 +19,13 @@ import { JsonParser } from './json-parser'
 import { KeyCombo } from './key-combo'
 import { Action } from './action'
 
+
+interface Logger extends Console {
+  group(title: string, options?: string)
+}
+
+const logger = console as Logger
+
 /**
  * First Version of a ShortcutJS.
  *
@@ -117,7 +124,7 @@ export class ShortcutJS {
   private removeAllKeys (ev) {
     this.keyMap.clear()
     if (this.options.debug) {
-      console.log('ShortcutJS: Cleaned keyMap')
+      logger.log('ShortcutJS: Cleaned keyMap')
     }
   }
 
@@ -150,18 +157,18 @@ export class ShortcutJS {
   }
 
   private printDebugKeyPressed (ev: KeyboardEvent) {
-    console.group('ShortcutJS: KeyPressed')
-    console.log('Key: ', ev.keyCode)
-    console.log('Current keyMap: ', [...this.keyMap.keys()])
-    console.groupEnd()
+    logger.group('ShortcutJS: KeyPressed')
+    logger.log('Key: ', ev.keyCode)
+    logger.log('Current keyMap: ', [...this.keyMap.keys()])
+    logger.groupEnd()
   }
 
   private printDebugActionFound (action: Action) {
-    console.group('ShortcutJS: Action Matched')
-    console.log('Action: ', action.name)
-    console.log('Current keyMap: ', [...this.keyMap.keys()])
-    console.log(`${action.callbacks.size} callbacks found`)
-    console.groupEnd()
+    logger.group('%cShortcutJS: Action Matched', 'color: green')
+    logger.log('Action: ', action.name)
+    logger.log('Current keyMap: ', [...this.keyMap.keys()])
+    logger.log(`${action.callbacks.size} callbacks found`)
+    logger.groupEnd()
   }
 
   private processEvent (ev) {
