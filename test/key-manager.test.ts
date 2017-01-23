@@ -1,15 +1,25 @@
 import { Action, KeyCombo, keyManager } from '../src'
 
-window.addEventListener = jest.fn()
-window.removeEventListener = jest.fn()
+interface MockWindow extends Window {
+  addEventListener: jest.Mock<{}> & typeof window.addEventListener
+  removeEventListener: jest.Mock<{}> & typeof window.removeEventListener
+}
+
+function getMockWindow() {
+  window.addEventListener = jest.fn()
+  window.removeEventListener = jest.fn()
+  return window as MockWindow
+}
+
+let mockWindow = getMockWindow()
 
 describe('KeyManager', () => {
   beforeEach(() => {
     keyManager.keyMap = new Map()
-    keyManager.actions = new Map();
+    keyManager.actions = new Map()
 
-    (window.addEventListener as jest.Mock<{}>).mockClear();
-    (window.addEventListener as jest.Mock<{}>).mockClear()
+    mockWindow.addEventListener.mockClear()
+    mockWindow.removeEventListener.mockClear()
   })
 
   describe('addEventToQueue', () => {
@@ -83,7 +93,7 @@ describe('KeyManager', () => {
   describe('init', () => {
     it('should set keydown and keyup event listeners', () => {
       keyManager.init()
-      expect(window.addEventListener).toHaveBeenCalledTimes(2)
+      expect(mockWindow.addEventListener).toHaveBeenCalledTimes(2)
     })
   })
 

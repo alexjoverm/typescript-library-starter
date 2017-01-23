@@ -7,8 +7,10 @@
   "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
   "license": "Apache 2.0",
   "scripts": {
-
-    "test": "jest"
+    "lint": "tslint -e node_modules/** **/*.ts ",
+    "coverage": "jest --coverage",
+    "test": "jest",
+    "test:prod": "npm run lint && npm run test"
   },
   "typescript": {
     "definition": "dist/shortcut.d.ts"

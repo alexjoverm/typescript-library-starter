@@ -22,9 +22,7 @@ class KeyManager {
   public keyMap: Map<string, boolean>
   public debugMode: boolean
 
-
   // ********* PRIVATE API (only internal use) **********
-
   /**
    * Private constructor
    *
@@ -38,7 +36,7 @@ class KeyManager {
   }
 
   addEventToQueue (ev) {
-    if (this.keyMap.has(ev.keyCode  )  ) {
+    if (this.keyMap.has(ev.keyCode)) {
       return false
     } else {
       this.keyMap.set(ev.keyCode, true)
