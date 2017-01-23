@@ -4,6 +4,10 @@
         "target": "es6",
         "lib": ["es2016", "dom"],
         "noImplicitAny": false,
-        "sourceMap": false
+        "sourceMap": false,
+        "moduleResolution": "node",
+        "typeRoots": [
+          "node_modules/@types"
+        ]
     }
 }
