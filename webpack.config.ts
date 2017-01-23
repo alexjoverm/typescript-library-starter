@@ -20,10 +20,6 @@ export default {
     }]
   },
   plugins: [
-    new optimize.UglifyJsPlugin ({
-      compress: {
-        warnings: false
-      }
-    })
+    new optimize.UglifyJsPlugin ()
   ]
 }
