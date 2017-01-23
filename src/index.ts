@@ -15,6 +15,8 @@
  */
 
 import keys from './keymap'
+import { KeyCombo } from './key-combo'
+import { Action } from './action'
 
 /**
  * First Version of a ShortcutJS.
@@ -32,7 +34,6 @@ import keys from './keymap'
  *
  * @class ShortcutJS
  */
-
 class ShortcutJS {
   public actions: Map<string, Action>
   public keyMap: Map<string, boolean>
@@ -150,49 +151,6 @@ class ShortcutJS {
   }
 }
 
-/**
- * Simple KeyCombo class
- * @export
- * @class KeyCombo
- */
-export class KeyCombo {
-  public keys: Set<number>
-
-  /**
-   * Creates an instance of KeyCombo.
-   * @param {array} keys
-   */
-  constructor (keys: number[]) {
-    this.keys = new Set(keys)
-  }
-}
-
-/**
- * Action class to use for the ShortcutJS
- * @export
- * @class Action
- */
-export class Action {
-  public name: string
-  public keyCombo: KeyCombo
-  public callbacks: Set<Function>
-  /**
-   * Creates an instance of Action.
-   * @param {sring} name
-   * @param {KeyCombo} keyCombo
-   */
-  constructor (name: string, keyCombo: KeyCombo) {
-    if (!(keyCombo instanceof KeyCombo)) {
-      throw new Error('The second parameter (keyCombo) must be an instance of KeyCombo')
-    }
-
-    this.name = name
-    this.keyCombo = keyCombo
-    this.callbacks = new Set()
-  }
-}
-
-// Singleton pattern
-export const shortcutJS = new ShortcutJS()
-
-export const keyCodes = keys
+export const shortcutJS = new ShortcutJS() // Enforce singleton
+export { KeyCombo } from './key-combo'
+export { Action } from './action'

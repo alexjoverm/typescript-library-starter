@@ -5,7 +5,8 @@ export default {
   output: {
     path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library: 'shortcut'
+    library: 'shortcutJS',
+    filename: 'shortcut.js'
   },
   resolve: {
     extensions: ['.ts', '.js']
