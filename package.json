@@ -18,16 +18,13 @@
     "build": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "typescript": {
-    "definition": "dist/shortcut.d.ts"
-  },
   "files": [
     "dist",
-    "readme.md"
+    "README.md"
   ],
   "config": {
     "ghooks": {
-      "/pre-commit": "npm run test:prod"
+      "pre-commit": "npm run test:prod"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
