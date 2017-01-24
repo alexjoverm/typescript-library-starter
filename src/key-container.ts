@@ -15,9 +15,9 @@
  */
 
 /**
- * Mapping of keyCodes to properties.
+ * Contains the logic for the keyMapping
  *
- * The idea of the mapping
+ * @class KeyContainer
  */
 class KeyContainer {
   private keyMap = {
@@ -114,9 +114,20 @@ class KeyContainer {
     'f12': 123
   }
 
+  /**
+   * Reversed map (value: key) for easy mapping code -> word
+   */
   private keyMapReversed: any = {}
 
+
+  /**
+   * Initializes the keyMaps
+   *
+   * @param {any} platform
+   * @param {any} userAgent
+   */
   public init(platform, userAgent) {
+    // Define cmdKey depending on browser
     let cmdKey: number|number[] = [91, 93]
 
     if (platform.match('Mac') && userAgent.match('Opera')) {
@@ -134,15 +145,15 @@ class KeyContainer {
     })
   }
 
-  public getKeys() {
+  public getKeys(): any {
     return this.keyMap
   }
 
-  public getKeysReversed() {
+  public getKeysReversed(): any {
     return this.keyMapReversed
   }
 
-  public getValue(key: string) {
+  public getValue(key: string): number|number[] {
     return this.keyMap[key]
   }
 }

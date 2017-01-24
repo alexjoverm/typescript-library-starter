@@ -13,7 +13,7 @@
     "lint": "tslint -e node_modules/** **/*.ts ",
     "commit": "git-cz",
     "test": "jest",
-    "test:prod": "npm run lint && npm run test -- --coverage",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "prebuild": "rimraf dist",
     "build": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -63,6 +63,8 @@
       "tsx",
       "js"
     ],
+    "modulePaths": ["<rootDir>"],
+    "modulePathIgnorePatterns": ["/^((?!src).)/"],
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
     "coverageThreshold": {
       "global": {

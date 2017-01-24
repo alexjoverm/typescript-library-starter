@@ -45,6 +45,7 @@ export class ShortcutJS {
   public actions: Map<string, Action>
   public keyMap: Map<string, boolean>
   public options: any
+  private initialized: boolean
 
   // ********* PRIVATE API (only internal use) **********
   /**
@@ -56,25 +57,30 @@ export class ShortcutJS {
     // With Maps we avoid events duplication, achieve immutability and performance
     this.actions = new Map()
     this.keyMap = new Map()
+    this.initialized = false
     this.options = {
       debug: false
     }
   }
 
-  public init (options) {
-    // @todo do some checking here
-    this.options = Object.assign({}, this.options, options)
+  public init (options = {}) {
+    if (!this.initialized) {
+      // @todo do some checking here
+      this.options = Object.assign({}, this.options, options)
 
+      window.addEventListener('keydown', this.processEvent.bind(this))
+      window.addEventListener('keyup', this.removeAllKeys.bind(this))
+    }
+  }
 
-    window.addEventListener('keydown', this.processEvent.bind(this))
-    window.addEventListener('keyup', this.removeAllKeys.bind(this))
+  public reset () {
+    window.removeEventListener('keydown', this.processEvent)
+    window.removeEventListener('keyup', this.removeAllKeys)
   }
 
   public loadFromJson(json, options = null) {
-    if (options) {
-      this.init(options)
-    }
 
+    this.init(options)
     JsonParser.parse(this, json)
   }
 

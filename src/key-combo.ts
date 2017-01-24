@@ -18,11 +18,10 @@ import { keyContainer } from './key-container'
 
 /**
  * Simple KeyCombo class
- * @export
  * @class KeyCombo
  */
 export class KeyCombo {
-  public keys: Set<number>
+  public keys: Set<number|number[]>
   private comboStr: string
 
 
@@ -35,9 +34,14 @@ export class KeyCombo {
     this.keys = new Set(this.parse(comboStr))
   }
 
-  private parse (comboStr: string) {
-    let comboArr: number[]|string[] = comboStr.trim().replace(/\s+/g, ' ').split(' ')
-    let comboArrParsed = comboArr.map(combo => keyContainer.getValue(combo))
+  /**
+   * Parses the string and gets the code or codes of it
+   * @param {string} comboStr
+   * @returns {number[]}
+   */
+  private parse (comboStr: string): (number|number[])[]  {
+    let comboArr: string[] = comboStr.trim().replace(/\s+/g, ' ').split(' ')
+    let comboArrParsed: (number|number[])[] = comboArr.map(combo => keyContainer.getValue(combo))
     return comboArrParsed
   }
 }

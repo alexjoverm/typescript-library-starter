@@ -1,0 +1,1 @@
+exports[`JsonParser throws an error if json is not array 1`] = `"The json provided must be an array"`;
