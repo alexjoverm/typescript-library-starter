@@ -1,6 +1,6 @@
 {
   "name": "shortcutjs",
-  "version": "1.0.1",
+  "version": "0.0.0-development",
   "description": "Keyboard manager for javascript, made for humans",
   "main": "dist/shortcut.js",
   "repository": "https://github.com/coosto/ShortcutJS",
