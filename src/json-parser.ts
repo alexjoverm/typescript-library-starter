@@ -47,8 +47,6 @@ export class JsonActionCombo {
  * @class JsonParser
  */
 export class JsonParser {
-
-
   /**
    * Does the parsing
    *
