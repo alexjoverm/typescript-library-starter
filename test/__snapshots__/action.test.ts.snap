@@ -1,0 +1,1 @@
+exports[`Action throws an error if second parameter is not a combo 1`] = `"The second parameter (keyCombo) must be an instance of KeyCombo"`;

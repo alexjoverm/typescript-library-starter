@@ -128,7 +128,7 @@ class KeyContainer {
    */
   public init(platform, userAgent) {
     // Define cmdKey depending on browser
-    let cmdKey: number|number[] = [91, 93]
+    let cmdKey: number|number[] = 91 // @todo OR 93
 
     if (platform.match('Mac') && userAgent.match('Opera')) {
       cmdKey = 17
@@ -154,7 +154,12 @@ class KeyContainer {
   }
 
   public getValue(key: string): number|number[] {
-    return this.keyMap[key]
+    const value = this.keyMap[key]
+    if (!value) {
+      throw new Error(`The key "${key}" is not supported`)
+    }
+
+    return value
   }
 }
 

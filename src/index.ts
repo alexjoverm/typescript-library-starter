@@ -41,9 +41,9 @@ const logger = console as Logger
  *
  * @class ShortcutJS
  */
-export class ShortcutJS {
+class ShortcutJS {
   public actions: Map<string, Action>
-  public keyMap: Map<string, boolean>
+  public keyMap: Map<number, boolean>
   public options: any
   private initialized: boolean
 
@@ -70,16 +70,21 @@ export class ShortcutJS {
 
       window.addEventListener('keydown', this.processEvent.bind(this))
       window.addEventListener('keyup', this.removeAllKeys.bind(this))
+
+      this.initialized = true
     }
   }
 
   public reset () {
     window.removeEventListener('keydown', this.processEvent)
     window.removeEventListener('keyup', this.removeAllKeys)
+
+    shortcutJS.keyMap = new Map()
+    shortcutJS.actions = new Map()
+    this.initialized = false
   }
 
   public loadFromJson(json, options = null) {
-
     this.init(options)
     JsonParser.parse(this, json)
   }
@@ -95,7 +100,7 @@ export class ShortcutJS {
   public subscribe (actionName, cb) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
-      action.callbacks.add(cb)
+      action.addCallback(cb)
     } else {
       throw new Error(`Action ${actionName} does not exists`)
     }
@@ -104,33 +109,60 @@ export class ShortcutJS {
   public unsubscribe (actionName, cb = null) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
-
-      if (cb) {
-        action.callbacks.delete(cb)
-      } else {
-        action.callbacks = new Set()
-      }
+      action.removeCallback(cb)
     } else {
       throw new Error(`Action ${actionName} does not exists`)
     }
   }
 
-  private addEventToQueue (ev) {
-    if (this.keyMap.has(ev.keyCode)) {
-      return false
-    } else {
-      this.keyMap.set(ev.keyCode, true)
-      return true
+  public processEvent (ev) {
+    const wasAppended = this.addEventToMap(ev)
+
+    if (this.options.debug) {
+      this.printDebugKeyPressed(ev)
+    }
+
+    if (wasAppended) {
+      this.processActionCombos()
     }
   }
 
   /**
    * Cleans the event Queue
    */
-  private removeAllKeys (ev) {
+  public removeAllKeys (ev) {
     this.keyMap.clear()
     if (this.options.debug) {
       logger.log('ShortcutJS: Cleaned keyMap')
+    }
+  }
+
+  /**
+   * Search for the right action, given a keyCombo, and execute its callbacks
+   */
+  public processActionCombos () {
+    for (let action of this.actions.values()) {
+      if (this.isQueueInAction(action)) {
+        if (this.options.debug) {
+          this.printDebugActionFound(action)
+        }
+
+        for (let cb of action.callbacks) {
+          cb()
+        }
+        // Don't continue after finding it
+        return false
+      }
+    }
+  }
+
+
+  private addEventToMap (ev) {
+    if (this.keyMap.has(ev.keyCode)) {
+      return false
+    } else {
+      this.keyMap.set(ev.keyCode, true)
+      return true
     }
   }
 
@@ -146,22 +178,6 @@ export class ShortcutJS {
     return !diff.size // return boolean from size
   }
 
-  /**
-   * Search for the right action, given a keyCombo, and execute its callbacks
-   */
-  private processActionCombos () {
-    for (let action of this.actions.values()) {
-      if (this.isQueueInAction(action)) {
-        this.printDebugActionFound(action)
-        for (let cb of action.callbacks) {
-          cb()
-        }
-        // Don't continue after finding it
-        return false
-      }
-    }
-  }
-
   private printDebugKeyPressed (ev: KeyboardEvent) {
     logger.group('ShortcutJS: KeyPressed')
     logger.log('Key: ', ev.keyCode)
@@ -175,18 +191,6 @@ export class ShortcutJS {
     logger.log('Current keyMap: ', [...this.keyMap.keys()])
     logger.log(`${action.callbacks.size} callbacks found`)
     logger.groupEnd()
-  }
-
-  private processEvent (ev) {
-    const wasAppended = this.addEventToQueue(ev)
-
-    if (this.options.debug) {
-      this.printDebugKeyPressed(ev)
-    }
-
-    if (wasAppended) {
-      this.processActionCombos()
-    }
   }
 }
 

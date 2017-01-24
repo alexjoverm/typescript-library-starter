@@ -40,7 +40,7 @@ export class KeyCombo {
    * @returns {number[]}
    */
   private parse (comboStr: string): (number|number[])[]  {
-    let comboArr: string[] = comboStr.trim().replace(/\s+/g, ' ').split(' ')
+    let comboArr: string[] = comboStr.trim().replace(/\s+/g, ' ').toLowerCase().split(' ')
     let comboArrParsed: (number|number[])[] = comboArr.map(combo => keyContainer.getValue(combo))
     return comboArrParsed
   }

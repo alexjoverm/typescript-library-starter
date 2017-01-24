@@ -39,4 +39,16 @@ export class Action {
     this.keyCombo = keyCombo
     this.callbacks = new Set()
   }
+
+  public addCallback (cb: Function) {
+    this.callbacks.add(cb)
+  }
+
+  public removeCallback(cb: Function = null) {
+    if (cb) {
+      this.callbacks.delete(cb)
+    } else {
+      this.callbacks = new Set()
+    }
+  }
 }
