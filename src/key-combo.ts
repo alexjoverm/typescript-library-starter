@@ -24,7 +24,6 @@ export class KeyCombo {
   public keys: Set<number|number[]>
   private comboStr: string
 
-
   /**
    * Creates an instance of KeyCombo.
    * @param {array} keys
@@ -39,7 +38,7 @@ export class KeyCombo {
    * @param {string} comboStr
    * @returns {number[]}
    */
-  private parse (comboStr: string): (number|number[])[]  {
+  private parse (comboStr: string): (number|number[])[] {
     let comboArr: string[] = comboStr.trim().replace(/\s+/g, ' ').toLowerCase().split(' ')
     let comboArrParsed: (number|number[])[] = comboArr.map(combo => keyContainer.getValue(combo))
     return comboArrParsed

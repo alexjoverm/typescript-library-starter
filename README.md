@@ -21,20 +21,21 @@ Define a `shortcuts.json` file with all your shortcuts
 ]
 ```
 
+_Note: action means just an action name to subscribe to_
+
 ```javascript
-// main.js
+// --> main.js
 import { shortcutJS } from 'shortcutjs'
 import shortcuts from './shortcuts.json'
 
-shortcutJS.init({
-  debug: true
-})
-shortcutJS.fromJson(shortcuts)
+// optional debug param
+shortcutJS.fromJson(shortcuts, { debug: true })
 
 
-// yourComponent.js (any other file)
+// --> yourComponent.js (any other file)
 import { shortcutJS } from 'shortcutjs'
 
+// Subscribe to the action created from the json
 shortcutJS.subscribe('selectAll', () => console.log('ctrl a have been triggered!'))
 ```
 
@@ -53,14 +54,23 @@ shortcutJS.subscribe('selectAll', () => console.log('ctrl a have been triggered!
 
 ## API
 
-WIP
+When loading from json, you only need to use `fromJson`, `subscribe` and `unsubscribe` methods
 
-### init
-### subscribe
-### unsubscribe
-### fromJson
+### fromJson(json, options)
+_options_: defaults
+```
+{
+  debug: false
+}
+```
+
+### subscribe(actionName, callback)
+### unsubscribe(actionName, callback?)
+If `callback` is not specified, it will unregister all callbacks
+
 ### addAction
 ### removeAction
+### init
 
 ## Credits
 

@@ -44,17 +44,6 @@ function getMockConsole() {
 
 let mockConsole = getMockConsole()
 
-// function keyPress(key) {
-//   let options: KeyboardEventInit = { keyCode: key } as KeyboardEventInit
-//   let event: KeyboardEvent = new KeyboardEvent('keydown', {
-//     bubbles: true,
-//     cancelable: true,
-//     shiftKey: true
-//   })
-
-//   document.dispatchEvent(event)
-// }
-
 function getMockedEvent(key) {
   return {
     keyCode: key
@@ -75,7 +64,6 @@ describe('shortcutJS', () => {
     mockConsole.group.mockClear()
     mockConsole.groupEnd.mockClear()
   })
-
 
   describe('init', () => {
     it('sets keydown and keyup event listeners', () => {
@@ -252,8 +240,6 @@ describe('shortcutJS', () => {
       expect(console.groupEnd).toHaveBeenCalledTimes(1)
     })
   })
-
-
 
   // describe.only('addEventToMap', () => {
   //   it('should add an event to the queue', () => {

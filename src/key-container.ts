@@ -119,7 +119,6 @@ class KeyContainer {
    */
   private keyMapReversed: any = {}
 
-
   /**
    * Initializes the keyMaps
    *

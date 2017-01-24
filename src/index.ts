@@ -19,7 +19,6 @@ import { JsonParser } from './json-parser'
 import { KeyCombo } from './key-combo'
 import { Action } from './action'
 
-
 interface Logger extends Console {
   group(title: string, options?: string)
 }
@@ -41,7 +40,7 @@ const logger = console as Logger
  *
  * @class ShortcutJS
  */
-class ShortcutJS {
+export class ShortcutJS {
   public actions: Map<string, Action>
   public keyMap: Map<number, boolean>
   public options: any
@@ -155,7 +154,6 @@ class ShortcutJS {
       }
     }
   }
-
 
   private addEventToMap (ev) {
     if (this.keyMap.has(ev.keyCode)) {

@@ -41,7 +41,6 @@ export class JsonActionCombo {
   }
 }
 
-
 /**
  * Parses the json array of combo actions loaded externally
  * @class JsonParser

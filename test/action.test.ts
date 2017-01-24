@@ -1,8 +1,8 @@
 import { Action } from '../src/action'
 import { KeyCombo } from '../src/key-combo'
 
-function mockA() {}
-function mockB() {}
+const mockA = jest.fn()
+const mockB = jest.fn()
 
 describe('Action', () => {
   it('throws an error if second parameter is not a combo', () => {
