@@ -30,6 +30,9 @@
       "path": "node_modules/cz-conventional-changelog"
     }
   },
+  "release": {
+    "debug": true
+  },
   "devDependencies": {
     "@types/jest": "^16.0.4",
     "@types/node": "^7.0.2",
