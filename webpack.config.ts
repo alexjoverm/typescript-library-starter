@@ -21,10 +21,13 @@ export default {
           options: { presets: ['es2015'] }
         },
         {
-          loader: 'awesome-typescript-loader'
+          loader: 'ts-loader'
         }
       ],
-      exclude: /node_modules/
+      exclude: [
+        join(__dirname, 'node_modules'),
+        join(__dirname, 'test')
+      ]
     }]
   },
   plugins: [

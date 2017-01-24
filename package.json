@@ -47,6 +47,7 @@
     "rimraf": "^2.5.4",
     "semantic-release": "^6.3.2",
     "ts-jest": "^18.0.1",
+    "ts-loader": "^2.0.0",
     "ts-node": "^2.0.0",
     "tslint": "^4.3.1",
     "tslint-config-standard": "^3.0.0",
@@ -63,8 +64,9 @@
       "tsx",
       "js"
     ],
-    "modulePaths": ["<rootDir>"],
-    "modulePathIgnorePatterns": ["/^((?!src).)/"],
+    "modulePathIgnorePatterns": [
+      "/^((?!src).)/"
+    ],
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
     "coverageThreshold": {
       "global": {
@@ -74,8 +76,5 @@
         "statements": 95
       }
     }
-  },
-  "dependencies": {
-    "awesome-typescript-loader": "^3.0.0-beta.18"
   }
 }
