@@ -70,10 +70,10 @@
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
       }
     }
   }

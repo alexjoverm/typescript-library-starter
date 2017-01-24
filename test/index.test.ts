@@ -118,6 +118,11 @@ describe('shortcutJS', () => {
       expect(mockWindow.addEventListener).toHaveBeenCalledTimes(2)
       expect(shortcutJS.actions.size).toBeGreaterThan(0)
     })
+
+    it('calls init and parses json with debug true', () => {
+      shortcutJS.loadFromJson([{ action: 'open', combo: 'ctrl a' }], { debug: true })
+      expect(shortcutJS.options.debug).toBeTruthy()
+    })
   })
 
   describe('addAction', () => {
@@ -167,6 +172,15 @@ describe('shortcutJS', () => {
       expect(shortcutJS.actions.get(action.name).callbacks.size).toEqual(0)
     })
 
+    it('removes a all callbacks', () => {
+      shortcutJS.loadFromJson([{ action: 'open', combo: 'ctrl a' }])
+      shortcutJS.subscribe('open', jest.fn())
+      shortcutJS.subscribe('open', jest.fn())
+      shortcutJS.unsubscribe('open')
+
+      expect(shortcutJS.actions.get('open').callbacks.size).toEqual(0)
+    })
+
     it('throws an error if the action name is not correct', () => {
       const combo = new KeyCombo('ctrl a')
       const action = new Action('action', combo)
@@ -205,18 +219,37 @@ describe('shortcutJS', () => {
     ]
 
     let cb = jest.fn()
+    beforeEach(() => cb.mockClear())
 
-    it('iterates over the actions and calls isQueueInAction', () => {
-      shortcutJS.processEvent(getMockedEvent(17))
-      expect(shortcutJS.keyMap.get(17)).toBeTruthy()
+    it('iterates over the actions and calls isQueueInAction, matching and calling the callback', () => {
+      shortcutJS.loadFromJson(actionJson)
+      shortcutJS.subscribe('open', cb)
+      shortcutJS.processEvent(getMockedEvent(17)) // ctrl
+      shortcutJS.processEvent(getMockedEvent(65)) // a
+      shortcutJS.processActionCombos()
+
+      expect(cb).toBeCalled()
     })
 
-    it('if debug it also logs the event', () => {
-      shortcutJS.init({debug: true})
-      shortcutJS.processEvent(getMockedEvent(17))
-      expect(mockConsole.group).toHaveBeenCalledTimes(1)
-      expect(mockConsole.log).toHaveBeenCalledTimes(2)
-      expect(mockConsole.groupEnd).toHaveBeenCalledTimes(1)
+    it('iterates over the actions and calls isQueueInAction, NOT matching anything', () => {
+      shortcutJS.loadFromJson(actionJson)
+      shortcutJS.subscribe('open', cb)
+      shortcutJS.processEvent(getMockedEvent(65)) // a
+      shortcutJS.processActionCombos()
+
+      expect(cb).not.toBeCalled()
+    })
+
+    it('calls printDebugActionFound if debug is active', () => {
+      shortcutJS.loadFromJson(actionJson, { debug: true })
+      shortcutJS.subscribe('open', cb)
+      shortcutJS.keyMap.set(65, true)
+      shortcutJS.keyMap.set(17, true)
+      shortcutJS.processActionCombos()
+
+      expect(console.group).toHaveBeenCalledTimes(1)
+      expect(console.log).toHaveBeenCalledTimes(3)
+      expect(console.groupEnd).toHaveBeenCalledTimes(1)
     })
   })
 

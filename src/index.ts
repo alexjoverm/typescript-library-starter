@@ -76,12 +76,12 @@ class ShortcutJS {
   }
 
   public reset () {
+    this.keyMap = new Map()
+    this.actions = new Map()
+    this.initialized = false
+
     window.removeEventListener('keydown', this.processEvent)
     window.removeEventListener('keyup', this.removeAllKeys)
-
-    shortcutJS.keyMap = new Map()
-    shortcutJS.actions = new Map()
-    this.initialized = false
   }
 
   public loadFromJson(json, options = null) {
