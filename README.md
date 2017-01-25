@@ -50,6 +50,7 @@ shortcutJS.subscribe('selectAll', () => console.log('ctrl a have been triggered!
 
 ## Contribution guide
 
+WIP
 
 
 ## API
