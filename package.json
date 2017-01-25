@@ -35,9 +35,6 @@
       "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
     }
   },
-  "release": {
-    "debug": true
-  },
   "devDependencies": {
     "@types/jest": "^16.0.4",
     "@types/node": "^7.0.2",
