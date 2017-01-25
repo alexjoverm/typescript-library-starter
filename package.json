@@ -24,7 +24,7 @@
   ],
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:prod",
+      "pre-commit": "npm run test:prod && npm run build",
       "commit-msg": "validate-commit-msg"
     },
     "commitizen": {

@@ -214,7 +214,7 @@ describe('shortcutJS', () => {
       shortcutJS.subscribe('open', cb)
       shortcutJS.processEvent(getMockedEvent(17)) // ctrl
       shortcutJS.processEvent(getMockedEvent(65)) // a
-      shortcutJS.processActionCombos()
+      shortcutJS.processActionCombos(getMockedEvent(65))
 
       expect(cb).toBeCalled()
     })
@@ -223,7 +223,7 @@ describe('shortcutJS', () => {
       shortcutJS.loadFromJson(actionJson)
       shortcutJS.subscribe('open', cb)
       shortcutJS.processEvent(getMockedEvent(65)) // a
-      shortcutJS.processActionCombos()
+      shortcutJS.processActionCombos(getMockedEvent(65))
 
       expect(cb).not.toBeCalled()
     })
@@ -233,7 +233,7 @@ describe('shortcutJS', () => {
       shortcutJS.subscribe('open', cb)
       shortcutJS.keyMap.set(65, true)
       shortcutJS.keyMap.set(17, true)
-      shortcutJS.processActionCombos()
+      shortcutJS.processActionCombos(getMockedEvent(65))
 
       expect(console.group).toHaveBeenCalledTimes(1)
       expect(console.log).toHaveBeenCalledTimes(3)
