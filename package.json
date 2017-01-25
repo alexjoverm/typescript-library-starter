@@ -24,10 +24,14 @@
   ],
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:prod"
+      "pre-commit": "npm run test:prod",
+      "commit-msg": "validate-commit-msg"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types"
     }
   },
   "release": {
@@ -52,6 +56,7 @@
     "tslint": "^4.3.1",
     "tslint-config-standard": "^3.0.0",
     "typescript": "^2.1.5",
+    "validate-commit-msg": "^2.10.1",
     "webpack": "^2.2.0"
   },
   "jest": {

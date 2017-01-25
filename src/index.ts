@@ -122,7 +122,7 @@ export class ShortcutJS {
     }
 
     if (wasAppended) {
-      this.processActionCombos()
+      this.processActionCombos(ev)
     }
   }
 
@@ -139,7 +139,7 @@ export class ShortcutJS {
   /**
    * Search for the right action, given a keyCombo, and execute its callbacks
    */
-  public processActionCombos () {
+  public processActionCombos (ev) {
     for (let action of this.actions.values()) {
       if (this.isQueueInAction(action)) {
         if (this.options.debug) {
@@ -147,7 +147,7 @@ export class ShortcutJS {
         }
 
         for (let cb of action.callbacks) {
-          cb()
+          cb(ev)
         }
         // Don't continue after finding it
         return false

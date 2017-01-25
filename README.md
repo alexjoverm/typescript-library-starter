@@ -36,7 +36,7 @@ shortcutJS.fromJson(shortcuts, { debug: true })
 import { shortcutJS } from 'shortcutjs'
 
 // Subscribe to the action created from the json
-shortcutJS.subscribe('selectAll', () => console.log('ctrl a have been triggered!'))
+shortcutJS.subscribe('selectAll', ev => console.log('ctrl a have been triggered!', ev))
 ```
 
 **Note:** don't forget to unsubscribe to stop listening for that action.
