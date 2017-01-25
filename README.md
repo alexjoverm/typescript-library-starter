@@ -39,7 +39,7 @@ import { shortcutJS } from 'shortcutjs'
 shortcutJS.subscribe('selectAll', ev => console.log('ctrl a have been triggered!', ev))
 ```
 
-**Note:** don't forget to unsubscribe to stop listening for that action
+**Note:** don't forget to unsubscribe to stop listening for that action.
 
 ## Features
  - Define all your shortcuts in a json file and load them from there
