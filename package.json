@@ -2,6 +2,7 @@
   "name": "shortcutjs",
   "version": "0.0.0-development",
   "description": "Keyboard manager for javascript, made for humans",
+  "keywords": ["shortcut", "keyboard", "keymanager", "key events", "shortcutjs", "typescript"],
   "main": "dist/shortcut.js",
   "repository": "https://github.com/coosto/ShortcutJS",
   "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
@@ -20,7 +21,7 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "readme.md"
   ],
   "config": {
     "ghooks": {
