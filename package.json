@@ -2,7 +2,14 @@
   "name": "shortcutjs",
   "version": "0.0.0-development",
   "description": "Keyboard manager for javascript, made for humans",
-  "keywords": ["shortcut", "keyboard", "keymanager", "key events", "shortcutjs", "typescript"],
+  "keywords": [
+    "shortcut",
+    "keyboard",
+    "keymanager",
+    "key events",
+    "shortcutjs",
+    "typescript"
+  ],
   "main": "dist/shortcut.js",
   "repository": "https://github.com/coosto/ShortcutJS",
   "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
@@ -15,6 +22,7 @@
     "commit": "git-cz",
     "test": "jest",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "report-coverage" : "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
     "prebuild": "rimraf dist",
     "build": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
