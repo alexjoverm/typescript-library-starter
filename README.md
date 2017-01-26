@@ -58,7 +58,7 @@ WIP
 When loading from json, you only need to use `fromJson`, `subscribe` and `unsubscribe` methods
 
 ### fromJson(json, options)
-_options_: defaults
+_options_: defaults to
 ```
 {
   debug: false
