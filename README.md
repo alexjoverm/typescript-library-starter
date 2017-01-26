@@ -1,4 +1,10 @@
 # ShortcutJS
+[![npm](https://img.shields.io/npm/v/shortcutjs.svg)]()
+[![Travis](https://img.shields.io/travis/coosto/ShortcutJS.svg)]()
+[![Coveralls](https://img.shields.io/coveralls/coosto/ShortcutJS.svg)]()
+[![npm](https://img.shields.io/npm/dt/shortcutjs.svg)]()
+[![David](https://img.shields.io/david/coosto/ShortcutJS.svg)]()
+[![David](https://img.shields.io/david/dev/coosto/ShortcutJS.svg)]()
 Keyboard manager for javascript and typescript, made for humans :sunglasses:
 
 Do you have a very interactive app with lots of shortcuts? ShortcutJS makes defining all your shortcuts very easy, by defining **Combos** bound to **Actions**. Even better, you can define them all **in JSON file**.
