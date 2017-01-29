@@ -1,18 +1,15 @@
 import { Action, KeyCombo, shortcutJS } from '../src'
 import { getMockedEvent } from './utils'
 
+
 /**
  * Mock window
  */
-interface MockWindow extends Window {
-  addEventListener: jest.Mock<{}> & typeof window.addEventListener
-  removeEventListener: jest.Mock<{}> & typeof window.removeEventListener
-}
 function getMockWindow() {
   let myGlobal = global as any
   myGlobal.addEventListener = jest.fn()
   myGlobal.removeEventListener = jest.fn()
-  return myGlobal
+  return myGlobal as any
 }
 
 /**
