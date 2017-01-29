@@ -14,13 +14,21 @@
   limitations under the License.
  */
 
+export interface ISkipKey {
+  name: string,
+  code: number
+}
+
 /**
  * Contains the logic for the keyMapping
  *
  * @class KeyContainer
  */
 class KeyContainer {
-  private keyMap = {
+  /**
+   * Map of allowed keys
+   */
+  private keyMap: {[a: string]: number|number[]} = {
     // nums
     '0': 48,
     '1': 49,
@@ -114,10 +122,16 @@ class KeyContainer {
     'f12': 123
   }
 
+  private skipKeys: ISkipKey[] = [
+    { name: 'shift', code: 16 },
+    { name: 'ctrl', code: 17 },
+    { name: 'alt', code: 18 }
+  ]
+
   /**
    * Reversed map (value: key) for easy mapping code -> word
    */
-  private keyMapReversed: any = {}
+  private keyMapReversed: { [keyCode: number]: string }
 
   /**
    * Initializes the keyMaps
@@ -126,30 +140,37 @@ class KeyContainer {
    * @param {any} userAgent
    */
   public init(platform, userAgent) {
+    this.skipKeys = [
+      { name: 'shift', code: 16 },
+      { name: 'ctrl', code: 17 },
+      { name: 'alt', code: 18 }
+    ]
+
     // Define cmdKey depending on browser
-    let cmdKey: number|number[] = 91 // @todo OR 93
+    let cmdKey: number|number[] = [91, 93]
+
 
     if (platform.match('Mac') && userAgent.match('Opera')) {
-      cmdKey = 17
+      cmdKey = [17]
     } else if (platform.match('Mac') && userAgent.match('Firefox')) {
-      cmdKey = 224
+      cmdKey = [224]
     }
 
     this.keyMap = Object.assign(this.keyMap, { 'cmd': cmdKey })
-
-    // Build reversedMap (keys are values, values are keys)
-    Object.keys(this.keyMap).forEach(key => {
-      let value = this.keyMap[key]
-      this.keyMapReversed[value] = key
-    })
+    this.keyMapReversed = this.buildReversedKeymap(this.keyMap)
+    this.skipKeys = this.addCmdToSkipKeys(this.skipKeys, cmdKey)
   }
 
-  public getKeys(): any {
+  public getKeys() {
     return this.keyMap
   }
 
-  public getKeysReversed(): any {
+  public getKeysReversed() {
     return this.keyMapReversed
+  }
+
+  public getSkipKeys() {
+    return this.skipKeys
   }
 
   public getValue(key: string): number|number[] {
@@ -159,6 +180,30 @@ class KeyContainer {
     }
 
     return value
+  }
+
+  private addCmdToSkipKeys(skipKeys: ISkipKey[], cmd: number[]) {
+    const _skipKeys = [...skipKeys]
+    cmd.forEach(code => _skipKeys.push({ name: 'cmd', code: code }))
+    return _skipKeys
+  }
+
+  private buildReversedKeymap(keymap) {
+    const keyMapReversed: { [keyCode: number]: string } = {}
+
+    // Build reversedMap (keys are values, values are keys)
+    Object.keys(keymap).forEach(key => {
+      let value = keymap[key]
+
+      // Take into account multiple-values keys (such as cmd)
+      if (Array.isArray(value)) {
+        value.forEach(val => keyMapReversed[val] = key)
+      } else {
+        keyMapReversed[value] = key
+      }
+    })
+
+    return keyMapReversed
   }
 }
 

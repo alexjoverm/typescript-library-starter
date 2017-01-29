@@ -59,7 +59,7 @@ export class JsonParser {
 
     json.forEach(obj => {
       const jsonActionCombo = new JsonActionCombo(obj)
-      const keyCombo = new KeyCombo(jsonActionCombo.combo)
+      const keyCombo = KeyCombo.fromString(jsonActionCombo.combo)
       const action = new Action(jsonActionCombo.action, keyCombo)
       shortcutJS.addAction(action)
     })

@@ -30,7 +30,7 @@ describe('EventProcessor', () => {
   beforeEach(() => {
     eventProcessor = new EventProcessor()
     actions = new Map()
-    const action = new Action('action', new KeyCombo('ctrl a'))
+    const action = new Action('action', KeyCombo.fromString('ctrl a'))
     action.addCallback(cb)
     actions.set('action', action)
   })
@@ -42,64 +42,63 @@ describe('EventProcessor', () => {
     mockConsole.groupEnd.mockClear()
   })
 
-  describe('cleanKeyMap', () => {
+  describe('cleanCombo', () => {
     it('clears the keyMap', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, false)
-      expect(eventProcessor.keyMap.size).toBe(1)
+      eventProcessor.processEvent(getMockedEvent(55), actions, false)
+      expect(eventProcessor.currentCombo.keys.size).toBe(1)
 
-      eventProcessor.cleanKeyMap(false)
-      expect(eventProcessor.keyMap.size).toBe(0)
+      eventProcessor.cleanCombo(false)
+      expect(eventProcessor.currentCombo.keys.size).toBe(0)
     })
 
     it('prints if called with debug', () => {
-      eventProcessor.cleanKeyMap(true)
+      eventProcessor.cleanCombo(true)
       expect(mockConsole.log).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('processEvent', () => {
     it('calls addEventToMap and processActionCombos', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, false)
-      expect(eventProcessor.keyMap.get(17)).toBeTruthy()
+      eventProcessor.processEvent(getMockedEvent(55), actions, false)
+      expect(eventProcessor.currentCombo.keys).toEqual(new Set<number>([55]))
     })
 
     it('calls addEvenToMap but only processActionCombos once', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, false)
-      eventProcessor.processEvent(getMockedEvent(17), actions, true)
+      eventProcessor.processEvent(getMockedEvent(55), actions, false)
+      eventProcessor.processEvent(getMockedEvent(55), actions, true)
       eventProcessor.processEvent(getMockedEvent(45), actions, false)
-      expect(eventProcessor.keyMap.size).toBe(2)
+      expect(eventProcessor.currentCombo.keys.size).toBe(2)
     })
 
     it('if debug it also logs the event', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, true)
-      expect(mockConsole.group).toHaveBeenCalledTimes(1)
-      expect(mockConsole.log).toHaveBeenCalledTimes(2)
-      expect(mockConsole.groupEnd).toHaveBeenCalledTimes(1)
+      eventProcessor.processEvent(getMockedEvent(55), actions, true)
+      expect(mockConsole.group).toHaveBeenCalledTimes(2)
+      expect(mockConsole.log).toHaveBeenCalledTimes(3)
+      expect(mockConsole.groupEnd).toHaveBeenCalledTimes(2)
     })
   })
 
   describe('processActionCombos', () => {
-
     beforeEach(() => cb.mockClear())
 
-    it('iterates over the actions and calls isQueueInAction, matching and calling the callback', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, false) // a
-      eventProcessor.processEvent(getMockedEvent(65), actions, false) // a
+    it('iterates over the actions and calls matchesComboAction, matching and calling the callback', () => {
+      eventProcessor.processEvent(getMockedEvent(17, { ctrlKey: true } as any), actions, false) // ctrl
+      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, false) // a
       expect(cb).toBeCalled()
     })
 
-    it('iterates over the actions and calls isQueueInAction, NOT matching anything', () => {
+    it('iterates over the actions and calls matchesComboAction, NOT matching anything', () => {
       eventProcessor.processEvent(getMockedEvent(65), actions, false) // a
       expect(cb).not.toBeCalled()
     })
 
     it('calls printDebugActionFound if debug is active', () => {
       eventProcessor.processEvent(getMockedEvent(17), actions, true) // ctrl
-      eventProcessor.processEvent(getMockedEvent(65), actions, true) // a
+      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, true) // a
 
-      expect(mockConsole.group).toHaveBeenCalledTimes(3)
+      expect(mockConsole.group).toHaveBeenCalledTimes(4)
       expect(mockConsole.log).toHaveBeenCalledTimes(7)
-      expect(mockConsole.groupEnd).toHaveBeenCalledTimes(3)
+      expect(mockConsole.groupEnd).toHaveBeenCalledTimes(4)
     })
   })
 })

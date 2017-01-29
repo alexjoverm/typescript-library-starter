@@ -54,7 +54,7 @@ export class ShortcutJS {
       this.options = new Options(options)
 
       window.addEventListener('keydown', this.processEvent.bind(this))
-      window.addEventListener('keyup', this.cleanKeyMap.bind(this))
+      window.addEventListener('keyup', this.cleanCombo.bind(this))
 
       this.initialized = true
     }
@@ -66,7 +66,7 @@ export class ShortcutJS {
     this.initialized = false
 
     window.removeEventListener('keydown', this.processEvent)
-    window.removeEventListener('keyup', this.cleanKeyMap)
+    window.removeEventListener('keyup', this.cleanCombo)
   }
 
   public loadFromJson(json, options: IOptions = null) {
@@ -74,7 +74,7 @@ export class ShortcutJS {
     JsonParser.parse(this, json)
   }
 
-  public addAction (action) {
+  public addAction (action: Action) {
     if (!(action instanceof Action)) {
       throw new Error('You must pass an Action instance object')
     }
@@ -82,7 +82,7 @@ export class ShortcutJS {
     this.actions.set(action.name, action)
   }
 
-  public subscribe (actionName, cb) {
+  public subscribe (actionName: string, cb: Function) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
       action.addCallback(cb)
@@ -91,7 +91,7 @@ export class ShortcutJS {
     }
   }
 
-  public unsubscribe (actionName, cb = null) {
+  public unsubscribe (actionName: string, cb: Function = null) {
     if (this.actions.has(actionName)) {
       const action = this.actions.get(actionName)
       action.removeCallback(cb)
@@ -101,12 +101,11 @@ export class ShortcutJS {
   }
 
   public processEvent (ev: KeyboardEvent) {
-    console.log('EVEEEEEEENT')
     this.eventProcessor.processEvent(ev, this.actions, this.options.debug)
   }
 
-  public cleanKeyMap () {
-    this.eventProcessor.cleanKeyMap(this.options.debug)
+  public cleanCombo () {
+    this.eventProcessor.cleanCombo(this.options.debug)
   }
 }
 

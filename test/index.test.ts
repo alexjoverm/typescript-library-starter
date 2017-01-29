@@ -3,7 +3,7 @@ import { getMockedEvent } from './utils'
 
 const resetMock = jest.fn()
 const processEventMock = jest.fn()
-const cleanKeyMapMock = jest.fn()
+const cleanComboMock = jest.fn()
 
 /**
  * Mock window
@@ -30,27 +30,18 @@ describe('shortcutJS', () => {
     mockWindow.removeEventListener.mockClear()
     resetMock.mockClear()
     processEventMock.mockClear()
-    cleanKeyMapMock.mockClear()
-  })
-
-  it('processEvent: to call processEvent of eventProcessor', () => {
-    shortcutJS.init()
-    shortcutJS.processEvent({} as KeyboardEvent)
-    // @todo Use spies
-    expect(shortcutJS.processEvent).toBeTruthy()
-  })
-
-  it('cleanKeyMap: to call cleanKeyMap of eventProcessor', () => {
-    shortcutJS.init()
-    shortcutJS.cleanKeyMap()
-    // @todo Use spies
-    expect(shortcutJS.cleanKeyMap).toBeTruthy()
+    cleanComboMock.mockClear()
   })
 
   describe('init', () => {
     it('sets keydown and keyup event listeners', () => {
       shortcutJS.init()
       expect(mockWindow.addEventListener).toHaveBeenCalledTimes(2)
+    })
+
+    it('initializes with a debug options', () => {
+      shortcutJS.init({ debug: true })
+      expect(shortcutJS.options.debug).toBeTruthy()
     })
 
     it('sets keydown and keyup event listeners only once', () => {
@@ -70,14 +61,14 @@ describe('shortcutJS', () => {
     it('clears keyMap and actions', () => {
       shortcutJS.init()
 
-      shortcutJS.processEvent(getMockedEvent(17))
-      expect(shortcutJS.eventProcessor.keyMap.size).toBe(1)
+      shortcutJS.processEvent(getMockedEvent(55))
+      expect(shortcutJS.eventProcessor.currentCombo.keys.size).toBe(1)
 
-      shortcutJS.addAction(new Action('open', new KeyCombo('ctrl a')))
+      shortcutJS.addAction(new Action('open', KeyCombo.fromString('ctrl a')))
       expect(shortcutJS.actions.size).toBe(1)
 
       shortcutJS.reset()
-      expect(shortcutJS.eventProcessor.keyMap.size).toBe(0)
+      expect(shortcutJS.eventProcessor.currentCombo.keys.size).toBe(0)
       expect(shortcutJS.actions.size).toBe(0)
     })
   })
@@ -97,20 +88,20 @@ describe('shortcutJS', () => {
 
   describe('addAction', () => {
     it('adds an action', () => {
-      const combo = new KeyCombo('ctrl a')
+      const combo = KeyCombo.fromString('ctrl a')
       const action = new Action('action', combo)
       shortcutJS.addAction(action)
       expect(shortcutJS.actions.size).toEqual(1)
     })
 
     it('throws an error if an action is not passed', () => {
-      expect(shortcutJS.addAction.bind({})).toThrowError()
+      expect(() => shortcutJS.addAction(1 as any)).toThrowError()
     })
   })
 
   describe('subscribe', () => {
     it('adds a new callback', () => {
-      const combo = new KeyCombo('ctrl a')
+      const combo = KeyCombo.fromString('ctrl a')
       const action = new Action('action', combo)
 
       shortcutJS.addAction(action)
@@ -120,7 +111,7 @@ describe('shortcutJS', () => {
     })
 
     it('throws an error if the action name is not correct', () => {
-      const combo = new KeyCombo('ctrl a')
+      const combo = KeyCombo.fromString('ctrl a')
       const action = new Action('action', combo)
       shortcutJS.addAction(action)
 
@@ -130,7 +121,7 @@ describe('shortcutJS', () => {
 
   describe('unsubscribe', () => {
     it('removes a callback', () => {
-      const combo = new KeyCombo('ctrl a')
+      const combo = KeyCombo.fromString('ctrl a')
       const action = new Action('action', combo)
 
       const func = () => ({})
@@ -152,11 +143,25 @@ describe('shortcutJS', () => {
     })
 
     it('throws an error if the action name is not correct', () => {
-      const combo = new KeyCombo('ctrl a')
+      const combo = KeyCombo.fromString('ctrl a')
       const action = new Action('action', combo)
       shortcutJS.addAction(action)
 
       expect(shortcutJS.unsubscribe.bind('papa', () => ({}))).toThrowError()
     })
+  })
+
+  it('processEvent: to call processEvent of eventProcessor', () => {
+    shortcutJS.init()
+    shortcutJS.processEvent({} as KeyboardEvent)
+    // @todo Use spies
+    expect(shortcutJS.processEvent).toBeTruthy()
+  })
+
+  it('cleanCombo: to call cleanCombo of eventProcessor', () => {
+    shortcutJS.init()
+    shortcutJS.cleanCombo()
+    // @todo Use spies
+    expect(shortcutJS.cleanCombo).toBeTruthy()
   })
 })
