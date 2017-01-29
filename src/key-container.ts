@@ -149,7 +149,6 @@ class KeyContainer {
     // Define cmdKey depending on browser
     let cmdKey: number|number[] = [91, 93]
 
-
     if (platform.match('Mac') && userAgent.match('Opera')) {
       cmdKey = [17]
     } else if (platform.match('Mac') && userAgent.match('Firefox')) {
