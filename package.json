@@ -22,7 +22,7 @@
     "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "test:prod": "npm run lint && npm run test -- -i --coverage --no-cache",
     "report-coverage": "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack",

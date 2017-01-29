@@ -1,10 +1,6 @@
 import { Action, KeyCombo, shortcutJS } from '../src'
 import { getMockedEvent } from './utils'
 
-const resetMock = jest.fn()
-const processEventMock = jest.fn()
-const cleanComboMock = jest.fn()
-
 /**
  * Mock window
  */
@@ -17,20 +13,18 @@ function getMockWindow() {
   window.removeEventListener = jest.fn()
   return window as MockWindow
 }
-let mockWindow = getMockWindow()
 
 /**
  * Actual test suite
  */
 describe('shortcutJS', () => {
+  let mockWindow = getMockWindow()
+
   afterEach(() => {
     shortcutJS.reset()
 
     mockWindow.addEventListener.mockClear()
     mockWindow.removeEventListener.mockClear()
-    resetMock.mockClear()
-    processEventMock.mockClear()
-    cleanComboMock.mockClear()
   })
 
   describe('init', () => {
