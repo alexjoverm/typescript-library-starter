@@ -1,7 +1,6 @@
 import { Action, KeyCombo, shortcutJS } from '../src'
 import { getMockedEvent } from './utils'
 
-
 /**
  * Mock window
  */
