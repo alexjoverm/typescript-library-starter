@@ -3,7 +3,7 @@ import { optimize } from 'webpack'
 
 const env = process && process.env && process.env.NODE_ENV
 const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.json' } : {}
-console.log(tsConfig)
+
 export default {
   entry: join(__dirname, 'src/index.ts'),
   output: {

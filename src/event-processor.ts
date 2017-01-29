@@ -3,6 +3,7 @@ import { logger } from './utils'
 
 export class EventProcessor {
   public keyMap: Map<number, boolean>
+  public lastEvent: KeyboardEvent
 
   constructor () {
     this.keyMap = new Map()
@@ -14,6 +15,10 @@ export class EventProcessor {
 
   public processEvent (ev: KeyboardEvent, actions: Map<string, Action>, debug: boolean) {
     const wasAppended = this.addEventToMap(ev)
+    // Avoid repeated events
+    if (!wasAppended) {
+      return false
+    }
 
     if (debug) {
       this.printDebugKeyPressed(ev)

@@ -101,6 +101,7 @@ export class ShortcutJS {
   }
 
   public processEvent (ev: KeyboardEvent) {
+    console.log('EVEEEEEEENT')
     this.eventProcessor.processEvent(ev, this.actions, this.options.debug)
   }
 
