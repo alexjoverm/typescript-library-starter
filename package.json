@@ -21,10 +21,12 @@
     "lint": "tslint -e node_modules/** **/*.ts ",
     "commit": "git-cz",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "report-coverage" : "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
     "prebuild": "rimraf dist",
-    "build": "webpack",
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:dev": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
@@ -52,6 +54,7 @@
     "babel-preset-es2015": "^6.22.0",
     "commitizen": "^2.9.5",
     "coveralls": "^2.11.15",
+    "cross-env": "^3.1.4",
     "cz-conventional-changelog": "^1.2.0",
     "ghooks": "^2.0.0",
     "jest": "^18.1.0",
@@ -80,7 +83,10 @@
       "/^((?!src).)/"
     ],
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/test/"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 90,
