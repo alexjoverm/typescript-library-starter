@@ -9,9 +9,10 @@ interface MockWindow extends Window {
   removeEventListener: jest.Mock<{}> & typeof window.removeEventListener
 }
 function getMockWindow() {
-  window.addEventListener = jest.fn()
-  window.removeEventListener = jest.fn()
-  return window as MockWindow
+  let myGlobal = global as any
+  myGlobal.addEventListener = jest.fn()
+  myGlobal.removeEventListener = jest.fn()
+  return myGlobal
 }
 
 /**
@@ -20,7 +21,7 @@ function getMockWindow() {
 describe('shortcutJS', () => {
   let mockWindow = getMockWindow()
 
-  afterEach(() => {
+  beforeEach(() => {
     shortcutJS.reset()
 
     mockWindow.addEventListener.mockClear()
