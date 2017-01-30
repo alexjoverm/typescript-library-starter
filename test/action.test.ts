@@ -10,21 +10,21 @@ describe('Action', () => {
   })
 
   it('should be ok if parameters are correct', () => {
-    const action = new Action('open', new KeyCombo('ctrl a'))
+    const action = new Action('open', KeyCombo.fromString('ctrl a'))
     expect(action.name).toBe('open')
     expect(action.keyCombo).toBeInstanceOf(KeyCombo)
     expect(action.callbacks).toEqual(new Set())
   })
 
   it('addCallback: should add a callback', () => {
-    const action = new Action('open', new KeyCombo('ctrl a'))
+    const action = new Action('open', KeyCombo.fromString('ctrl a'))
     action.addCallback(mockA)
     expect(action.callbacks.size).toBe(1)
   })
 
   describe('deleteCallback', () => {
     it('should remove one callback if a cb param is passed', () => {
-      const action = new Action('open', new KeyCombo('ctrl a'))
+      const action = new Action('open', KeyCombo.fromString('ctrl a'))
       action.addCallback(mockA)
       action.addCallback(mockB)
       expect(action.callbacks.size).toBe(2)
@@ -33,7 +33,7 @@ describe('Action', () => {
     })
 
     it('should remove all callbacks if no params are passed', () => {
-      const action = new Action('open', new KeyCombo('ctrl a'))
+      const action = new Action('open', KeyCombo.fromString('ctrl a'))
       action.addCallback(mockA)
       action.addCallback(mockB)
       expect(action.callbacks.size).toBe(2)

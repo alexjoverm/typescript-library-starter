@@ -2,13 +2,10 @@ language: node_js
 branches:
   only:
     - master
-cache:
-  directories:
-    - node_modules
 notifications:
   email: false
 node_js:
-  - '7'
+  - '6'
 before_script:
   - npm prune && npm cache clean
 script:

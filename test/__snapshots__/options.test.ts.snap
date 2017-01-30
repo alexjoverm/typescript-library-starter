@@ -1,0 +1,1 @@
+exports[`Options has expected defaults if no params are passed 1`] = `"Some of the options are not correct. Checkout the docs at https://github.com/coosto/ShortcutJS for more info"`;

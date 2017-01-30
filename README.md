@@ -1,7 +1,7 @@
 # ShortcutJS
 [![npm](https://img.shields.io/npm/v/shortcutjs.svg)](https://www.npmjs.com/package/shortcutjs)
 [![Travis](https://img.shields.io/travis/coosto/ShortcutJS.svg)]()
-[![Coveralls](https://img.shields.io/coveralls/coosto/ShortcutJS.svg)]()
+[![Coverage Status](https://coveralls.io/repos/github/coosto/ShortcutJS/badge.svg?branch=master)](https://coveralls.io/github/coosto/ShortcutJS?branch=master)
 [![npm](https://img.shields.io/npm/dt/shortcutjs.svg)](https://www.npmjs.com/package/shortcutjs)
 [![David](https://img.shields.io/david/coosto/ShortcutJS.svg)]()
 [![David](https://img.shields.io/david/dev/coosto/ShortcutJS.svg)]()
