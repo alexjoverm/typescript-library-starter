@@ -4,19 +4,21 @@ import { getMockedEvent } from './utils'
 /**
  * Mock window
  */
-function getMockWindow() {
-  let myGlobal = global as any
-  myGlobal.addEventListener = jest.fn()
-  myGlobal.removeEventListener = jest.fn()
-  return myGlobal as any
+interface MockWindow extends Window {
+  addEventListener: jest.Mock<{}> & typeof window.addEventListener
+  removeEventListener: jest.Mock<{}> & typeof window.removeEventListener
 }
+function getMockWindow() {
+  window.addEventListener = jest.fn()
+  window.removeEventListener = jest.fn()
+  return window as MockWindow
+}
+let mockWindow = getMockWindow()
 
 /**
  * Actual test suite
  */
 describe('shortcutJS', () => {
-  let mockWindow = getMockWindow()
-
   beforeEach(() => {
     shortcutJS.reset()
 

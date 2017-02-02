@@ -15,7 +15,7 @@
   "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
   "license": "Apache 2.0",
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "lint": "tslint -e node_modules/** **/*.ts ",

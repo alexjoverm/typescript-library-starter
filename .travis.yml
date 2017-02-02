@@ -5,7 +5,7 @@ branches:
 notifications:
   email: false
 node_js:
-  - '6'
+  - '7.2'
 before_script:
   - npm prune && npm cache clean
 script:

@@ -1,10 +1,11 @@
 # ShortcutJS
 [![npm](https://img.shields.io/npm/v/shortcutjs.svg)](https://www.npmjs.com/package/shortcutjs)
-[![Travis](https://img.shields.io/travis/coosto/ShortcutJS.svg)]()
+[![Travis](https://img.shields.io/travis/coosto/ShortcutJS.svg)](https://travis-ci.org/coosto/ShortcutJS)
 [![Coverage Status](https://coveralls.io/repos/github/coosto/ShortcutJS/badge.svg?branch=master)](https://coveralls.io/github/coosto/ShortcutJS?branch=master)
+[![bitHound Code](https://www.bithound.io/github/coosto/ShortcutJS/badges/code.svg)](https://www.bithound.io/github/coosto/ShortcutJS)
+[![bitHound Dependencies](https://www.bithound.io/github/coosto/ShortcutJS/badges/dependencies.svg)](https://www.bithound.io/github/coosto/ShortcutJS/master/dependencies/npm)
 [![npm](https://img.shields.io/npm/dt/shortcutjs.svg)](https://www.npmjs.com/package/shortcutjs)
-[![David](https://img.shields.io/david/coosto/ShortcutJS.svg)]()
-[![David](https://img.shields.io/david/dev/coosto/ShortcutJS.svg)]()
+
 
 Keyboard manager for javascript and typescript, made for humans :sunglasses:
 
