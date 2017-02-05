@@ -6,12 +6,16 @@
         "noImplicitAny": false,
         "sourceMap": false,
         "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "types",
         "typeRoots": [
           "node_modules/@types"
         ]
     },
+    "files": ["src/index.ts"],
     "exclude": [
         "test",
-        "node_modules"
+        "node_modules",
+        "webpack.config.ts"
     ]
 }

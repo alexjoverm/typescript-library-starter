@@ -6,6 +6,8 @@
         "noImplicitAny": false,
         "sourceMap": false,
         "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "types",
         "typeRoots": [
           "node_modules/@types"
         ]

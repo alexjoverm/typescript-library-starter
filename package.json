@@ -11,9 +11,13 @@
     "typescript"
   ],
   "main": "dist/shortcut.js",
+  "typings": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/coosto/ShortcutJS",
   "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -29,10 +33,6 @@
     "build:dev": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "files": [
-    "dist",
-    "readme.md"
-  ],
   "config": {
     "ghooks": {
       "pre-commit": "npm run test:prod && npm run build",

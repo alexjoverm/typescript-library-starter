@@ -1,4 +1,4 @@
-interface Logger extends Console {
+export interface Logger extends Console {
   group(title: string, options?: string)
   groupCollapsed(title: string, options?: string)
 }

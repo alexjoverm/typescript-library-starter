@@ -24,7 +24,7 @@ export interface ISkipKey {
  *
  * @class KeyContainer
  */
-class KeyContainer {
+export class KeyContainer {
   /**
    * Map of allowed keys
    */

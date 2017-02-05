@@ -1,7 +1,7 @@
 /*
   Copyright 2017 Alex Jover Morales (alexjovermorales@gmail.com)
 
-  Licensed under the Apache License, Version 2.0 (the "License");
+  Licensed under the Apache License, Version 2.0 (the "License")
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
 
@@ -22,22 +22,21 @@ import { KeyCombo } from './key-combo'
 
 import { keyContainer } from './key-container'
 
-/**
- * First Version of a ShortcutJS.
- *
- * Ideally, ShortcutJS could hold the keydown and keyup events, and execute the actions according
- * to the key combos.
- *
- * WARNING: careful when adding combos with CTRL key on it. If you happen to trigger a by-default
- * browser shortcut (like CTRL-T) the keyup event will not be performed
- *
- * @todo Improvements:
- *  - Avoid repetition of mouseDownEvents if the last key is the same
- *  - Performance of processActionCombos
- *
- * @class ShortcutJS
- */
-export class ShortcutJS {
+export interface ShortcutJS {
+  actions: Map<string, Action>
+  options: Options
+  eventProcessor: EventProcessor
+  init(options?: IOptions): void
+  reset(): void
+  loadFromJson(json: any, options?: IOptions): void
+  addAction(action: Action): void
+  subscribe(actionName: string, cb: Function): void
+  unsubscribe(actionName: string, cb?: Function): void
+  processEvent(ev: KeyboardEvent): void
+  cleanCombo(): void
+}
+
+class Shortcut implements ShortcutJS {
   public actions: Map<string, Action>
   public options: Options
   public eventProcessor: EventProcessor
@@ -109,6 +108,10 @@ export class ShortcutJS {
   }
 }
 
-export const shortcutJS = new ShortcutJS() // Enforce singleton
-export { KeyCombo } from './key-combo'
-export { Action } from './action'
+export const shortcutJS: ShortcutJS = new Shortcut() // Enforce singleton
+export * from './action'
+export * from './event-processor'
+export * from './json-parser'
+export * from './key-combo'
+export * from './key-container'
+export * from './options'
