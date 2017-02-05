@@ -6,6 +6,7 @@ const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.
 
 export default {
   entry: join(__dirname, 'src/index.ts'),
+  devtool: 'cheap-source-map',
   output: {
     path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
@@ -35,6 +36,6 @@ export default {
     }]
   },
   plugins: [
-    new optimize.UglifyJsPlugin()
+    new optimize.UglifyJsPlugin({sourceMap: true})
   ]
 }
