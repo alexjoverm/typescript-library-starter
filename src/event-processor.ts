@@ -26,9 +26,7 @@ export class EventProcessor {
       this.printDebugKeyPressed(ev)
     }
 
-    if (wasAppended) {
-      this.processActionCombos(ev, actions, debug)
-    }
+    this.processActionCombos(ev, actions, debug)
   }
 
   public cleanCombo (debug) {

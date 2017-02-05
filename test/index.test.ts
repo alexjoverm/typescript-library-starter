@@ -39,7 +39,7 @@ describe('shortcutJS', () => {
 
     it('sets keydown and keyup event listeners only once', () => {
       shortcutJS.init()
-      shortcutJS.init()
+      shortcutJS.init({ debug: true })
       shortcutJS.init()
       expect(mockWindow.addEventListener).toHaveBeenCalledTimes(2)
     })
@@ -88,7 +88,7 @@ describe('shortcutJS', () => {
     })
 
     it('throws an error if an action is not passed', () => {
-      expect(() => shortcutJS.addAction(1 as any)).toThrowError()
+      expect(() => shortcutJS.addAction(null as any)).toThrowError()
     })
   })
 
@@ -108,7 +108,7 @@ describe('shortcutJS', () => {
       const action = new Action('action', combo)
       shortcutJS.addAction(action)
 
-      expect(shortcutJS.subscribe.bind('papa', () => ({}))).toThrowError()
+      expect(() => shortcutJS.subscribe('papa', jest.fn())).toThrowError()
     })
   })
 
@@ -140,7 +140,7 @@ describe('shortcutJS', () => {
       const action = new Action('action', combo)
       shortcutJS.addAction(action)
 
-      expect(shortcutJS.unsubscribe.bind('papa', () => ({}))).toThrowError()
+      expect(() => shortcutJS.unsubscribe('papa')).toThrowError()
     })
   })
 

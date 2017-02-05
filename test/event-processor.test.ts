@@ -64,7 +64,7 @@ describe('EventProcessor', () => {
     })
 
     it('calls addEvenToMap but only processActionCombos once', () => {
-      eventProcessor.processEvent(getMockedEvent(55), actions, false)
+      eventProcessor.processEvent(getMockedEvent(55), actions, true)
       eventProcessor.processEvent(getMockedEvent(55), actions, true)
       eventProcessor.processEvent(getMockedEvent(45), actions, false)
       expect(eventProcessor.currentCombo.keys.size).toBe(2)
