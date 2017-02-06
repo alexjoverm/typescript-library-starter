@@ -2,8 +2,6 @@ node_modules
 coverage
 .nyc_output
 .DS_Store
-*.js
-*.js.map
 *.log
 .vscode
 .idea
