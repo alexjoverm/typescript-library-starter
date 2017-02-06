@@ -22,15 +22,16 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -e node_modules/** **/*.ts ",
+    "lint": "tslint -e node_modules/** -e dist/** **/*.ts ",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:dev": "webpack",
     "commit": "git-cz",
+    "deploy-docs": "gh-pages-deploy",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "report-coverage": "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
-    "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack",
-    "build:dev": "webpack",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "config": {
@@ -46,6 +47,10 @@
       "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
     }
   },
+  "gh-pages-deploy": {
+    "staticpath": "dist/docs",
+    "noprompt": true
+  },
   "devDependencies": {
     "@types/jest": "^16.0.4",
     "@types/node": "^7.0.2",
@@ -56,6 +61,7 @@
     "coveralls": "^2.11.15",
     "cross-env": "^3.1.4",
     "cz-conventional-changelog": "^1.2.0",
+    "gh-pages-deploy": "^0.4.2",
     "ghooks": "^2.0.0",
     "jest": "^18.1.0",
     "rimraf": "^2.5.4",
@@ -65,6 +71,8 @@
     "ts-node": "^2.0.0",
     "tslint": "^4.3.1",
     "tslint-config-standard": "^3.0.0",
+    "typedoc": "^0.5.5",
+    "typedoc-webpack-plugin": "^1.1.3",
     "typescript": "^2.1.5",
     "validate-commit-msg": "^2.10.1",
     "webpack": "^2.2.0"
