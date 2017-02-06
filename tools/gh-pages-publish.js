@@ -4,7 +4,7 @@ let url = require('url')
 
 let pkg = JSON.parse(readFileSync('package.json'))
 let repository = url.parse(pkg.repository)
-let repository = repository.host + repository.path
+repository = repository.host + repository.path
 let ghToken = process.env.GH_TOKEN
 
 echo('Deploying docs!!')
