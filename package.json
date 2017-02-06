@@ -22,16 +22,16 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -e node_modules/** -e dist/** **/*.ts ",
+    "lint": "tslint -e **/node_modules/** -e **/dist/** **/*.ts ",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack",
     "build:dev": "webpack",
     "commit": "git-cz",
-    "deploy-docs": "gh-pages-deploy",
+    "deploy-docs": "./tools/gh-pages-publish.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "report-coverage": "npm run test -- --coverage --no-cache && cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "config": {

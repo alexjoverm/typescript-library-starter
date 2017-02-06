@@ -17,3 +17,7 @@ after_success:
   - npm run report-coverage
   - npm run deploy-docs
   - npm run semantic-release
+env:
+  global:
+    - DOCS_DIR="dist/docs"
+    - REPO="https://github.com/coosto/ShortcutJS"
