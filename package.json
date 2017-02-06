@@ -27,7 +27,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "build:dev": "webpack",
     "commit": "git-cz",
-    "deploy-docs": "node ./tools/gh-pages-publish.js",
+    "deploy-docs": "pwd && ls && ls tools && node ./tools/gh-pages-publish.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
