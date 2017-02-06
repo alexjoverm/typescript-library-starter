@@ -47,10 +47,6 @@
       "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
     }
   },
-  "gh-pages-deploy": {
-    "staticpath": "dist/docs",
-    "noprompt": true
-  },
   "devDependencies": {
     "@types/jest": "^16.0.4",
     "@types/node": "^7.0.2",
@@ -61,7 +57,6 @@
     "coveralls": "^2.11.15",
     "cross-env": "^3.1.4",
     "cz-conventional-changelog": "^1.2.0",
-    "gh-pages-deploy": "^0.4.2",
     "ghooks": "^2.0.0",
     "jest": "^18.1.0",
     "rimraf": "^2.5.4",
