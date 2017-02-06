@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { optimize } from 'webpack'
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
 
 const env = process && process.env && process.env.NODE_ENV
 const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.json' } : {}
@@ -36,6 +37,14 @@ export default {
     }]
   },
   plugins: [
-    new optimize.UglifyJsPlugin({sourceMap: true})
+    new optimize.UglifyJsPlugin({sourceMap: true}),
+    new TypedocWebpackPlugin(
+      {
+        out: 'docs',
+        target: 'es6',
+        ignoreCompilerErrors: true
+      },
+      'src'
+    )
   ]
 }
