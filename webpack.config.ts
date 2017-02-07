@@ -40,6 +40,7 @@ export default {
     new optimize.UglifyJsPlugin({sourceMap: true}),
     new TypedocWebpackPlugin(
       {
+        theme: 'minimal',
         out: 'docs',
         target: 'es6',
         ignoreCompilerErrors: true
