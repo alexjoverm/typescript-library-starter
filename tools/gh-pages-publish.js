@@ -7,7 +7,7 @@ let repository = url.parse(pkg.repository)
 repository = repository.host + repository.path
 let ghToken = process.env.GH_TOKEN
 
-echo('Deploying docs!!')
+echo('Deploying docs!!!')
 echo(`${repository} ${ghToken}`)
 cd('dist/docs')
 exec('pwd')
