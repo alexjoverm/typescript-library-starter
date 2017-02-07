@@ -1,4 +1,4 @@
-import { Action, KeyCombo, shortcutJS } from '../src'
+import { Action, KeyCombo, shortcutJS } from '../src/shortcut'
 import { getMockedEvent } from './utils'
 
 /**

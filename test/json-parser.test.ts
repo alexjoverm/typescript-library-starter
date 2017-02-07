@@ -1,5 +1,5 @@
 import { JsonActionCombo, JsonParser } from '../src/json-parser'
-import { shortcutJS } from '../src'
+import { shortcutJS } from '../src/shortcut'
 
 describe('JsonParser: parse', () => {
   it('throws an error if json is not array', () => {

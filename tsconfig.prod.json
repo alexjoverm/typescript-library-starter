@@ -12,7 +12,7 @@
           "node_modules/@types"
         ]
     },
-    "files": ["src/index.ts"],
+    "files": ["src/shortcut.ts"],
     "exclude": [
         "test",
         "node_modules",

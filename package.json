@@ -11,7 +11,7 @@
     "typescript"
   ],
   "main": "dist/shortcut.js",
-  "typings": "dist/types/index.d.ts",
+  "typings": "dist/types/shortcut.d.ts",
   "files": [
     "dist"
   ],

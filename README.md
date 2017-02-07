@@ -64,7 +64,7 @@ Supported keys:
  - Function keys (f1, f2...)
  - Numpad keys (num0, num1, num*, num/...)
 
-You can see all available keys in [keyMap of key-container.ts](src/key-container.ts)
+You can see all available keys in [keyMap of key-container.ts](src/key-container.ts).
 
 ## Features
 

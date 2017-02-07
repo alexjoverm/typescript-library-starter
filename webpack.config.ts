@@ -6,7 +6,7 @@ const env = process && process.env && process.env.NODE_ENV
 const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.json' } : {}
 
 export default {
-  entry: join(__dirname, 'src/index.ts'),
+  entry: join(__dirname, 'src/shortcut.ts'),
   devtool: 'cheap-source-map',
   output: {
     path: join(__dirname, 'dist'),

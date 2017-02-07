@@ -14,7 +14,7 @@
   limitations under the License.
  */
 
-import { ShortcutJS } from './index'
+import { ShortcutJS } from './shortcut'
 import { Action } from './action'
 import { KeyCombo } from './key-combo'
 
