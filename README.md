@@ -51,7 +51,7 @@ import { shortcutJS } from 'shortcutjs'
 shortcutJS.subscribe('selectAll', ev => console.log('ctrl a have been triggered!', ev))
 ```
 
-Checkout the **[Full API documentation](https://coosto.github.io/ShortcutJS/classes/_index_.shortcut.html)**
+Checkout the **[Full API documentation](https://coosto.github.io/ShortcutJS/classes/_shortcut_.shortcut.html)**
 
 ## Combos and Supported keys
 
