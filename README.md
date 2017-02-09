@@ -18,7 +18,7 @@ yarn add shortcutjs
 # or
 npm install shortcutjs --save
 ```
-Define a `shortcuts.json` file with all your shortcuts.
+Define a `shortcuts.json` file with all your shortcuts
 
 ```json
 [
