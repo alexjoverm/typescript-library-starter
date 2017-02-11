@@ -33,7 +33,7 @@
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "precommit": "npm run test:prod && npm run build",
+    "prepush": "npm run test:prod && npm run build",
     "commitmsg": "validate-commit-msg"
   },
   "config": {
