@@ -34,6 +34,9 @@ export interface ShortcutJS {
   unsubscribe(actionName: string, cb?: Function): void
   processEvent(ev: KeyboardEvent): void
   cleanCombo(): void
+  pause(): void
+  resume(): void
+  isPaused(): boolean
 }
 
 /**
@@ -61,10 +64,13 @@ class Shortcut implements ShortcutJS {
    */
   private initialized: boolean
 
+  /**
+   * For checking initialization
+   */
+  private paused: boolean
+
   constructor () {
-    this.actions = new Map()
-    this.initialized = false
-    this.eventProcessor = new EventProcessor()
+    this.resetState()
   }
 
   /**
@@ -85,18 +91,16 @@ class Shortcut implements ShortcutJS {
    * Tears down event handlers and resets internal variables
    */
   public reset () {
-    this.actions = new Map()
-    this.eventProcessor.reset()
-    this.initialized = false
+    this.resetState()
 
     window.removeEventListener('keydown', this.processEvent)
     window.removeEventListener('keyup', this.cleanCombo)
   }
 
   /**
-   *
+   * Initializes shortcutJS from a JSON array
    */
-  public loadFromJson(json, options: IOptions = null) {
+  public loadFromJson(json: any[], options: IOptions = null) {
     this.init(options)
     JsonParser.parse(this, json)
   }
@@ -128,11 +132,44 @@ class Shortcut implements ShortcutJS {
   }
 
   public processEvent (ev: KeyboardEvent) {
-    this.eventProcessor.processEvent(ev, this.actions, this.options)
+    if (!this.paused) {
+      this.eventProcessor.processEvent(ev, this.actions, this.options)
+    }
   }
 
   public cleanCombo () {
     this.eventProcessor.cleanCombo(this.options)
+  }
+
+  /**
+   * Returns whether shortcutJS is running
+   */
+  public isPaused () {
+    return this.paused
+  }
+
+  /**
+   * Pauses execution of shortcutJS
+   */
+  public pause () {
+    this.paused = true
+  }
+
+  /**
+   * Resumes execution of shortcutJS
+   */
+  public resume () {
+    this.paused = false
+  }
+
+  /**
+   * Resets state and vars
+   */
+  private resetState() {
+    this.actions = new Map()
+    this.initialized = false
+    this.eventProcessor = new EventProcessor()
+    this.paused = false
   }
 }
 

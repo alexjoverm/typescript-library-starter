@@ -52,7 +52,7 @@ export class JsonParser {
    * @param {ShortcutJS} shortcutJS
    * @param {any} json
    */
-  static parse(shortcutJS: ShortcutJS, json: any) {
+  static parse(shortcutJS: ShortcutJS, json: any[]) {
     if (!Array.isArray(json)) {
       throw new Error('The json provided must be an array')
     }

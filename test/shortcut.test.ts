@@ -144,11 +144,29 @@ describe('shortcutJS', () => {
     })
   })
 
-  it('processEvent: to call processEvent of eventProcessor', () => {
-    shortcutJS.init()
-    shortcutJS.processEvent({} as KeyboardEvent)
-    // @todo Use spies
-    expect(shortcutJS.processEvent).toBeTruthy()
+  describe('processEvent', () => {
+    it('processEvent of eventProcessor', () => {
+      shortcutJS.init()
+      shortcutJS.processEvent({} as KeyboardEvent)
+      // @todo Use spies
+      expect(shortcutJS.processEvent).toBeTruthy()
+    })
+
+    it('not to be called if is paused', () => {
+      shortcutJS.init()
+      shortcutJS.pause()
+      shortcutJS.processEvent({} as KeyboardEvent)
+      // @todo Use spies
+      expect(shortcutJS.processEvent).toBeTruthy()
+    })
+  })
+
+  it('pause/resume the execution flow', () => {
+    expect(shortcutJS.isPaused()).toBeFalsy()
+    shortcutJS.pause()
+    expect(shortcutJS.isPaused()).toBeTruthy()
+    shortcutJS.resume()
+    expect(shortcutJS.isPaused()).toBeFalsy()
   })
 
   it('cleanCombo: to call cleanCombo of eventProcessor', () => {
