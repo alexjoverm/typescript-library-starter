@@ -1,4 +1,5 @@
 import { EventProcessor } from '../src/event-processor'
+import { Options } from '../src/options'
 import { Action } from '../src/action'
 import { KeyCombo } from '../src/key-combo'
 import { getMockedEvent } from './utils'
@@ -26,12 +27,14 @@ describe('EventProcessor', () => {
   let eventProcessor: EventProcessor
   let actions: Map<string, Action>
   let cb = jest.fn()
+  let cb2 = jest.fn()
 
   beforeEach(() => {
     eventProcessor = new EventProcessor()
     actions = new Map()
     const action = new Action('action', KeyCombo.fromString('ctrl a'))
     action.addCallback(cb)
+    action.addCallback(cb2)
     actions.set('action', action)
   })
 
@@ -52,7 +55,7 @@ describe('EventProcessor', () => {
     })
 
     it('prints if called with debug', () => {
-      eventProcessor.cleanCombo(true)
+      eventProcessor.cleanCombo(new Options({ debug: true }))
       expect(mockConsole.log).toHaveBeenCalledTimes(1)
     })
   })
@@ -64,17 +67,35 @@ describe('EventProcessor', () => {
     })
 
     it('calls addEvenToMap but only processActionCombos once', () => {
-      eventProcessor.processEvent(getMockedEvent(55), actions, true)
-      eventProcessor.processEvent(getMockedEvent(55), actions, true)
-      eventProcessor.processEvent(getMockedEvent(45), actions, false)
+      eventProcessor.processEvent(getMockedEvent(55), actions, new Options({ debug: true }))
+      eventProcessor.processEvent(getMockedEvent(55), actions, new Options({ debug: true }))
+      eventProcessor.processEvent(getMockedEvent(45), actions, new Options())
       expect(eventProcessor.currentCombo.keys.size).toBe(2)
     })
 
     it('if debug it also logs the event', () => {
-      eventProcessor.processEvent(getMockedEvent(55), actions, true)
+      eventProcessor.processEvent(getMockedEvent(55), actions, new Options({ debug: true }))
       expect(mockConsole.group).toHaveBeenCalledTimes(2)
       expect(mockConsole.log).toHaveBeenCalledTimes(3)
       expect(mockConsole.groupEnd).toHaveBeenCalledTimes(2)
+    })
+
+    it('doesn\'t process if onlyStateCombos is enabled, and there are not state combos', () => {
+      eventProcessor.processEvent(
+        getMockedEvent(55),
+        actions,
+        new Options({ debug: true, onlyStateCombos: true })
+      )
+      expect(mockConsole.log).not.toHaveBeenCalled()
+    })
+
+    it('process if onlyStateCombos is enabled, and there are state combos', () => {
+      eventProcessor.processEvent(
+        getMockedEvent(55, { ctrlKey: true } as any),
+        actions,
+        new Options({ debug: true, onlyStateCombos: true })
+      )
+      expect(mockConsole.log).toHaveBeenCalled()
     })
   })
 
@@ -82,23 +103,33 @@ describe('EventProcessor', () => {
     beforeEach(() => cb.mockClear())
 
     it('iterates over the actions and calls matchesComboAction, matching and calling the callback', () => {
-      eventProcessor.processEvent(getMockedEvent(17, { ctrlKey: true } as any), actions, false) // ctrl
-      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, false) // a
+      const opt = new Options()
+      eventProcessor.processEvent(getMockedEvent(17, { ctrlKey: true } as any), actions, opt) // ctrl
+      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, opt) // a
       expect(cb).toBeCalled()
     })
 
     it('iterates over the actions and calls matchesComboAction, NOT matching anything', () => {
-      eventProcessor.processEvent(getMockedEvent(65), actions, false) // a
+      const opt = new Options()
+      eventProcessor.processEvent(getMockedEvent(65), actions, opt) // a
       expect(cb).not.toBeCalled()
     })
 
     it('calls printDebugActionFound if debug is active', () => {
-      eventProcessor.processEvent(getMockedEvent(17), actions, true) // ctrl
-      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, true) // a
+      const opt = new Options({ debug: true })
+      eventProcessor.processEvent(getMockedEvent(17), actions, opt) // ctrl
+      eventProcessor.processEvent(getMockedEvent(65, { ctrlKey: true } as any), actions, opt) // a
 
       expect(mockConsole.group).toHaveBeenCalledTimes(4)
       expect(mockConsole.log).toHaveBeenCalledTimes(7)
       expect(mockConsole.groupEnd).toHaveBeenCalledTimes(4)
+    })
+
+    it('calls once preventDefault for that event if the option is passed', () => {
+      const opt = new Options({ preventDefault: true })
+      const ev = getMockedEvent(65, { ctrlKey: true } as any)
+      eventProcessor.processEvent(ev, actions, opt) // a
+      expect(ev.preventDefault).toHaveBeenCalledTimes(1)
     })
   })
 })

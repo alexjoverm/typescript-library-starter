@@ -3,11 +3,11 @@ import { keyContainer } from '../src/key-container'
 import { getMockedEvent } from './utils'
 
 describe('KeyCombo', () => {
-  let skipKeys
+  let stateKeys
 
   beforeAll(() => {
     keyContainer.init('', '')
-    skipKeys = keyContainer.getSkipKeys()
+    stateKeys = keyContainer.getStateKeys()
   })
 
   describe('constructor', () => {
@@ -130,9 +130,9 @@ describe('KeyCombo', () => {
     })
   })
 
-  describe('getSkipKeys', () => {
+  describe('getstateKeys', () => {
     it('returns the stateKeys', () => {
-      expect(KeyCombo.getSkipKeys([91, 93, 17, 55], skipKeys)).toEqual([
+      expect(KeyCombo.getStateKeys([91, 93, 17, 55], stateKeys)).toEqual([
         { name: 'ctrl', code: 17 },
         { name: 'cmd', code: 91 },
         { name: 'cmd', code: 93 }
@@ -140,31 +140,31 @@ describe('KeyCombo', () => {
     })
 
     it('returns an empty array if no stateKeys are in the array', () => {
-      expect(KeyCombo.getSkipKeys([65], skipKeys)).toEqual([])
+      expect(KeyCombo.getStateKeys([65], stateKeys)).toEqual([])
     })
   })
 
-  describe('getNonSkipKeys', () => {
+  describe('getNonstateKeys', () => {
     it('returns the non stateKeys', () => {
-      expect(KeyCombo.getNonSkipKeys([91, 93, 17, 55], skipKeys)).toEqual([55])
+      expect(KeyCombo.getNonStateKeys([91, 93, 17, 55], stateKeys)).toEqual([55])
     })
 
     it('returns an empty array if no stateKeys are in the array', () => {
-      expect(KeyCombo.getNonSkipKeys([91, 16], skipKeys)).toEqual([])
+      expect(KeyCombo.getNonStateKeys([91, 16], stateKeys)).toEqual([])
     })
   })
 
-  describe('isSkipKey', () => {
-    it('returns true if it is a skip key', () => {
-      expect(KeyCombo.isSkipKey(91, skipKeys)).toBeTruthy()
-      expect(KeyCombo.isSkipKey(93, skipKeys)).toBeTruthy()
-      expect(KeyCombo.isSkipKey(17, skipKeys)).toBeTruthy()
-      expect(KeyCombo.isSkipKey(16, skipKeys)).toBeTruthy()
-      expect(KeyCombo.isSkipKey(18, skipKeys)).toBeTruthy()
+  describe('isStateKey', () => {
+    it('returns true if it is a state key', () => {
+      expect(KeyCombo.isStateKey(91, stateKeys)).toBeTruthy()
+      expect(KeyCombo.isStateKey(93, stateKeys)).toBeTruthy()
+      expect(KeyCombo.isStateKey(17, stateKeys)).toBeTruthy()
+      expect(KeyCombo.isStateKey(16, stateKeys)).toBeTruthy()
+      expect(KeyCombo.isStateKey(18, stateKeys)).toBeTruthy()
     })
 
     it('returns false if not', () => {
-      expect(KeyCombo.isSkipKey(66, skipKeys)).toBeFalsy()
+      expect(KeyCombo.isStateKey(66, stateKeys)).toBeFalsy()
     })
   })
 
@@ -183,6 +183,27 @@ describe('KeyCombo', () => {
       expect(combo.addEvent(getMockedEvent(17, { ctrlKey: true } as any))).toBeFalsy()
       expect(combo.keys).toEqual(new Set<number>([65]))
       expect(combo.stateKeys).toEqual(Object.assign(new ComboStateKeys(), { ctrl: true }))
+    })
+  })
+
+  describe('hasStateKeys', () => {
+    it('returns false if no state keys', () => {
+      const combo = KeyCombo.fromString('a')
+      expect(combo.hasStateKeys()).toBe(false)
+    })
+
+    it('returns true if has any of the state keys', () => {
+      let combo = KeyCombo.fromString('ctrl a')
+      expect(combo.hasStateKeys()).toBe(true)
+
+      combo = KeyCombo.fromString('cmd a')
+      expect(combo.hasStateKeys()).toBe(true)
+
+      combo = KeyCombo.fromString('alt a')
+      expect(combo.hasStateKeys()).toBe(true)
+
+      combo = KeyCombo.fromString('shift a')
+      expect(combo.hasStateKeys()).toBe(true)
     })
   })
 })

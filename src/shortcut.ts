@@ -36,10 +36,29 @@ export interface ShortcutJS {
   cleanCombo(): void
 }
 
+/**
+ * Shortcut is the class for creating the singleton public instance shortcutJS.
+ * It makes use and coordinates other classes in order to process events and checking matching.
+ */
 class Shortcut implements ShortcutJS {
+  /**
+   * Loaded map of actions
+   */
   public actions: Map<string, Action>
+
+  /**
+   * Holds the behavioural options of shortcutJS
+   */
   public options: Options
+
+  /**
+   * Instance of the eventProcessor. Internal usage
+   */
   public eventProcessor: EventProcessor
+
+  /**
+   * For checking initialization
+   */
   private initialized: boolean
 
   constructor () {
@@ -48,6 +67,9 @@ class Shortcut implements ShortcutJS {
     this.eventProcessor = new EventProcessor()
   }
 
+  /**
+   * Sets up events and options, if not initialized
+   */
   public init (options: IOptions = null) {
     if (!this.initialized) {
       this.options = new Options(options)
@@ -59,6 +81,9 @@ class Shortcut implements ShortcutJS {
     }
   }
 
+  /**
+   * Tears down event handlers and resets internal variables
+   */
   public reset () {
     this.actions = new Map()
     this.eventProcessor.reset()
@@ -68,6 +93,9 @@ class Shortcut implements ShortcutJS {
     window.removeEventListener('keyup', this.cleanCombo)
   }
 
+  /**
+   *
+   */
   public loadFromJson(json, options: IOptions = null) {
     this.init(options)
     JsonParser.parse(this, json)
@@ -100,11 +128,11 @@ class Shortcut implements ShortcutJS {
   }
 
   public processEvent (ev: KeyboardEvent) {
-    this.eventProcessor.processEvent(ev, this.actions, this.options.debug)
+    this.eventProcessor.processEvent(ev, this.actions, this.options)
   }
 
   public cleanCombo () {
-    this.eventProcessor.cleanCombo(this.options.debug)
+    this.eventProcessor.cleanCombo(this.options)
   }
 }
 

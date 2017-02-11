@@ -1,4 +1,4 @@
-class StateKeys {
+export class StateKeys {
   altKey: boolean = false
   ctrlKey: boolean = false
   metaKey: boolean = false
@@ -10,5 +10,6 @@ class StateKeys {
  */
 export function getMockedEvent(key: number, pStateKeys = new StateKeys()) {
   const stateKeys = Object.assign(new StateKeys(), pStateKeys)
-  return Object.assign({ keyCode: key }, stateKeys) as KeyboardEvent
+  const functions = { preventDefault: jest.fn() as Function }
+  return Object.assign({ keyCode: key }, stateKeys, functions) as KeyboardEvent
 }

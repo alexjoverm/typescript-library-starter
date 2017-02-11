@@ -14,14 +14,16 @@
   limitations under the License.
  */
 
-import { keyContainer, ISkipKey } from './key-container'
+import { keyContainer, IStateKey } from './key-container'
 import { compareSets } from './utils'
 
 export class ComboStateKeys {
-  alt: boolean = false
-  cmd: boolean = false
-  ctrl: boolean = false
-  shift: boolean = false
+  constructor(
+    public alt: boolean = false,
+    public cmd: boolean = false,
+    public ctrl: boolean = false,
+    public shift: boolean = false
+  ) {}
 }
 
 export type TComboSanitized = (number|number[])[]
@@ -32,8 +34,7 @@ export interface IComboSplit {
 }
 
 /**
- * Simple KeyCombo class
- * @class KeyCombo
+ * Defines a Combo of keys
  */
 export class KeyCombo {
   constructor(
@@ -80,17 +81,17 @@ export class KeyCombo {
       keys: new Set<number>([]),
       stateKeys: new ComboStateKeys()
     }
-    const allSkipKeys = keyContainer.getSkipKeys()
+    const allStateKeys = keyContainer.getStateKeys()
 
     const comboSplit: IComboSplit = combo.reduce(
       (acum, key) => {
         const keyArr = Array.isArray(key) ? key : [key]
-        const skipKeys = KeyCombo.getSkipKeys(keyArr, allSkipKeys)
+        const stateKeys = KeyCombo.getStateKeys(keyArr, allStateKeys)
 
-        // Add the non-skip keys
-        acum.keys = new Set<number>([...acum.keys, ...KeyCombo.getNonSkipKeys(keyArr, skipKeys)])
-        // Mark the skip keys
-        skipKeys.forEach(key => acum.stateKeys[key.name] = true)
+        // Add the non-state keys
+        acum.keys = new Set<number>([...acum.keys, ...KeyCombo.getNonStateKeys(keyArr, stateKeys)])
+        // Mark the state keys
+        stateKeys.forEach(key => acum.stateKeys[key.name] = true)
 
         return acum
       },
@@ -100,35 +101,52 @@ export class KeyCombo {
     return comboSplit
   }
 
-  static getSkipKeys(keyArr: number[], skipKeys: ISkipKey[]) {
-    return skipKeys.filter(skipKey => keyArr.includes(skipKey.code))
+  /**
+   * Returns all state keys, given an array of keyCodes
+   */
+  static getStateKeys(keyArr: number[], stateKeys: IStateKey[]) {
+    return stateKeys.filter(stateKey => keyArr.includes(stateKey.code))
   }
 
-  static getNonSkipKeys(keyArr: number[], skipKeys: ISkipKey[]) {
-    return keyArr.filter(key => !KeyCombo.isSkipKey(key, skipKeys))
+  /**
+   * Returns all non-state keys, given an array of keyCodes
+   */
+  static getNonStateKeys(keyArr: number[], stateKeys: IStateKey[]) {
+    return keyArr.filter(key => !KeyCombo.isStateKey(key, stateKeys))
   }
 
-  static isSkipKey(key: number, skipKeys: ISkipKey[]) {
-    return skipKeys.some(skipKey => skipKey.code === key)
+  /**
+   * Returns whether a keyCode is a state key
+   */
+  static isStateKey(key: number, stateKeys: IStateKey[]) {
+    return stateKeys.some(stateKey => stateKey.code === key)
   }
 
   /**
    * Creates an instance of KeyCombo, given an string.
    */
   public addEvent(ev: KeyboardEvent) {
-    const stateKeys: ComboStateKeys = {
-      alt: ev.altKey,
-      cmd: ev.metaKey,
-      ctrl: ev.ctrlKey,
-      shift: ev.shiftKey
-    }
+    const stateKeys = new ComboStateKeys(
+      ev.altKey,
+      ev.metaKey,
+      ev.ctrlKey,
+      ev.shiftKey
+    )
     Object.assign(this.stateKeys, stateKeys)
 
-    const isSkipKey = KeyCombo.isSkipKey(ev.keyCode, keyContainer.getSkipKeys())
-    if (!this.keys.has(ev.keyCode) && !isSkipKey) {
+    const isStateKey = KeyCombo.isStateKey(ev.keyCode, keyContainer.getStateKeys())
+    if (!this.keys.has(ev.keyCode) && !isStateKey) {
       this.keys.add(ev.keyCode)
       return true
     }
     return false
+  }
+
+  /**
+   * Return if the combo has enabled any state key
+   */
+  public hasStateKeys() {
+    const { alt, cmd, ctrl, shift } = this.stateKeys
+    return alt || cmd || ctrl || shift
   }
 }

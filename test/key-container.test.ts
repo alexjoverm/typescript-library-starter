@@ -5,25 +5,25 @@ describe('keyContainer', () => {
     it('sets cmdKey to 91', () => {
       keyContainer.init('', '')
       expect(keyContainer.getKeys()['cmd']).toEqual([91, 93])
-      expect(keyContainer.getSkipKeys()).toMatchSnapshot()
+      expect(keyContainer.getStateKeys()).toMatchSnapshot()
     })
 
     it('sets cmdKey to 91 when Mac but not Opera or Firefox', () => {
       keyContainer.init('Mac', '')
       expect(keyContainer.getKeys()['cmd']).toEqual([91, 93])
-      expect(keyContainer.getSkipKeys()).toMatchSnapshot()
+      expect(keyContainer.getStateKeys()).toMatchSnapshot()
     })
 
     it('sets cmdKey to 17 when is Mac - Opera', () => {
       keyContainer.init('Mac', 'Opera')
       expect(keyContainer.getKeys()['cmd']).toEqual([17])
-      expect(keyContainer.getSkipKeys()).toMatchSnapshot()
+      expect(keyContainer.getStateKeys()).toMatchSnapshot()
     })
 
     it('sets cmdKey to 224 when is Mac - Firefox', () => {
       keyContainer.init('Mac', 'Firefox')
       expect(keyContainer.getKeys()['cmd']).toEqual([224])
-      expect(keyContainer.getSkipKeys()).toMatchSnapshot()
+      expect(keyContainer.getStateKeys()).toMatchSnapshot()
     })
 
     it('initializes getKeysReversed', () => {

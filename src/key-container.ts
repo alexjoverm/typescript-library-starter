@@ -14,7 +14,7 @@
   limitations under the License.
  */
 
-export interface ISkipKey {
+export interface IStateKey {
   name: string,
   code: number
 }
@@ -122,7 +122,7 @@ export class KeyContainer {
     'f12': 123
   }
 
-  private skipKeys: ISkipKey[] = [
+  private stateKeys: IStateKey[] = [
     { name: 'shift', code: 16 },
     { name: 'ctrl', code: 17 },
     { name: 'alt', code: 18 }
@@ -140,7 +140,7 @@ export class KeyContainer {
    * @param {any} userAgent
    */
   public init(platform, userAgent) {
-    this.skipKeys = [
+    this.stateKeys = [
       { name: 'shift', code: 16 },
       { name: 'ctrl', code: 17 },
       { name: 'alt', code: 18 }
@@ -157,7 +157,7 @@ export class KeyContainer {
 
     this.keyMap = Object.assign(this.keyMap, { 'cmd': cmdKey })
     this.keyMapReversed = this.buildReversedKeymap(this.keyMap)
-    this.skipKeys = this.addCmdToSkipKeys(this.skipKeys, cmdKey)
+    this.stateKeys = this.addCmdToSkipKeys(this.stateKeys, cmdKey)
   }
 
   public getKeys() {
@@ -168,8 +168,8 @@ export class KeyContainer {
     return this.keyMapReversed
   }
 
-  public getSkipKeys() {
-    return this.skipKeys
+  public getStateKeys() {
+    return this.stateKeys
   }
 
   public getValue(key: string): number|number[] {
@@ -181,7 +181,7 @@ export class KeyContainer {
     return value
   }
 
-  private addCmdToSkipKeys(skipKeys: ISkipKey[], cmd: number[]) {
+  private addCmdToSkipKeys(skipKeys: IStateKey[], cmd: number[]) {
     const _skipKeys = [...skipKeys]
     cmd.forEach(code => _skipKeys.push({ name: 'cmd', code: code }))
     return _skipKeys

@@ -5,6 +5,9 @@ export interface Logger extends Console {
 
 export const logger = console as Logger
 
+/**
+ * Compares two sets, order sensitive
+ */
 export function compareSets(set1: Set<any>, set2: Set<any>) {
   if (set1.size !== set2.size) {
     return false
