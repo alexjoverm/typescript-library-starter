@@ -66,44 +66,47 @@ Supported keys:
 
 You can see all available keys in [keyMap of key-container.ts](src/key-container.ts).
 
-## Features
+## Options
 
- - Define all your shortcuts in a json file and load them from there
- - Subscribe/unsubscribe to/from Actions
- - UMD library, so supports ES6 imports, CommonJS, AMD and browser directly (with no module bundler)
- - Fully tested and covered
- - Manually add/remove actions and Combos
+When initializing shortcutJS by calling `fromJson` or `init`, you can pass an options object:
 
-## Contribution guide
-
+```js
+{
+  debug: false, // Prints debug notes in the console
+  preventDefault: false, // Automatically calls ev.preventDefault() when an action is matched
+  onlyStateCombos: false, // Only process combos which includes any state key (cmd, ctrl, alt, shift)
+}
 ```
-# Fork repo
-git clone https://github.com/YOUR-USERNAME/ShortcutJS
-yarn install # or npm install
-# Start coding. For commit, use npm run commit (otherwise it will tell you to do it ;)
-# Open a PR
-```
-_**Note**: Use node 7.5, or <= 7.2. Because of a [regression in Node 7.3](https://github.com/nodejs/node/issues/10492), the tests would fail in Node 7.3 and 7.4_
 
-ShortcutJS project setup applies CI (with Travis) + CD (Semantic Release) using **conventions** ([commitizen](https://github.com/commitizen/cz-cli), with [conventional-commit](https://github.com/commitizen/conventional-commit-types) and [conventional-changelog](https://github.com/commitizen/cz-conventional-changelog)) and git hooks _instead of large contribution rules_.
+## API
 
-As a suggestion, follow [clean code](https://github.com/ryanmcdermott/clean-code-javascript) practises
+- `fromJson(json[], options)`: initializes shortcutJS from a json array
+- `subscribe(actionName, cb)`: binds a callback to an action, given its name
+- `unsubscribe(actionName, cb?)`: unbinds a callback from an action, given its name. If no cb specified, unbinds all.
+- `pause()`: pauses execution of shortcutJS
+- `resume()`
+- `isPaused()`
+- `addAction(action: Action)`: dynamically adds an action
+- `init(options)`: (don't use it if you've used fromJson). Initializes shortcutJS.
+- `reset()`: resets shortcutJS, cleans variables and unbind events
 
 ## Examples
 
 When loading from json, you only need to use `fromJson`, `subscribe` and `unsubscribe` methods.
 
-### fromJson(json, options)
-_options_: defaults to
-```
-{
-  debug: false
-}
-```
+### Pausing/Resuming
 
-### subscribe(actionName, callback)
-### unsubscribe(actionName, callback?)
-If `callback` is not specified, it will unregister all callbacks
+```javascript
+import { shortcutJS } from 'shortcutjs'
+import shortcuts from './shortcuts.json'
+
+shortcutJS.fromJson(shortcuts)
+
+shortcutJS.pause()
+console.log(shortcutJS.isPaused()) // true
+shortcutJS.resume()
+console.log(shortcutJS.isPaused()) // false
+```
 
 ### Manually creating Actions and Combos
 
@@ -123,6 +126,22 @@ shortcutJS.subscribe('open', openCb)
 // Later, when leaving the view...
 shortcutJS.unsubscribe('open', openCb)
 ```
+
+## Contribution guide
+
+```
+# Fork repo
+git clone https://github.com/YOUR-USERNAME/ShortcutJS
+yarn install # or npm install
+# Start coding. For commit, use npm run commit (otherwise it will tell you to do it ;)
+# Open a PR
+```
+_**Note**: Use node 7.5, or <= 7.2. Because of a [regression in Node 7.3](https://github.com/nodejs/node/issues/10492), the tests would fail in Node 7.3 and 7.4_
+
+ShortcutJS project setup applies CI (with Travis) + CD (Semantic Release) using **conventions** ([commitizen](https://github.com/commitizen/cz-cli), with [conventional-commit](https://github.com/commitizen/conventional-commit-types) and [conventional-changelog](https://github.com/commitizen/cz-conventional-changelog)) and git hooks _instead of large contribution rules_.
+
+As a suggestion, follow [clean code](https://github.com/ryanmcdermott/clean-code-javascript) practises
+
 
 ## Credits
 
