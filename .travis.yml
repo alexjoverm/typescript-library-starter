@@ -3,7 +3,7 @@ branches:
   only:
     - master
 cache:
-  diretories:
+  directories:
     - node_modules
 notifications:
   email: false
