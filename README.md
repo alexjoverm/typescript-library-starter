@@ -23,12 +23,8 @@ rm -Rf .git # Remove .git folder. Then link it to your repo
 yarn install # or npm install
 
 # Name your library and update the conf accordingly (this command will be removed after run it)
-npm run init
+node tools/init
 ```
-
-Then run `npm run :
- - Change `library` name in the fields `name`, `main` and `typings` to match your library **_(kebab-case suggested)_**
- - Change `const libraryName = 'library'` in `webpack.config.ts`
 
 ### Automatic releases
 
