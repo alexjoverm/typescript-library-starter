@@ -1,1 +1,0 @@
-exports[`KeyCombo constructor throws error if no set is passed as first argument 1`] = `"Pass a set as a keys param"`;

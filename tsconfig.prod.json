@@ -12,7 +12,6 @@
           "node_modules/@types"
         ]
     },
-    "files": ["src/shortcut.ts"],
     "exclude": [
         "test",
         "node_modules",
