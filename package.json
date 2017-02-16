@@ -1,10 +1,10 @@
 {
-  "name": "hola",
+  "name": "{{libraryName}}",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/hola.js",
-  "typings": "dist/types/hola.d.ts",
+  "main": "dist/{{libraryName}}.js",
+  "typings": "dist/types/{{libraryName}}.d.ts",
   "files": [
     "dist"
   ],
