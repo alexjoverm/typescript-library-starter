@@ -8,7 +8,7 @@ const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.
 /**
  * Update this variable if you change your library name
  */
-const libraryName = '{{libraryName}}'
+const libraryName = '--libraryname--'
 
 export default {
   entry: join(__dirname, `src/${libraryName}.ts`),

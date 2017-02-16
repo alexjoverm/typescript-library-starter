@@ -1,8 +1,9 @@
 const prompt = require('prompt')
-const { mv, rm } = require('shelljs')
+const { mv, rm, which, exec } = require('shelljs')
 const replace = require('replace-in-file')
 const colors = require('colors')
 const path = require('path')
+const fork = require('child_process').fork
 
 const promptSchema = {
   properties: {
@@ -20,6 +21,13 @@ const files = ['package.json', 'webpack.config.ts']
 prompt.start()
 prompt.message = ''
 
+
+if (!which('git')) {
+  console.log(colors.red('Sorry, this script requires git'))
+  process.exit(1)
+}
+
+
 // 1. Remove .git folder
 rm('-Rf', path.resolve(__dirname, '..', '.git'))
 
@@ -29,7 +37,7 @@ prompt.get(promptSchema, (err, res) => {
     // 3. Replace strings in corresponding files
     replace({
       files,
-      from: /{{libraryName}}/g,
+      from: /--libraryname--/g,
       to: res.library
     }, () => {
       // 4. Rename main file and test
@@ -40,6 +48,11 @@ prompt.get(promptSchema, (err, res) => {
       console.log()
       console.log(colors.cyan(renamedFiles.join(',')) + ' renamed')
       console.log(colors.cyan(files.join(',')) + ' updated')
+
+      // 5. Recreate init folder and initialize husky
+      exec('git init ' + path.resolve(__dirname, '..'))
+      fork(path.resolve(__dirname, '..', 'node_modules', 'husky', 'bin', 'install'))
+
       console.log()
       console.log(colors.green('Happy coding!! ;)'))
       console.log()

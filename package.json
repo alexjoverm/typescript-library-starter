@@ -1,10 +1,10 @@
 {
-  "name": "{{libraryName}}",
+  "name": "--libraryname--",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/{{libraryName}}.js",
-  "typings": "dist/types/{{libraryName}}.d.ts",
+  "main": "dist/--libraryname--.js",
+  "typings": "dist/types/--libraryname--.d.ts",
   "files": [
     "dist"
   ],
