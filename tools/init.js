@@ -1,9 +1,13 @@
+/**
+ * This script is runned automatically after your first npm-install.
+ */
 const prompt = require('prompt')
 const { mv, rm, which, exec } = require('shelljs')
 const replace = require('replace-in-file')
 const colors = require('colors')
 const path = require('path')
 const fork = require('child_process').fork
+const { readFileSync, writeFileSync } = require('fs')
 
 const promptSchema = {
   properties: {
@@ -52,6 +56,14 @@ prompt.get(promptSchema, (err, res) => {
       // 5. Recreate init folder and initialize husky
       exec('git init ' + path.resolve(__dirname, '..'))
       fork(path.resolve(__dirname, '..', 'node_modules', 'husky', 'bin', 'install'))
+
+      // 6. Remove post-install command
+      const pkg = JSON.parse(readFileSync(path.resolve(__dirname, '..', 'package.json')))
+      delete pkg.scripts.postinstall
+      writeFileSync(path.resolve(__dirname, '..', 'package.json'), JSON.stringify(pkg, null, 2))
+      console.log()
+      console.log(colors.cyan('Removed postinstall script'))
+      console.log()
 
       console.log()
       console.log(colors.green('Happy coding!! ;)'))
