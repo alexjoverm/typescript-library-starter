@@ -31,9 +31,18 @@ if (!which('git')) {
   process.exit(1)
 }
 
+// Clear console
+let lines = process.stdout.getWindowSize()[1];
+for(let i = 0; i < lines; i++) {
+    console.log('\r\n')
+}
+
+// Say hi!
+console.log(colors.yellow('Hi! I\'m setting things up for you!!'))
 
 // 1. Remove .git folder
 rm('-Rf', path.resolve(__dirname, '..', '.git'))
+console.log('\r\n', 'Removed .git directory','\r\n')
 
 // 2. Ask for library name
 prompt.get(promptSchema, (err, res) => {

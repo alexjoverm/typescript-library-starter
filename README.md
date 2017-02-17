@@ -18,12 +18,9 @@ Features:
 ```bash
 git clone https://github.com/alexjoverm/typescript-library-starter.git YOURFOLDERNAME
 cd YOURFOLDERNAME
-rm -Rf .git # Remove .git folder. Then link it to your repo
 
-yarn install # or npm install
-
-# Name your library and update the conf accordingly (this command will be removed after run it)
-node tools/init
+# Run npm install and things will be setup!
+npm install
 ```
 
 ### Automatic releases
