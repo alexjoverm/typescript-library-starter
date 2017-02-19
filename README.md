@@ -1,17 +1,16 @@
 # Typescript library starter
 
-Write your docs here
+Starter project for creating a typescript library extremely easy.
 
 Features:
- - **[Webpack](https://webpack.js.org/)** for building and bundling a UMD library
- - **[Jest](http://facebook.github.io/jest/)** for painlessly run your test
+ - Zero-setup. After running `npm install` things will be setup for you :wink:
+ - UMD bundle generated, using **[Webpack 2](https://webpack.js.org/)**
+ - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
+ - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
+ - Automatic types file generation
  - **[TSLint](https://palantir.github.io/tslint/)** ([standard-config](https://github.com/blakeembrey/tslint-config-standard)) for your code styling
  - **[Travis](https://travis-ci.org)** integration and **[Coveralls](https://coveralls.io/)** report
- - **[TypeDoc](http://typedoc.org/)** for generating docs, based on types and jsDocs
- - **Docs auto-deployment** to `gh-pages` using custom tools under `tools` directory
- - Automatic types generation
  - (Optional) **Automatic releases and changelog**, using [Semantic release](https://github.com/semantic-release/semantic-release), [Commitizen](https://github.com/commitizen/cz-cli), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Husky](https://github.com/typicode/husky) (for the git hooks)
- - Editor config
 
 ### Usage
 
@@ -19,17 +18,38 @@ Features:
 git clone https://github.com/alexjoverm/typescript-library-starter.git YOURFOLDERNAME
 cd YOURFOLDERNAME
 
-# Run npm install and things will be setup!
+# Run npm install and write your library name when asked. That's all!
 npm install
 ```
 
-### npm scripts
+**Start coding!** The `package.json` file is already set up for you, so don't worry about linking to your main file, typings, etc.
+
+### NPM scripts
 
  - `npm t`: Run test suite
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting + generate coverage
  - `npm run build`: Bundles code, create docs and generate typings
  - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
+
+### Automatic releases
+
+If you'd like to have automatic releases with **Semantic Versioning**, follow these simple steps.
+
+_**Prerequisites**: you need to create/login accounts and add your project to:_
+ - NPM
+ - Travis
+ - Coveralls
+
+Install semantic release and run it (Answer NO to "Generate travis.yml")
+
+```bash
+npm install -g semantic-release-cli
+semantic-release setup
+# IMPORTANT!! Answer NO to "Generate travis.yml" question. Is already prepared for you :P
+```
+
+Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code **automatically on github and npm**, plus generates **automatically a changelog**.
 
 ### GitHooks
 
@@ -39,21 +59,6 @@ By default, 2 githooks are **enabled** using [husky](https://github.com/typicode
 
 You **can disable** them. Read [FAQ section](#faq).
 
-### Automatic releases
-
-_**Prerequisites**_: you need to create/login accounts and add your project to:
- - Travis
- - Coveralls
- - NPM
-
-```bash
-npm install -g semantic-release-cli
-semantic-release setup
-# IMPORTANT!! Answer NO to "Generate travis.yml" question. Is already prepared for you :P
-```
-
-Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publish your code **automatically on github and npm**, plus generates **automatically a changelog**.
-
 ### FAQ
 
 #### What if I don't want automatic releases or semantic-release?
@@ -61,3 +66,18 @@ Automatic releases are possible thanks to [semantic release](https://github.com/
 Then you may want to:
  - Remove `commitmsg`, `postinstall` scripts from `package.json`. That will not use those git hooks to make sure you make a conventional commit
  - Remove `npm run semantic-release` from `.travis.yml`
+
+#### What if I don't want to use coveralls or report my coverage?
+
+Remove `npm run report-coverage` from `.travis.yml`
+
+#### What is `npm install` doing the first time runned?
+
+It runs the script `tools/init` which sets up everything for you. In short, it:
+ - Configures webpack for the build, which creates the umd library, generate docs, etc.
+ - Configures `package.json` (typings file, main file, etc)
+ - Renames main src and test files
+
+## Credits
+
+Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm)
