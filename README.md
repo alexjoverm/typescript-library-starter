@@ -14,7 +14,8 @@ npm install
 
 **Start coding!** The `package.json` file is already set up for you, so don't worry about linking to your main file, typings, etc. Just keep those files with the same names.
 
-Features:
+### Features
+
  - Zero-setup. After running `npm install` things will be setup for you :wink:
  - UMD bundle generated, using **[Webpack 2](https://webpack.js.org/)**
  - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
