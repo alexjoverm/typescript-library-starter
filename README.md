@@ -12,7 +12,7 @@ cd YOURFOLDERNAME
 npm install
 ```
 
-**Start coding!** The `package.json` file is already set up for you, so don't worry about linking to your main file, typings, etc. Just keep those files with the same names.
+**Start coding!** `package.json` and entry files are already set up for you, so don't worry about linking to your main file, typings, etc. Just keep those files with the same names.
 
 ### Features
 
@@ -62,7 +62,7 @@ You **can disable** them. Read [FAQ section](#faq).
 
 ### FAQ
 
-#### What if I don't want automatic releases or semantic-release?
+#### What if I don't want git-hooks, automatic releases or semantic-release?
 
 Then you may want to:
  - Remove `commitmsg`, `postinstall` scripts from `package.json`. That will not use those git hooks to make sure you make a conventional commit
