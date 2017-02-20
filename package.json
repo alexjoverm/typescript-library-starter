@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "author": "Alex Jover Morales <alexjovermorales@gmail.com>",
+  "author": "--username-- <--usermail-->",
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
