@@ -1,6 +1,6 @@
-# Typescript library starter
+# TypeScript library starter
 
-Starter project for creating a typescript library extremely easy.
+A starter project that makes creating a TypeScript library extremely easy.
 
 ### Usage
 
@@ -38,11 +38,11 @@ npm install
 If you'd like to have automatic releases with **Semantic Versioning**, follow these simple steps.
 
 _**Prerequisites**: you need to create/login accounts and add your project to:_
- - NPM
+ - npm
  - Travis
  - Coveralls
 
-Install semantic release and run it (Answer NO to "Generate travis.yml")
+Install semantic release and run it (answer NO to "Generate travis.yml").
 
 ```bash
 npm install -g semantic-release-cli
@@ -54,11 +54,11 @@ Automatic releases are possible thanks to [semantic release](https://github.com/
 
 ### GitHooks
 
-By default, 2 githooks are **enabled** using [husky](https://github.com/typicode/husky). It's suggested to keep them, since they make sure:
+By default, 2 git hooks are **enabled** using [husky](https://github.com/typicode/husky). It's suggested to keep them, since they make sure:
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
  - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
-You **can disable** them. Read [FAQ section](#faq).
+You **can disable** them. Read the [FAQ section](#faq).
 
 ### FAQ
 
