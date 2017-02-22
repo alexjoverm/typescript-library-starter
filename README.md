@@ -35,12 +35,18 @@ npm install
 
 ### Automatic releases
 
-If you'd like to have automatic releases with **Semantic Versioning**, follow these simple steps.
+If you'd like to have automatic releases with Semantic Versioning, follow these simple steps.
 
 _**Prerequisites**: you need to create/login accounts and add your project to:_
  - npm
  - Travis
  - Coveralls
+
+Set up the git hooks (see [Git hooks section](#git-hooks) for more info):
+
+```bash
+node tools/init-hooks
+```
 
 Install semantic release and run it (answer NO to "Generate travis.yml").
 
@@ -50,17 +56,28 @@ semantic-release setup
 # IMPORTANT!! Answer NO to "Generate travis.yml" question. Is already prepared for you :P
 ```
 
-Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code **automatically on github and npm**, plus generates **automatically a changelog**.
+From that on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
 
-### GitHooks
+Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on github and npm, plus generates automatically a changelog.
 
-By default, 2 git hooks are **enabled** using [husky](https://github.com/typicode/husky). It's suggested to keep them, since they make sure:
+### Git Hooks
+
+By default, there are 2 disabled git hooks. You can enable them by running `node tools/init-hooks` (which uses [husky](https://github.com/typicode/husky)). They make sure:
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
  - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
-You **can disable** them. Read the [FAQ section](#faq).
 
 ### FAQ
+
+#### Why using TypeScript and Babel?
+
+In most cases, you can compile TypeScript code to ES5, or even ES3. But in some cases, where you use "functional es2015+ features", such as `Array.prototype.find`, `Map`, `Set`... then you need to set `target` to "es6". This is by design, since TypeScript only provides down-emits on syntactical language features (such as `const`, `class`...), but Babel does. So it's setup up in a 2 steps build so you can use es2015+ features.
+
+This should be transparent for you and you shouldn't even notice. But if don't need this, you can remove Babel from the build:
+ - Set target to "es5" or "es3" in `tsconfig.json` and `tsconfig.prod.json`
+ - Remove `babel-loader` from `webpack.config.ts`
+
+More info in [https://github.com/Microsoft/TypeScript/issues/6945](https://github.com/Microsoft/TypeScript/issues/6945)
 
 #### What if I don't want git-hooks, automatic releases or semantic-release?
 
