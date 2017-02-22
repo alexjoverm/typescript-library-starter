@@ -58,7 +58,7 @@ semantic-release setup
 
 From that on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
 
-Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on github and npm, plus generates automatically a changelog.
+Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on github and npm, plus generates automatically a changelog. This setup is highly influenced by [Kent C. Dodds course on egghead.io](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)
 
 ### Git Hooks
 
