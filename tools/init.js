@@ -6,7 +6,6 @@ const { mv, rm, which, exec } = require('shelljs')
 const replace = require('replace-in-file')
 const colors = require('colors')
 const path = require('path')
-const fork = require('child_process').fork
 const { readFileSync, writeFileSync } = require('fs')
 
 const promptSchema = {
@@ -73,7 +72,9 @@ prompt.get(promptSchema, (err, res) => {
 
     // 5. Recreate init folder and initialize husky
     exec('git init ' + path.resolve(__dirname, '..'))
-    fork(path.resolve(__dirname, '..', 'node_modules', 'husky', 'bin', 'install'))
+    console.log()
+    console.log(colors.cyan('Git initialized'))
+    console.log()
 
     // 6. Remove post-install command
     const pkg = JSON.parse(readFileSync(path.resolve(__dirname, '..', 'package.json')))
