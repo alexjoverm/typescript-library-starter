@@ -98,4 +98,4 @@ It runs the script `tools/init` which sets up everything for you. In short, it:
 
 ## Credits
 
-Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm)
+Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm), and kudos to [all contributors!](https://github.com/alexjoverm/typescript-library-starter/graphs/contributors)
