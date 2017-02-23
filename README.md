@@ -56,7 +56,7 @@ semantic-release setup
 # IMPORTANT!! Answer NO to "Generate travis.yml" question. Is already prepared for you :P
 ```
 
-From that on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
+From now on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
 
 Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on github and npm, plus generates automatically a changelog. This setup is highly influenced by [Kent C. Dodds course on egghead.io](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)
 
