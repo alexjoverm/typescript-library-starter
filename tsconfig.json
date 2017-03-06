@@ -6,11 +6,19 @@
         "sourceMap": false,
         "moduleResolution": "node",
         "noImplicitAny": true,
+        "strictNullChecks": true,
         "declaration": true,
         "outDir": "types",
-        "strictNullChecks": true,
         "typeRoots": [
           "node_modules/@types"
         ]
+    },
+    "exclude": [
+        "node_modules",
+        "**/webpack.config.ts"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useBabel": true,
+        "useCache": true
     }
 }

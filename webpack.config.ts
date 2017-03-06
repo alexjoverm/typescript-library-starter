@@ -1,9 +1,7 @@
 import { join } from 'path'
-import { optimize } from 'webpack'
+import { camelCase } from 'lodash'
+const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader')
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
-
-const env = process && process.env && process.env.NODE_ENV
-const tsConfig = env && env === 'production' ? { configFileName: 'tsconfig.prod.json' } : {}
 
 /**
  * Update this variable if you change your library name
@@ -16,33 +14,27 @@ export default {
   output: {
     path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library: libraryName,
+    library: camelCase(libraryName),
     filename: `${libraryName}.js`
   },
   resolve: {
     extensions: ['.ts', '.js']
   },
   module: {
-    rules: [{
-      test: /\.ts$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: { presets: ['es2015'] }
-        },
-        {
-          loader: 'ts-loader',
-          options: tsConfig
-        }
-      ],
-      exclude: [
-        join(__dirname, 'node_modules'),
-        join(__dirname, 'test')
-      ]
-    }]
+    rules: [
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader'
+          }
+        ]
+      }
+    ]
   },
   plugins: [
-    new optimize.UglifyJsPlugin({sourceMap: true}),
+    new CheckerPlugin(),
+    new TsConfigPathsPlugin(),
     new TypedocWebpackPlugin(
       {
         theme: 'minimal',
