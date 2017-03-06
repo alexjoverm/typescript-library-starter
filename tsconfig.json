@@ -1,10 +1,8 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "lib": ["es2016", "dom"],
-        "sourceMap": false,
         "moduleResolution": "node",
+        "target": "es2015",
+        "lib": ["es2016", "dom"],
         "noImplicitAny": true,
         "strictNullChecks": true,
         "sourceMap": true,
