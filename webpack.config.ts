@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { camelCase } from 'lodash'
+const { camelCase } = require('lodash')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader')
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
 
