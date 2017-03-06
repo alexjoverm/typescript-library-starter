@@ -19,7 +19,7 @@ const promptSchema = {
   }
 }
 
-const files = ['package.json', 'webpack.config.ts', 'LICENSE']
+const files = ['package.json', 'webpack.config.ts', 'LICENSE', 'test/library.test.ts']
 
 prompt.start()
 prompt.message = ''

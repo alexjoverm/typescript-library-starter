@@ -1,4 +1,4 @@
-import { DummyClass } from '../src/library'
+import DummyClass from '../src/--libraryname--'
 
 /**
  * Dummy test
