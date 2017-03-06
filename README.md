@@ -17,8 +17,7 @@ npm install
 ### Features
 
  - Zero-setup. After running `npm install` things will be setup for you :wink:
- - UMD bundle, using **[Webpack 2](https://webpack.js.org/)**
- - [Tree-shaking](https://webpack.js.org/guides/tree-shaking/) dead code elimination
+ - **[Webpack 2](https://webpack.js.org/)** for UMD bundle, with [Tree-shaking](https://webpack.js.org/guides/tree-shaking/) dead code elimination
  - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
  - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
  - Automatic types file generation
