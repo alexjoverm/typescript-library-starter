@@ -17,7 +17,8 @@ npm install
 ### Features
 
  - Zero-setup. After running `npm install` things will be setup for you :wink:
- - UMD bundle generated, using **[Webpack 2](https://webpack.js.org/)**
+ - UMD bundle, using **[Webpack 2](https://webpack.js.org/)**
+ - [Tree-shaking](https://webpack.js.org/guides/tree-shaking/) dead code elimination
  - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
  - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
  - Automatic types file generation
@@ -31,6 +32,7 @@ npm install
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting + generate coverage
  - `npm run build`: Bundles code, create docs and generate typings
+ - `npm run build:dev`: Same than `build`, but code is not minified
  - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
 
 ### Automatic releases
@@ -66,16 +68,17 @@ By default, there are 2 disabled git hooks. You can enable them by running `node
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
  - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
+This makes more sense in combination of [automatic releases](#automatic-releases)
 
 ### FAQ
 
 #### Why using TypeScript and Babel?
 
-In most cases, you can compile TypeScript code to ES5, or even ES3. But in some cases, where you use "functional es2015+ features", such as `Array.prototype.find`, `Map`, `Set`... then you need to set `target` to "es6". This is by design, since TypeScript only provides down-emits on syntactical language features (such as `const`, `class`...), but Babel does. So it's setup up in a 2 steps build so you can use es2015+ features.
+In most cases, you can compile TypeScript code to ES5, or even ES3. But in some cases, where you use "functional es2015+ features", such as `Array.prototype.find`, `Map`, `Set`... then you need to set `target` to "es6". This is by design, since TypeScript only provides down-emits on syntactical language features (such as `const`, `class`...), but Babel does. So it's set up in a 2 steps build so you can use es2015+ features.
 
 This should be transparent for you and you shouldn't even notice. But if don't need this, you can remove Babel from the build:
- - Set target to "es5" or "es3" in `tsconfig.json` and `tsconfig.prod.json`
- - Remove `babel-loader` from `webpack.config.ts`
+ - Set target to "es5" or "es3" in `tsconfig.json`
+ - Remove `"useBabel": true` from `tsconfig.json`
 
 More info in [https://github.com/Microsoft/TypeScript/issues/6945](https://github.com/Microsoft/TypeScript/issues/6945)
 
