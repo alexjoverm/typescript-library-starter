@@ -10,7 +10,8 @@ const libraryName = '--libraryname--'
 
 export default {
   entry: join(__dirname, `src/${libraryName}.ts`),
-  devtool: 'cheap-source-map',
+  // Currently cheap-module-source-map is broken https://github.com/webpack/webpack/issues/4176
+  devtool: 'source-map',
   output: {
     path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
