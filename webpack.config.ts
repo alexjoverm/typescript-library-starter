@@ -12,23 +12,25 @@ const dev = !(env && env === 'production')
 const libraryName = '--libraryname--'
 const plugins = [
   new CheckerPlugin(),
+  new webpack.HotModuleReplacementPlugin(),
   new TsConfigPathsPlugin(),
   new HtmlWebpackPlugin({
     inject: true,
     title: libraryName,
     filename: 'index.html',
-    template: join(__dirname, 'template/common.html'),
+    template: join(__dirname, 'src/template/common.html'),
     hash: true,
     chunks: ['common', 'index']
   })
 ]
-
 let entry: string | string[] = [
   // 'react-hot-loader/patch',
   'webpack-dev-server/client?http://localhost:8081',
-  // bundle the client for webpack-dev-servers and connect to the provided endpoint
+  // bundle the client for webpack-dev-servers
+  // and connect to the provided endpoint
   'webpack/hot/only-dev-server',
   // bundle the client for hot reloading
+  // only- means to only hot reload for successful updates
   `./src/${libraryName}.ts`
 ]
 
@@ -43,8 +45,6 @@ if (dev === false) {
     'src'
   ))
   entry = join(__dirname, `src/${libraryName}.ts`)
-} else {
-  plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 export default {
