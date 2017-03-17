@@ -16,7 +16,7 @@
   "scripts": {
     "lint": "tslint -e **/node_modules/** -e **/dist/** **/*.ts ",
     "prebuild": "rimraf dist && rimraf docs",
-    "dev": "webpack-dev-server --port 8081",
+    "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack -p",
     "build:dev": "webpack",
     "test": "jest",
@@ -31,6 +31,7 @@
     "postinstall": "node tools/init"
   },
   "config": {
+    "devPort": "8081",
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     },

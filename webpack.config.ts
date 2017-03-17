@@ -5,32 +5,32 @@ const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loade
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const env = process && process.env && process.env.NODE_ENV
+const serverPort = process.env.npm_package_config_devPort || 8081
 const dev = !(env && env === 'production')
+
 /**
  * Update this variable if you change your library name
  */
 const libraryName = '--libraryname--'
 const plugins = [
   new CheckerPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
   new TsConfigPathsPlugin(),
   new HtmlWebpackPlugin({
     inject: true,
     title: libraryName,
     filename: 'index.html',
-    template: join(__dirname, 'src/template/common.html'),
+    template: join(__dirname, 'template/index.html'),
     hash: true,
     chunks: ['common', 'index']
   })
 ]
+
 let entry: string | string[] = [
   // 'react-hot-loader/patch',
-  'webpack-dev-server/client?http://localhost:8081',
-  // bundle the client for webpack-dev-servers
-  // and connect to the provided endpoint
+  `webpack-dev-server/client?http://localhost:${serverPort}`,
+  // bundle the client for webpack-dev-servers and connect to the provided endpoint
   'webpack/hot/only-dev-server',
   // bundle the client for hot reloading
-  // only- means to only hot reload for successful updates
   `./src/${libraryName}.ts`
 ]
 
@@ -45,6 +45,8 @@ if (dev === false) {
     'src'
   ))
   entry = join(__dirname, `src/${libraryName}.ts`)
+} else {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 export default {
@@ -78,6 +80,7 @@ export default {
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'dist'),
+    port: serverPort,
     publicPath: '/'
   }
 }
