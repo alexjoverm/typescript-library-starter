@@ -43,6 +43,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ChinW",
+      "name": "Chi",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8458838?v=3",
+      "profile": "https://consiiii.me",
+      "contributions": [
+        "code",
+        "tool",
+        "doc"
+      ]
     }
   ]
 }
