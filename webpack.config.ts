@@ -1,6 +1,6 @@
 import { join, resolve } from 'path'
 const { camelCase } = require('lodash')
-const webpack = require("webpack")
+const webpack = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader')
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
