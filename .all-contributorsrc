@@ -54,6 +54,16 @@
         "tool",
         "doc"
       ]
+    },
+    {
+      "login": "mattmazzola",
+      "name": "Matt Mazzola",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2856501?v=3",
+      "profile": "https://github.com/mattmazzola",
+      "contributions": [
+        "code",
+        "tool"
+      ]
     }
   ]
 }
