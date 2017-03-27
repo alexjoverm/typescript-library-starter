@@ -48,13 +48,15 @@ _**Prerequisites**: you need to create/login accounts and add your project to:_
  - Travis
  - Coveralls
 
-Set up the git hooks (see [Git hooks section](#git-hooks) for more info):
+Run the following command to prepare hooks and stuff:
 
 ```bash
-node tools/init-hooks
+node tools/semantic-release-prepare
 ```
 
-Install semantic release and run it (answer NO to "Generate travis.yml").
+Follow the console instructions to install semantic release run it (answer NO to "Generate travis.yml").
+
+_Note: make sure you've setup `repository.url` in your `package.json` file_
 
 ```bash
 npm install -g semantic-release-cli
@@ -86,6 +88,13 @@ This should be transparent for you and you shouldn't even notice. But if don't n
 
 More info in [https://github.com/Microsoft/TypeScript/issues/6945](https://github.com/Microsoft/TypeScript/issues/6945)
 
+#### What is `npm install` doing the first time runned?
+
+It runs the script `tools/init` which sets up everything for you. In short, it:
+ - Configures webpack for the build, which creates the umd library, generate docs, etc.
+ - Configures `package.json` (typings file, main file, etc)
+ - Renames main src and test files
+
 #### What if I don't want git-hooks, automatic releases or semantic-release?
 
 Then you may want to:
@@ -95,13 +104,6 @@ Then you may want to:
 #### What if I don't want to use coveralls or report my coverage?
 
 Remove `npm run report-coverage` from `.travis.yml`
-
-#### What is `npm install` doing the first time runned?
-
-It runs the script `tools/init` which sets up everything for you. In short, it:
- - Configures webpack for the build, which creates the umd library, generate docs, etc.
- - Configures `package.json` (typings file, main file, etc)
- - Renames main src and test files
 
 ## Credits
 

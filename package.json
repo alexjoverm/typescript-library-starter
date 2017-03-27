@@ -9,6 +9,10 @@
     "dist"
   ],
   "author": "--username-- <--usermail-->",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
