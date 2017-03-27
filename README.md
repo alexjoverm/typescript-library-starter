@@ -1,5 +1,9 @@
 # TypeScript library starter
 
+[![Travis](https://img.shields.io/travis/alexjoverm/typescript-library-starter.svg)]()
+[![Coveralls](https://img.shields.io/coveralls/alexjoverm/typescript-library-starter.svg)]()
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://paypal.me/AJoverMorales)
+
 A starter project that makes creating a TypeScript library extremely easy.
 
 ### Usage
