@@ -14,7 +14,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -e **/node_modules/** -e **/dist/** **/*.ts ",
+    "lint": "tslint -e **/node_modules/** -e **/dist/** -t codeFrame **/*.ts ",
     "prebuild": "rimraf dist && rimraf docs",
     "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack -p",
