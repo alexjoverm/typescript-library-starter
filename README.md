@@ -71,7 +71,7 @@ Automatic releases are possible thanks to [semantic release](https://github.com/
 
 ### Git Hooks
 
-By default, there are 2 disabled git hooks. You can enable them by running `node tools/init-hooks` (which uses [husky](https://github.com/typicode/husky)). They make sure:
+By default, there are 2 disabled git hooks. They're set up when you run the `node tools/semantic-release-prepare` script, by using [husky](https://github.com/typicode/husky). They make sure:
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
  - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
