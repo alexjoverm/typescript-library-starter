@@ -2,9 +2,19 @@ let { cd, exec, echo, touch } = require('shelljs')
 let { readFileSync } = require('fs')
 let url = require('url')
 
+let repoUrl;
 let pkg = JSON.parse(readFileSync('package.json'))
-let repository = url.parse(pkg.repository)
-repository = repository.host + repository.path
+if (typeof pkg.repository === 'object') {
+    if (!pkg.repository.hasOwnProperty('url')) {
+        throw new Error("URL does not exist in repository section")
+    }
+    repoUrl = pkg.repository.url
+} else {
+    repoUrl = pkg.repository
+}
+
+var parsedUrl = url.parse(repoUrl)
+let repository = parsedUrl.host + parsedUrl.path;
 let ghToken = process.env.GH_TOKEN
 
 echo('Deploying docs!!!')
