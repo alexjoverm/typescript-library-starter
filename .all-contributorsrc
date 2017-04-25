@@ -64,6 +64,15 @@
         "code",
         "tool"
       ]
+    },
+    {
+      "login": "Leefrost",
+      "name": "Sergii Lischuk",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2664047?v=3",
+      "profile": "http://leefrost.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }

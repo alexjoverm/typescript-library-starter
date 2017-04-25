@@ -2,7 +2,7 @@ let { cd, exec, echo, touch } = require('shelljs')
 let { readFileSync } = require('fs')
 let url = require('url')
 
-let repoUrl;
+let repoUrl
 let pkg = JSON.parse(readFileSync('package.json'))
 if (typeof pkg.repository === 'object') {
     if (!pkg.repository.hasOwnProperty('url')) {
