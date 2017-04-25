@@ -13,7 +13,7 @@ if (typeof pkg.repository === 'object') {
     repoUrl = pkg.repository
 }
 
-var parsedUrl = url.parse(repoUrl)
+let parsedUrl = url.parse(repoUrl)
 let repository = parsedUrl.host + parsedUrl.path;
 let ghToken = process.env.GH_TOKEN
 
