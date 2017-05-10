@@ -83,6 +83,11 @@ console.log(colors.yellow('Hi! I\'m setting things up for you!!'))
 rm('-Rf', path.resolve(__dirname, '..', '.git'))
 console.log('\r\n', 'Removed .git directory','\r\n')
 
+// Remove files
+const filesRm = ['tools/init.js']
+const pathsRm = filesRm.map((f) => path.resolve(__dirname, '..', f))
+rm(pathsRm)
+console.log(`\r\nRemoved files: ${filesRm.toString()}\r\n`)
 
 if (!inCI) {
   // Ask for library name
