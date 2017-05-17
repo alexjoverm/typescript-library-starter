@@ -70,7 +70,10 @@ export default {
         test: /\.ts$/,
         use: [
           {
-            loader: 'awesome-typescript-loader'
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'ts-loader'
           }
         ]
       }
