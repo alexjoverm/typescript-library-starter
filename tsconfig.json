@@ -7,7 +7,7 @@
         "strictNullChecks": true,
         "sourceMap": true,
         "declaration": true,
-        "declarationDir": "dist/types",
+        "declarationDir": "types",
         "typeRoots": [
           "node_modules/@types"
         ]
