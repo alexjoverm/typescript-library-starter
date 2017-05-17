@@ -14,8 +14,5 @@
     },
     "include": [
         "src"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "useBabel": true
-    }
+    ]
 }
