@@ -34,7 +34,7 @@ function setupProject() {
     console.log(colors.cyan(files.join(',')) + ' updated')
 
     // Recreate init folder and initialize husky
-    exec('git init "' + path.resolve(__dirname, '..') + '"')
+    // exec('git init "' + path.resolve(__dirname, '..') + '"')
     console.log()
     console.log(colors.cyan('Git initialized'))
     console.log()
