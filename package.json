@@ -1,10 +1,10 @@
 {
-  "name": "pepe",
+  "name": "--libraryname--",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/pepe.js",
-  "typings": "dist/src/pepe.d.ts",
+  "main": "dist/--libraryname--.js",
+  "typings": "dist/src/--libraryname--.d.ts",
   "files": [
     "dist"
   ],
