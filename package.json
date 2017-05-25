@@ -1,14 +1,14 @@
 {
-  "name": "--libraryname--",
+  "name": "pepe",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/--libraryname--.js",
-  "typings": "dist/src/--libraryname--.d.ts",
+  "main": "dist/pepe.js",
+  "typings": "dist/src/pepe.d.ts",
   "files": [
     "dist"
   ],
-  "author": "--username-- <--usermail-->",
+  "author": "Alex J <alexjovermorales@gmail.com>",
   "repository": {
     "type": "git",
     "url": ""
@@ -31,8 +31,7 @@
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "validate-commit-msg",
-    "postinstall": "node tools/init"
+    "commitmsg": "validate-commit-msg"
   },
   "config": {
     "devPort": "8081",
@@ -62,7 +61,7 @@
     "modulePathIgnorePatterns": [
       "/^((?!src).)/"
     ],
-    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/preprocessor.js",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test/"
