@@ -1,5 +1,7 @@
 # TypeScript library starter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/alexjoverm/typescript-library-starter.svg)](https://greenkeeper.io/)
+
 [![Travis](https://img.shields.io/travis/alexjoverm/typescript-library-starter.svg)]()
 [![Coveralls](https://img.shields.io/coveralls/alexjoverm/typescript-library-starter.svg)]()
 [![bitHound Dev Dependencies](https://www.bithound.io/github/alexjoverm/typescript-library-starter/badges/devDependencies.svg)](https://www.bithound.io/github/alexjoverm/typescript-library-starter/master/dependencies/npm)

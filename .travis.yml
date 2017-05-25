@@ -2,6 +2,7 @@ language: node_js
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 cache:
   directories:
     - node_modules
