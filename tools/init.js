@@ -13,6 +13,10 @@ if (!which('git')) {
   process.exit(1)
 }
 
+function resolve(p) {
+  return path.resolve(__dirname, '..', p)
+}
+
 function setupProject() {
   // Replace strings in corresponding files
   replace({
@@ -65,7 +69,12 @@ const promptSchema = {
   }
 }
 
-const files = ['package.json', 'webpack.config.ts', 'LICENSE', 'test/library.test.ts']
+const files = [
+  resolve('package.json'),
+  resolve('webpack.config.ts'),
+  resolve('LICENSE'),
+  resolve('test/library.test.ts')
+]
 
 prompt.start()
 prompt.message = ''
