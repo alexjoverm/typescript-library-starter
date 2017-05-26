@@ -104,7 +104,6 @@
     "tslint-config-standard": "^5.0.2",
     "typedoc": "^0.7.1",
     "typescript": "^2.3.3",
-    "uglify": "^0.1.5",
     "validate-commit-msg": "^2.10.1"
   }
 }
