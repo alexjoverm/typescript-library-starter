@@ -21,9 +21,8 @@
   "scripts": {
     "lint": "tslint -e **/node_modules/** -e **/dist/** -t codeFrame **/*.ts ",
     "prebuild": "rimraf dist",
-    "build:dev": "tsc && rollup -c && typedoc --out dist/docs --target es6 --theme minimal src",
+    "build": "tsc && rollup -c && typedoc --out dist/docs --target es6 --theme minimal src",
     "postbuild": "rimraf compiled",
-    "build": "cross-env NODE_ENV=production npm run build:dev",
     "start": "tsc-watch --onSuccess 'rollup -c'",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -97,7 +96,6 @@
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify": "^2.0.1",
     "semantic-release": "^6.3.2",
     "ts-jest": "^20.0.3",
     "ts-node": "^3.0.4",

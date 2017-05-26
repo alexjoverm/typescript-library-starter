@@ -44,7 +44,6 @@ The good news is here is setup for you, you only must include the dependency nam
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting + generate coverage
  - `npm run build`: Generage bundles and typings, create docs
- - `npm run build:dev`: Same than `build`, but code is not minified
  - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
 
 ### Automatic releases
