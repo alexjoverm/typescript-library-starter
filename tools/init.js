@@ -71,7 +71,7 @@ const promptSchema = {
 
 const files = [
   resolve('package.json'),
-  resolve('webpack.config.ts'),
+  resolve('rollup.config.js'),
   resolve('LICENSE'),
   resolve('test/library.test.ts')
 ]

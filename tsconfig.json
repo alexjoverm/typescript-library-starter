@@ -8,14 +8,12 @@
         "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist/types",
+        "outDir": "compiled",
         "typeRoots": [
           "node_modules/@types"
         ]
     },
     "include": [
         "src"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "useBabel": true
-    }
+    ]
 }

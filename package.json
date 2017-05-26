@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/--libraryname--.js",
-  "typings": "dist/src/--libraryname--.d.ts",
+  "main": "dist/--libraryname--.umd.js",
+  "module": "dist/--libraryname--.es5.js",
+  "typings": "dist/types/--libraryname--.d.ts",
   "files": [
     "dist"
   ],
@@ -19,10 +20,11 @@
   },
   "scripts": {
     "lint": "tslint -e **/node_modules/** -e **/dist/** -t codeFrame **/*.ts ",
-    "prebuild": "rimraf dist && rimraf docs",
-    "dev": "webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack -p",
-    "build:dev": "webpack",
+    "prebuild": "rimraf dist",
+    "build:dev": "tsc && rollup -c && typedoc --out dist/docs --target es6 --theme minimal src",
+    "postbuild": "rimraf compiled",
+    "build": "cross-env NODE_ENV=production npm run build:dev",
+    "start": "tsc-watch --onSuccess 'rollup -c'",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
@@ -35,7 +37,6 @@
     "postinstall": "node tools/init"
   },
   "config": {
-    "devPort": "8081",
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     },
@@ -79,8 +80,6 @@
   "devDependencies": {
     "@types/jest": "^19.2.3",
     "@types/node": "^7.0.2",
-    "@types/webpack": "^2.2.7",
-    "awesome-typescript-loader": "^3.1.0",
     "babel-core": "^6.22.1",
     "babel-preset-env": "^1.2.0",
     "colors": "^1.1.2",
@@ -88,23 +87,25 @@
     "coveralls": "^2.11.15",
     "cross-env": "^5.0.0",
     "cz-conventional-changelog": "^2.0.0",
-    "html-webpack-plugin": "^2.28.0",
     "husky": "^0.13.1",
     "jest": "^20.0.1",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
     "replace-in-file": "^2.3.2",
     "rimraf": "^2.5.4",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "semantic-release": "^6.3.2",
     "ts-jest": "^20.0.3",
     "ts-node": "^3.0.4",
+    "tsc-watch": "^1.0.5",
     "tslint": "^5.2.0",
     "tslint-config-standard": "^5.0.2",
-    "typedoc": "^0.7.0",
-    "typedoc-webpack-plugin": "^1.1.3",
-    "typescript": "^2.1.6",
-    "validate-commit-msg": "^2.10.1",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.4.1"
+    "typedoc": "^0.7.1",
+    "typescript": "^2.3.3",
+    "uglify": "^0.1.5",
+    "validate-commit-msg": "^2.10.1"
   }
 }

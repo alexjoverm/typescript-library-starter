@@ -23,7 +23,7 @@ npm install
 ### Features
 
  - Zero-setup. After running `npm install` things will be setup for you :wink:
- - **[Webpack 2](https://webpack.js.org/)** for UMD bundle, with [Tree-shaking](https://webpack.js.org/guides/tree-shaking/) dead code elimination
+ - **[RollupJS](https://rollupjs.org/)** for multiple optimized bundles following the [standard convention](http://2ality.com/2017/04/setting-up-multi-platform-packages.html) and [Tree-shaking]. Why(https://alexjoverm.github.io/2017/03/06/Tree-shaking-with-Webpack-2-TypeScript-and-Babel/).
  - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
  - **[TSLint](https://palantir.github.io/tslint/)** ([standard-config](https://github.com/blakeembrey/tslint-config-standard)) for your code styling
  - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
@@ -36,8 +36,7 @@ npm install
  - `npm t`: Run test suite
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting + generate coverage
- - `npm run dev`: Run a server at `localhost:8081` (default) for quick development
- - `npm run build`: Bundles code, create docs and generate typings
+ - `npm run build`: Generage bundles and typings, create docs
  - `npm run build:dev`: Same than `build`, but code is not minified
  - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
 
@@ -86,14 +85,14 @@ In most cases, you can compile TypeScript code to ES5, or even ES3. But in some 
 
 This should be transparent for you and you shouldn't even notice. But if don't need this, you can remove Babel from the build:
  - Set target to "es5" or "es3" in `tsconfig.json`
- - Remove `"useBabel": true` from `tsconfig.json`
+ - Remove `babel` from `rollup.config.js`
 
 More info in [https://github.com/Microsoft/TypeScript/issues/6945](https://github.com/Microsoft/TypeScript/issues/6945)
 
 #### What is `npm install` doing the first time runned?
 
 It runs the script `tools/init` which sets up everything for you. In short, it:
- - Configures webpack for the build, which creates the umd library, generate docs, etc.
+ - Configures RollupJS for the build, which creates the bundles.
  - Configures `package.json` (typings file, main file, etc)
  - Renames main src and test files
 
