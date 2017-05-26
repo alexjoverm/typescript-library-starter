@@ -31,6 +31,12 @@ npm install
  - **[Travis](https://travis-ci.org)** integration and **[Coveralls](https://coveralls.io/)** report
  - (Optional) **Automatic releases and changelog**, using [Semantic release](https://github.com/semantic-release/semantic-release), [Commitizen](https://github.com/commitizen/cz-cli), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Husky](https://github.com/typicode/husky) (for the git hooks)
 
+### Excluding peerDependencies
+
+On library development, one might want to set some peer dependencies, and thus remove those from the final bundle. You can see in [Rollup docs](https://rollupjs.org/#peer-dependencies) how to do that.
+
+The good news is here is setup for you, you only must include the dependency name in `external` property within `rollup.config.js`. For example, if you wanna exclude `lodash`, just write there `external: ['lodash']`.
+
 ### NPM scripts
 
  - `npm t`: Run test suite
