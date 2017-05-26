@@ -1,8 +1,8 @@
 # TypeScript library starter
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/alexjoverm/typescript-library-starter.svg)](https://greenkeeper.io/)
-[![Travis](https://img.shields.io/travis/alexjoverm/typescript-library-starter.svg)]()
-[![Coveralls](https://img.shields.io/coveralls/alexjoverm/typescript-library-starter.svg)]()
+[![Travis](https://img.shields.io/travis/alexjoverm/typescript-library-starter.svg)](https://travis-ci.org/alexjoverm/typescript-library-starter)
+[![Coveralls](https://img.shields.io/coveralls/alexjoverm/typescript-library-starter.svg)](https://coveralls.io/github/alexjoverm/typescript-library-starter)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/alexjoverm/typescript-library-starter/badges/devDependencies.svg)](https://www.bithound.io/github/alexjoverm/typescript-library-starter/master/dependencies/npm)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://paypal.me/AJoverMorales)
 
@@ -34,6 +34,7 @@ npm install
 ### NPM scripts
 
  - `npm t`: Run test suite
+ - `npm start`: Runs `npm run build` in watch mode
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting + generate coverage
  - `npm run build`: Generage bundles and typings, create docs
