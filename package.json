@@ -45,11 +45,6 @@
     }
   },
   "jest": {
-    "globals": {
-      "__TS_CONFIG__": {
-        "module": "commonjs"
-      }
-    },
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
@@ -59,10 +54,6 @@
       "tsx",
       "js"
     ],
-    "modulePathIgnorePatterns": [
-      "/^((?!src).)/"
-    ],
-    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/preprocessor.js",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test/"
