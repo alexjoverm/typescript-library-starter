@@ -73,7 +73,8 @@ const files = [
   resolve('package.json'),
   resolve('rollup.config.js'),
   resolve('LICENSE'),
-  resolve('test/library.test.ts')
+  resolve('test/library.test.ts'),
+  resolve('tools/gh-pages-publish.ts')
 ]
 
 prompt.start()

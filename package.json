@@ -27,13 +27,13 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "deploy-docs": "node tools/gh-pages-publish.js",
+    "deploy-docs": "ts-node tools/gh-pages-publish.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepush": "npm run test:prod && npm run build",
     "commitmsg": "validate-commit-msg",
-    "postinstall": "node tools/init"
+    "postinstall": "ts-node tools/init"
   },
   "config": {
     "commitizen": {
