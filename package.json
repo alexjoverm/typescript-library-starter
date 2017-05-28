@@ -1,11 +1,11 @@
 {
-  "name": "--libraryname--",
+  "name": "lolo",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/--libraryname--.umd.js",
-  "module": "dist/--libraryname--.es5.js",
-  "typings": "dist/types/--libraryname--.d.ts",
+  "main": "dist/lolo.umd.js",
+  "module": "dist/lolo.es5.js",
+  "typings": "dist/types/lolo.d.ts",
   "files": [
     "dist"
   ],
@@ -27,13 +27,13 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
-    "deploy-docs": "ts-node tools/gh-pages-publish.js",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "validate-commit-msg",
-    "postinstall": "ts-node tools/init"
+    "commitmsg": "validate-commit-msg"
   },
   "config": {
     "commitizen": {
