@@ -1,11 +1,11 @@
 {
-  "name": "lolo",
+  "name": "--libraryname--",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/lolo.umd.js",
-  "module": "dist/lolo.es5.js",
-  "typings": "dist/types/lolo.d.ts",
+  "main": "dist/--libraryname--.umd.js",
+  "module": "dist/--libraryname--.es5.js",
+  "typings": "dist/types/--libraryname--.d.ts",
   "files": [
     "dist"
   ],
@@ -33,7 +33,8 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "postinstall": "ts-node tools/init"
   },
   "config": {
     "commitizen": {
