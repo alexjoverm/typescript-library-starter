@@ -13,11 +13,11 @@ if (!which('git')) {
   process.exit(1)
 }
 
-function resolve(p: any) {
+function resolve (p: any) {
   return path.resolve(__dirname, '..', p)
 }
 
-function setupProject() {
+function setupProject () {
   // Replace strings in corresponding files
   replace({
     files,
@@ -81,9 +81,9 @@ _prompt.start()
 _prompt.message = ''
 
 // Clear console
-let lines = (process.stdout as any).getWindowSize()[1];
-for(let i = 0; i < lines; i++) {
-    console.log('\r\n')
+let lines = (process.stdout as any).getWindowSize()[1]
+for (let i = 0; i < lines; i++) {
+  console.log('\r\n')
 }
 
 // Say hi!

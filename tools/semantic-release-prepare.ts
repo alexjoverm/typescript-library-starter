@@ -13,7 +13,7 @@ console.log()
 console.log(_colors.green('Done!!'))
 console.log()
 
-if(pkg.repository.url.trim()) {
+if (pkg.repository.url.trim()) {
   console.log(_colors.cyan('Now run:'))
   console.log(_colors.cyan('  npm install -g semantic-release-cli'))
   console.log(_colors.cyan('  semantic-release setup'))
