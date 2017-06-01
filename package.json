@@ -19,7 +19,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -e **/node_modules/** -e **/dist/** -t codeFrame **/*.ts ",
+    "lint": "tslint -e **/node_modules/** -t codeFrame '**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c && typedoc --out dist/docs --target es6 --theme minimal src",
     "postbuild": "rimraf compiled",
