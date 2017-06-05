@@ -19,22 +19,25 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -t codeFrame src/**/*.ts test/**/*.ts",
     "prebuild": "rimraf dist",
-    "build": "tsc && rollup -c && typedoc --out dist/docs --target es6 --theme minimal src",
-    "postbuild": "rimraf compiled",
+    "build": "tsc && rollup -c && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal src",
     "start": "tsc-watch --onSuccess 'rollup -c'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "test:prod": "npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "validate-commit-msg",
+    "precommit": "lint-staged",
     "postinstall": "ts-node tools/init"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write --no-semi",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
@@ -80,7 +83,9 @@
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.13.1",
     "jest": "^20.0.1",
+    "lint-staged": "^3.6.0",
     "lodash": "^4.17.4",
+    "prettier": "^1.4.2",
     "prompt": "^1.0.0",
     "replace-in-file": "^2.3.2",
     "rimraf": "^2.5.4",
@@ -92,8 +97,6 @@
     "ts-jest": "^20.0.3",
     "ts-node": "^3.0.4",
     "tsc-watch": "^1.0.5",
-    "tslint": "^5.2.0",
-    "tslint-config-standard": "^5.0.2",
     "typedoc": "^0.7.1",
     "typescript": "^2.3.3",
     "validate-commit-msg": "^2.10.1"
