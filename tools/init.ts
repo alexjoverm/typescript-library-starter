@@ -1,7 +1,7 @@
 /**
  * This script is runned automatically after your first npm-install.
  */
-const prompt = require("prompt")
+const _prompt = require("prompt")
 const { mv, rm, which, exec } = require("shelljs")
 const replace = require("replace-in-file")
 const colors = require("colors")
@@ -55,7 +55,7 @@ function setupProject() {
       const pkg = JSON.parse(
         readFileSync(path.resolve(__dirname, "..", "package.json")) as any
       )
-      delete pkg.scripts.postinstall
+      //delete pkg.scripts.postinstall
       writeFileSync(
         path.resolve(__dirname, "..", "package.json"),
         JSON.stringify(pkg, null, 2)
@@ -80,7 +80,7 @@ let username = exec("git config user.name").stdout.trim()
 let usermail = exec("git config user.email").stdout.trim()
 let inCI = process.env.CI
 
-const promptSchema = {
+const _promptSchema = {
   properties: {
     library: {
       description: colors.cyan("Enter your library name (use kebab-case)"),
@@ -99,8 +99,8 @@ const files = [
   resolve("tools/gh-pages-publish.ts")
 ]
 
-prompt.start()
-prompt.message = ""
+_prompt.start()
+_prompt.message = ""
 
 // Clear console
 let lines = (process.stdout as any).getWindowSize()[1]
@@ -123,7 +123,7 @@ console.log(`\r\nRemoved files: ${filesRm.toString()}\r\n`)
 
 if (!inCI) {
   // Ask for library name
-  prompt.get(promptSchema, (err: any, res: any) => {
+  _prompt.get(_promptSchema, (err: any, res: any) => {
     if (err) {
       console.log(colors.red("There was an error building the workspace :("))
       process.exit(1)
