@@ -86,15 +86,18 @@ This makes more sense in combination of [automatic releases](#automatic-releases
 
 ### FAQ
 
-#### Why using TypeScript and Babel?
+#### `Array.prototype.from`, `Promise`, `Map`... is undefined?
 
-In most cases, you can compile TypeScript code to ES5, or even ES3. But in some cases, where you use "functional es2015+ features", such as `Array.prototype.find`, `Map`, `Set`... then you need to set `target` to "es6". This is by design, since TypeScript only provides down-emits on syntactical language features (such as `const`, `class`...), but Babel does. So it's set up in a 2 steps build so you can use es2015+ features.
+TypeScript or Babel only provides down-emits on syntactical features (`class`, `let`, `async/away`...), but not on functional features (`Array.prototype.find`, `Set`, `Promise`...), . For that, you need Polyfills, such as [`core-js`](https://github.com/zloirock/core-js) or [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/) (which extends `core-js`).
 
-This should be transparent for you and you shouldn't even notice. But if don't need this, you can remove Babel from the build:
- - Set target to "es5" or "es3" in `tsconfig.json`
- - Remove `babel` from `rollup.config.js`
+For a library, `core-js` plays very nicely, since you can import just the polyfills you need:
 
-More info in [https://github.com/Microsoft/TypeScript/issues/6945](https://github.com/Microsoft/TypeScript/issues/6945)
+```javascript
+import "core-js/fn/array/find"
+import "core-js/fn/string/includes"
+import "core-js/fn/promise"
+...
+```
 
 #### What is `npm install` doing the first time runned?
 
