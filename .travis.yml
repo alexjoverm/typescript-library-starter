@@ -4,6 +4,7 @@ branches:
     - master
     - /^greenkeeper/.*$/
 cache:
+  yarn: true
   directories:
     - node_modules
 notifications:
@@ -12,7 +13,6 @@ node_js:
   - '7.5'
 before_script:
   - npm prune && npm cache clean
-  - npm install
 script:
   - npm run test:prod && npm run build
 after_success:
