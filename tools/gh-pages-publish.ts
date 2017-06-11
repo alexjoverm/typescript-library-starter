@@ -1,6 +1,6 @@
-import { cd, exec, echo, touch } from "shelljs"
-import { readFileSync } from "fs"
-import * as url from "url"
+const { cd, exec, echo, touch } = require("shelljs")
+const { readFileSync } = require("fs")
+const url = require("url")
 
 let repoUrl
 let pkg = JSON.parse(readFileSync("package.json") as any)
@@ -13,7 +13,7 @@ if (typeof pkg.repository === "object") {
   repoUrl = pkg.repository
 }
 
-let parsedUrl: url.Url = url.parse(repoUrl)
+let parsedUrl = url.parse(repoUrl)
 let repository = parsedUrl.host || "" + parsedUrl.path || ""
 let ghToken = process.env.GH_TOKEN
 

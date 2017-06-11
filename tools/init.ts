@@ -1,16 +1,16 @@
 /**
  * This script is runned automatically after your first npm-install.
  */
-const _prompt = require("prompt")
-import { mv, rm, which, exec } from "shelljs"
+const prompt = require("prompt")
+const { mv, rm, which, exec } = require("shelljs")
 const replace = require("replace-in-file")
-const _colors = require("colors")
-import * as path from "path"
-import { readFileSync, writeFileSync } from "fs"
-import { fork } from "child_process"
+const colors = require("colors")
+const path = require("path")
+const { readFileSync, writeFileSync } = require("fs")
+const { fork } = require("child_process")
 
 if (!which("git")) {
-  console.log(_colors.red("Sorry, this script requires git"))
+  console.log(colors.red("Sorry, this script requires git"))
   process.exit(1)
 }
 
@@ -42,13 +42,13 @@ function setupProject() {
       )
 
       console.log()
-      console.log(_colors.cyan(renamedFiles.join(",")) + " renamed")
-      console.log(_colors.cyan(files.join(",")) + " updated")
+      console.log(colors.cyan(renamedFiles.join(",")) + " renamed")
+      console.log(colors.cyan(files.join(",")) + " updated")
 
       // Recreate init folder and initialize husky
       exec('git init "' + path.resolve(__dirname, "..") + '"')
       console.log()
-      console.log(_colors.cyan("Git initialized"))
+      console.log(colors.cyan("Git initialized"))
       console.log()
 
       // Remove post-install command
@@ -61,7 +61,7 @@ function setupProject() {
         JSON.stringify(pkg, null, 2)
       )
       console.log()
-      console.log(_colors.cyan("Removed postinstall script"))
+      console.log(colors.cyan("Removed postinstall script"))
       console.log()
 
       fork(
@@ -69,7 +69,7 @@ function setupProject() {
       )
 
       console.log()
-      console.log(_colors.green("Happy coding!! ;)"))
+      console.log(colors.green("Happy coding!! ;)"))
       console.log()
     }
   )
@@ -83,7 +83,7 @@ let inCI = process.env.CI
 const promptSchema = {
   properties: {
     library: {
-      description: _colors.cyan("Enter your library name (use kebab-case)"),
+      description: colors.cyan("Enter your library name (use kebab-case)"),
       pattern: /^[a-z]+(\-[a-z]+)*$/,
       type: "string",
       required: true
@@ -99,8 +99,8 @@ const files = [
   resolve("tools/gh-pages-publish.ts")
 ]
 
-_prompt.start()
-_prompt.message = ""
+prompt.start()
+prompt.message = ""
 
 // Clear console
 let lines = (process.stdout as any).getWindowSize()[1]
@@ -109,7 +109,7 @@ for (let i = 0; i < lines; i++) {
 }
 
 // Say hi!
-console.log(_colors.yellow("Hi! I'm setting things up for you!!"))
+console.log(colors.yellow("Hi! I'm setting things up for you!!"))
 
 // Remove .git folder
 rm("-Rf", path.resolve(__dirname, "..", ".git"))
@@ -123,9 +123,9 @@ console.log(`\r\nRemoved files: ${filesRm.toString()}\r\n`)
 
 if (!inCI) {
   // Ask for library name
-  _prompt.get(promptSchema, (err: any, res: any) => {
+  prompt.get(promptSchema, (err: any, res: any) => {
     if (err) {
-      console.log(_colors.red("There was an error building the workspace :("))
+      console.log(colors.red("There was an error building the workspace :("))
       process.exit(1)
       return
     }
