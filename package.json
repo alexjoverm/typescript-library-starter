@@ -73,7 +73,7 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^19.2.4",
+    "@types/jest": "^20.0.0",
     "@types/node": "^7.0.29",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
