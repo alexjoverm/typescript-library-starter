@@ -55,7 +55,8 @@ function setupProject() {
       const pkg = JSON.parse(
         readFileSync(path.resolve(__dirname, "..", "package.json")) as any
       )
-      //delete pkg.scripts.postinstall
+
+      delete pkg.scripts.postinstall
       writeFileSync(
         path.resolve(__dirname, "..", "package.json"),
         JSON.stringify(pkg, null, 2)
