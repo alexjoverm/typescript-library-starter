@@ -117,7 +117,7 @@ rm("-Rf", path.resolve(__dirname, "..", ".git"))
 console.log("\r\n", "Removed .git directory", "\r\n")
 
 // Remove files
-const filesRm = ["tools/init.ts"]
+const filesRm = ["tools/init.ts", ".all-contributorsrc", ".gitattributes"]
 const pathsRm = filesRm.map(f => path.resolve(__dirname, "..", f))
 rm(pathsRm)
 console.log(`\r\nRemoved files: ${filesRm.toString()}\r\n`)
