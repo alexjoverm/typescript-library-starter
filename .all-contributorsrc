@@ -91,6 +91,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "foreggs",
+      "name": "Dom",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22561997?v=3",
+      "profile": "https://github.com/foreggs",
+      "contributions": [
+        "tool"
+      ]
     }
   ]
 }
