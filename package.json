@@ -92,7 +92,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "semantic-release": "^6.3.6",
+    "semantic-release": "^7.0.1",
     "ts-jest": "^20.0.6",
     "ts-node": "^3.0.6",
     "tsc-watch": "^1.0.5",
