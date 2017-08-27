@@ -91,7 +91,7 @@ This makes more sense in combination with [automatic releases](#automatic-releas
 
 #### `Array.prototype.from`, `Promise`, `Map`... is undefined?
 
-TypeScript or Babel only provides down-emits on syntactical features (`class`, `let`, `async/away`...), but not on functional features (`Array.prototype.find`, `Set`, `Promise`...), . For that, you need Polyfills, such as [`core-js`](https://github.com/zloirock/core-js) or [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/) (which extends `core-js`).
+TypeScript or Babel only provides down-emits on syntactical features (`class`, `let`, `async/await`...), but not on functional features (`Array.prototype.find`, `Set`, `Promise`...), . For that, you need Polyfills, such as [`core-js`](https://github.com/zloirock/core-js) or [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/) (which extends `core-js`).
 
 For a library, `core-js` plays very nicely, since you can import just the polyfills you need:
 
