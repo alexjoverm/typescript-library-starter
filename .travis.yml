@@ -11,8 +11,6 @@ notifications:
   email: false
 node_js:
   - node
-before_script:
-  - npm prune && npm cache clean
 script:
   - npm run test:prod && npm run build
 after_success:
