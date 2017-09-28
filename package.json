@@ -77,7 +77,7 @@
     "@types/node": "^8.0.0",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.0",
