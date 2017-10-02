@@ -36,7 +36,7 @@ npm install
 
 On library development, one might want to set some peer dependencies, and thus remove those from the final bundle. You can see in [Rollup docs](https://rollupjs.org/#peer-dependencies) how to do that.
 
-The good news is here is setup for you, you only must include the dependency name in `external` property within `rollup.config.js`. For example, if you wanna exclude `lodash`, just write there `external: ['lodash']`.
+The good news is that you only need to include the dependency name in the `external` property within `rollup.config.js`. For example, if you wanna exclude `lodash`, just write `external: ['lodash']`.
 
 ### NPM scripts
 
@@ -63,7 +63,7 @@ Run the following command to prepare hooks and stuff:
 npm run semantic-release-prepare
 ```
 
-Follow the console instructions to install semantic release run it (answer NO to "Generate travis.yml").
+Follow the console instructions to install semantic release and run it (answer NO to "Generate travis.yml").
 
 _Note: make sure you've setup `repository.url` in your `package.json` file_
 
@@ -75,13 +75,13 @@ semantic-release setup
 
 From now on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
 
-Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on github and npm, plus generates automatically a changelog. This setup is highly influenced by [Kent C. Dodds course on egghead.io](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)
+Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on Github and npm, plus generates a changelog automatically. This setup is highly influenced by [Kent C. Dodds course on egghead.io](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)
 
 ### Git Hooks
 
 There is already set a `precommit` hook for formatting your code with Prettier :nail_care:
 
-By default, there are 2 disabled git hooks. They're set up when you run the `npm run semantic-release-prepare` script. They make sure:
+By default, there are two disabled git hooks. They're set up when you run the `npm run semantic-release-prepare` script. They make sure:
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
  - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
@@ -102,7 +102,7 @@ import "core-js/fn/promise"
 ...
 ```
 
-#### What is `npm install` doing the first time runned?
+#### What is `npm install` doing when I run it for the first time?
 
 It runs the script `tools/init` which sets up everything for you. In short, it:
  - Configures RollupJS for the build, which creates the bundles.
@@ -129,4 +129,4 @@ Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm) and all these
 | [<img src="https://avatars1.githubusercontent.com/u/618922?v=3" width="100px;"/><br /><sub>Steve Lee</sub>](http;//opendirective.com)<br />[🔧](#tool-SteveALee "Tools") | [<img src="https://avatars0.githubusercontent.com/u/5127501?v=3" width="100px;"/><br /><sub>Flavio Corpa</sub>](http://flaviocorpa.com)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=kutyel "Code") | [<img src="https://avatars2.githubusercontent.com/u/22561997?v=3" width="100px;"/><br /><sub>Dom</sub>](https://github.com/foreggs)<br />[🔧](#tool-foreggs "Tools") | [<img src="https://avatars1.githubusercontent.com/u/755?v=4" width="100px;"/><br /><sub>Alex Coles</sub>](http://alexbcoles.com)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=myabc "Documentation") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind are welcome!
