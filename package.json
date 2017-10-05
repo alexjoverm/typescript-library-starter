@@ -70,7 +70,9 @@
         "lines": 95,
         "statements": 95
       }
-    }
+    },
+    "collectCoverage": true,
+    "mapCoverage": true
   },
   "devDependencies": {
     "@types/jest": "^21.1.0",
