@@ -44,7 +44,7 @@ The good news is that you only need to include the dependency name in the `exter
  - `npm start`: Runs `npm run build` in watch mode
  - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
  - `npm run test:prod`: Run linting and generate coverage
- - `npm run build`: Generage bundles and typings, create docs
+ - `npm run build`: Generate bundles and typings, create docs
  - `npm run lint`: Lints code
  - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
 
@@ -70,7 +70,7 @@ _Note: make sure you've setup `repository.url` in your `package.json` file_
 ```bash
 npm install -g semantic-release-cli
 semantic-release setup
-# IMPORTANT!! Answer NO to "Generate travis.yml" question. Is already prepared for you :P
+# IMPORTANT!! Answer NO to "Generate travis.yml" question. It is already prepared for you :P
 ```
 
 From now on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
@@ -83,7 +83,7 @@ There is already set a `precommit` hook for formatting your code with Prettier :
 
 By default, there are two disabled git hooks. They're set up when you run the `npm run semantic-release-prepare` script. They make sure:
  - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
- - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
+ - Your build is not gonna fail in [Travis](https://travis-ci.org) (or your CI server), since it's being run locally before `git push`
 
 This makes more sense in combination with [automatic releases](#automatic-releases)
 
