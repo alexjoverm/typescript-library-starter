@@ -127,6 +127,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "stuajnht",
+      "name": "Jonathan Hart",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13683986?v=4",
+      "profile": "https://www.stuajnht.co.uk",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
