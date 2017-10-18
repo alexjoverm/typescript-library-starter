@@ -8,10 +8,10 @@ const pkg = require('./package.json')
 const libraryName = '--libraryname--'
 
 export default {
-  entry: `compiled/${libraryName}.js`,
-  targets: [
-    { dest: pkg.main, moduleName: camelCase(libraryName), format: 'umd' },
-    { dest: pkg.module, format: 'es' },
+  input: `compiled/${libraryName}.js`,
+  output: [
+    { file: pkg.main, name: camelCase(libraryName), format: 'umd' },
+    { file: pkg.module, format: 'es' },
   ],
   sourcemap: true,
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
