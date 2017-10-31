@@ -147,15 +147,6 @@
       ]
     },
     {
-      "login": "lifeiscontent",
-      "name": "Aaron Reisman",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/180963?v=4",
-      "profile": "http://conceptualcode.com",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
       "login": "sAleksovski",
       "name": "Stefan Aleksovski",
       "avatar_url": "https://avatars3.githubusercontent.com/u/7473800?v=4",
@@ -180,6 +171,15 @@
       "profile": "http://twitter.com/Racing5372",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "lifeiscontent",
+      "name": "Aaron Reisman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/180963?v=4",
+      "profile": "https://github.com/lifeiscontent",
+      "contributions": [
+        "code"
       ]
     }
   ]
