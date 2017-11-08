@@ -21,8 +21,8 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc && rollup -c && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal src",
-    "start": "tsc -w & rollup -c -w",
+    "build": "tsc && rollup -c rollup.config.ts && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal src",
+    "start": "tsc -w & rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
@@ -36,7 +36,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --no-semi",
+      "prettier --write --no-semi --single-quote",
       "git add"
     ]
   },
@@ -70,7 +70,9 @@
         "lines": 95,
         "statements": 95
       }
-    }
+    },
+    "collectCoverage": true,
+    "mapCoverage": true
   },
   "devDependencies": {
     "@types/jest": "^21.1.0",
@@ -97,8 +99,8 @@
     "ts-node": "^3.0.6",
     "tslint": "^5.4.3",
     "tslint-config-prettier": "^1.1.0",
-    "tslint-config-standard": "^6.0.0",
-    "typedoc": "^0.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.9.0",
     "typescript": "^2.3.4",
     "validate-commit-msg": "^2.12.2"
   }
