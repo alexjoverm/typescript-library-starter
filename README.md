@@ -56,23 +56,27 @@ If you'd like to have automatic releases with Semantic Versioning, follow these 
 
 _**Prerequisites**: you need to create/login accounts and add your project to:_
  - [npm](https://www.npmjs.com/)
- - Travis
- - Coveralls
+ - [Travis CI](https://travis-ci.org)
+ - [Coveralls](https://coveralls.io)
 
-Run the following command to prepare hooks and stuff:
+_**Prerequisite for Windows**: Semantic-release uses
+**[node-gyp](https://github.com/nodejs/node-gyp)** so you will need to
+install
+[Microsoft's windows-build-tools](https://github.com/felixrieseberg/windows-build-tools)
+using this command:_
 
 ```bash
-npm run semantic-release-prepare
+npm install --global --production windows-build-tools
 ```
 
-Follow the console instructions to install semantic release and run it (answer NO to "Generate travis.yml").
+Follow the console instructions to install semantic release and run it (answer NO to "Do you want a `.travis.yml` file with semantic-release setup?").
 
 _Note: make sure you've setup `repository.url` in your `package.json` file_ 
 
 ```bash
 npm install -g semantic-release-cli
-semantic-release setup
-# IMPORTANT!! Answer NO to "Generate travis.yml" question. It is already prepared for you :P
+semantic-release-cli setup
+# IMPORTANT!! Answer NO to "Do you want a `.travis.yml` file with semantic-release setup?" question. It is already prepared for you :P
 ```
 
 From now on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
