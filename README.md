@@ -52,8 +52,6 @@ Good news: the setup is here for you, you must only include the dependency name 
 
 ### Automatic releases
 
-If you'd like to have automatic releases with Semantic Versioning, follow these simple steps-
-
 _**Prerequisites**: you need to create/login accounts and add your project to:_
  - [npm](https://www.npmjs.com/)
  - [Travis CI](https://travis-ci.org)
@@ -68,6 +66,8 @@ using this command:_
 ```bash
 npm install --global --production windows-build-tools
 ```
+
+#### Setup steps
 
 Follow the console instructions to install semantic release and run it (answer NO to "Do you want a `.travis.yml` file with semantic-release setup?").
 
