@@ -131,6 +131,12 @@ Remove `npm run report-coverage` from `.travis.yml`
 - [📺 Create a TypeScript Library using typescript-library-starter](https://egghead.io/lessons/typescript-create-a-typescript-library-using-typescript-library-starter) by [@alexjoverm](https://github.com/alexjoverm/)
 - [Introducing TypeScript Library Starter Lite](https://blog.tonysneed.com/2017/09/15/introducing-typescript-library-starter-lite/) by [@tonysneed](https://github.com/tonysneed)
 
+## Projects Using `typescript-library-starter`
+
+Here are some projets that use `typescript-library-starter`:
+
+- [NOEL - A universal, human-centric, replayable event emitter](https://github.com/lifenautjoe/noel)
+
 ## Credits
 
 Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm) and all these wonderful contributors ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
