@@ -8,7 +8,7 @@ const pkg = require('./package.json')
 const libraryName = '--libraryname--'
 
 export default {
-  input: `compiled/${libraryName}.js`,
+  input: `dist/es/${libraryName}.js`,
   output: [
     { file: pkg.main, name: camelCase(libraryName), format: 'umd' },
     { file: pkg.module, format: 'es' },
@@ -17,7 +17,7 @@ export default {
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [],
   watch: {
-    include: 'compiled/**',
+    include: 'dist/es/**',
   },
   plugins: [
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
