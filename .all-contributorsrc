@@ -109,6 +109,106 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "davidkpiano",
+      "name": "David Khourshid",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1093738?v=4",
+      "profile": "https://github.com/davidkpiano",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "aarongarciah",
+      "name": "Aarón García Hervás",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7225802?v=4",
+      "profile": "https://aarongarciah.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "stuajnht",
+      "name": "Jonathan Hart",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13683986?v=4",
+      "profile": "https://www.stuajnht.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Xndr7",
+      "name": "Sanjiv Lobo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13509204?v=4",
+      "profile": "https://github.com/Xndr7",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "sAleksovski",
+      "name": "Stefan Aleksovski",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7473800?v=4",
+      "profile": "https://github.com/sAleksovski",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "devpeerapong",
+      "name": "dev.peerapong",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8853426?v=4",
+      "profile": "https://github.com/devpeerapong",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Racing5372",
+      "name": "Aaron Groome",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/22260722?v=4",
+      "profile": "http://twitter.com/Racing5372",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+
+      "login": "lifeiscontent",
+      "name": "Aaron Reisman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/180963?v=4",
+      "profile": "https://github.com/lifeiscontent",
+      "contributions": [
+        "code"
+        ]
+    },
+    {
+      "login": "kid-sk",
+      "name": "kid-sk",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32557482?v=4",
+      "profile": "https://github.com/kid-sk",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "AndreaGot",
+      "name": "Andrea Gottardi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1503089?v=4",
+      "profile": "http://about.me/andreagot",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Yogendra0Sharma",
+      "name": "Yogendra Sharma",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1375860?v=4",
+      "profile": "http://TechiesEyes.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }
