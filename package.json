@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "dist/--libraryname--.umd.js",
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "module": "dist/--libraryname--.es5.js",
   "typings": "dist/types/--libraryname--.d.ts",
   "files": [
@@ -32,9 +32,12 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "postinstall": "ts-node tools/init",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+		"postinstall": "ts-node tools/init",
+		"storybook": "start-storybook -p 6006",
+    "storybook-native": "storybook start -p 7007",
+    "build-storybook": "build-storybook",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios"
   },
   "bundlesize": [
     {
@@ -84,6 +87,9 @@
   },
   "devDependencies": {
     "@blueeast/tslint-config-blueeast": "^0.4.0",
+    "@storybook/addon-actions": "^3.3.1",
+    "@storybook/addon-links": "^3.3.1",
+    "@storybook/react": "^3.3.1",
     "@types/jest": "^21.1.0",
     "@types/node": "^8.0.0",
     "bundlesize": "^0.15.2",
@@ -99,6 +105,7 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.4.4",
     "prompt": "^1.0.0",
+    "react-native-scripts": "1.8.1",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.52.0",
@@ -112,12 +119,14 @@
     "typedoc": "^0.9.0",
     "typescript": "^2.3.4",
     "validate-commit-msg": "^2.12.2",
-    "@storybook/react": "^3.3.1",
-    "@storybook/addon-actions": "^3.3.1",
-    "@storybook/addon-links": "^3.3.1"
+    "@storybook/react-native": "^3.3.1",
+    "react-dom": "^16.2.0",
+    "prop-types": "^15.6.0"
   },
   "dependencies": {
-    "@blueeast/bluerain-os": "^0.5.0",
-    "react": "^16.2.0"
+		"@blueeast/bluerain-os": "^0.5.0",
+		"expo": "^23.0.4",
+    "react": "^16.2.0",
+    "react-native": "^0.50.3"
   }
 }

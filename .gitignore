@@ -8,3 +8,7 @@ coverage
 dist
 compiled
 .awcache
+
+
+# expo
+.expo/
