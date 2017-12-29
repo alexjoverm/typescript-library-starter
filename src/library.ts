@@ -1,6 +1,6 @@
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
-  // import "core-js/fn/array.find"
-  // ...
+// import "core-js/fn/array.find"
+// ...
 import { Plugin, BlueRainType } from '@blueeast/bluerain-os';
 
 /**
@@ -13,6 +13,7 @@ export default class DummyPlugin extends Plugin {
 	static slug = '---slug---';
 
 	static initialize(config: {} = {}, ctx: BlueRainType) {
+		// tslint:disable-next-line:no-console
 		console.log('Plugin initialized!');
 	}
 }
