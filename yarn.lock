@@ -690,7 +690,7 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-app-root-path@^2.0.0:
+app-root-path@^2.0.0, app-root-path@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.0.1.tgz#cd62dcf8e4fd5a417efc664d2e5b10653c651b46"
 
@@ -3941,6 +3941,10 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
+dot@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/dot/-/dot-1.1.2.tgz#c7377019fc4e550798928b2b9afeb66abfa1f2f9"
+
 dotenv-webpack@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.5.4.tgz#9c92e46e412a1cfbc60217ed33d69d2bbfddbf9f"
@@ -4788,7 +4792,7 @@ findup-sync@0.4.2:
     micromatch "^2.3.7"
     resolve-dir "^0.1.0"
 
-findup@0.1.5:
+findup@0.1.5, findup@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/findup/-/findup-0.1.5.tgz#8ad929a3393bac627957a7e5de4623b06b0e2ceb"
   dependencies:
@@ -7013,6 +7017,10 @@ jest@^21.0.0:
   resolved "https://registry.yarnpkg.com/jest/-/jest-21.2.1.tgz#c964e0b47383768a1438e3ccf3c3d470327604e1"
   dependencies:
     jest-cli "^21.2.1"
+
+jju@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/jju/-/jju-1.3.0.tgz#dadd9ef01924bc728b03f2f7979bdbd62f7a2aaa"
 
 joi@^10.0.2:
   version "10.6.0"
@@ -9896,12 +9904,30 @@ react-native-scripts@1.8.1:
     rimraf "^2.6.1"
     xdl "47.0.4"
 
+react-native-storybook-loader@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-storybook-loader/-/react-native-storybook-loader-1.7.0.tgz#5edba083f89a0a5efaf4544cce832bc8f93c6390"
+  dependencies:
+    colors "^1.1.2"
+    dot "^1.1.1"
+    findup "^0.1.5"
+    glob "^7.1.1"
+    yargs "^8.0.2"
+
 "react-native-svg@https://github.com/expo/react-native-svg/archive/5.5.1-exp.1.tar.gz":
   version "5.5.1"
   resolved "https://github.com/expo/react-native-svg/archive/5.5.1-exp.1.tar.gz#0c6e373dbe63cfcbdd465f5b2965ebe011c8962f"
   dependencies:
     color "^2.0.1"
     lodash "^4.16.6"
+
+react-native-typescript-transformer@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-typescript-transformer/-/react-native-typescript-transformer-1.1.4.tgz#88bb6d2ccd63f0b4b3cbce99e96c0e9c9e83cabc"
+  dependencies:
+    app-root-path "^2.0.1"
+    jju "^1.3.0"
+    source-map "^0.5.6"
 
 react-native-vector-icons@4.4.2:
   version "4.4.2"

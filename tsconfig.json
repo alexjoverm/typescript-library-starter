@@ -9,6 +9,7 @@
 			"sourceMap": true,
 			"declaration": true,
 			"allowSyntheticDefaultImports": true,
+    	"allowJs": true,
 			"experimentalDecorators": true,
 			"emitDecoratorMetadata": true,
 			"declarationDir": "dist/types",
@@ -23,6 +24,10 @@
 			}
 	},
 	"include": [
-			"src"
-	]
+			"src",
+			"storybook"
+	],
+  "types": [
+    "typePatches"
+  ]
 }
