@@ -101,7 +101,8 @@
     "@storybook/react-native": "^3.3.1",
     "@types/jest": "^21.1.0",
     "@types/node": "^8.0.0",
-    "@types/storybook__react": "^3.0.5",
+    "@types/react-native": "^0.51.9",
+    "@types/storybook__react": "^3.0.6",
     "awesome-typescript-loader": "^3.4.1",
     "bundlesize": "^0.15.2",
     "codecov": "^2.3.1",
@@ -136,7 +137,7 @@
     "validate-commit-msg": "^2.12.2"
   },
   "dependencies": {
-    "@blueeast/bluerain-os": "^0.5.0",
+    "@blueeast/bluerain-os": "^0.4.8",
     "expo": "^23.0.4",
     "react": "^16.2.0",
     "react-native": "^0.50.3"
