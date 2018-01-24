@@ -25,7 +25,7 @@ console.log()
 if (pkg.repository.url.trim()) {
   console.log(colors.cyan("Now run:"))
   console.log(colors.cyan("  npm install -g semantic-release-cli"))
-  console.log(colors.cyan("  semantic-release setup"))
+  console.log(colors.cyan("  semantic-release-cli setup"))
   console.log()
   console.log(
     colors.cyan('Important! Answer NO to "Generate travis.yml" question')
@@ -44,7 +44,7 @@ if (pkg.repository.url.trim()) {
   )
   console.log(colors.cyan("Then run:"))
   console.log(colors.cyan("  npm install -g semantic-release-cli"))
-  console.log(colors.cyan("  semantic-release setup"))
+  console.log(colors.cyan("  semantic-release-cli setup"))
   console.log()
   console.log(
     colors.cyan('Important! Answer NO to "Generate travis.yml" question')
