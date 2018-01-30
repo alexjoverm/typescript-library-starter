@@ -7,7 +7,9 @@ import BR, { BlueRainProvider } from '@blueeast/bluerain-os';
 import CenterView from './CenterView';
 
 // Add BlueRain
-const BluerainApp = BR.boot({ renderApp: false });
+const BRConfigs = require('../bluerain');
+BRConfigs.renderApp = false;
+const BluerainApp = BR.boot(BRConfigs);
 const BlueRainDecorator = (storyFn) => (<BlueRainProvider>{storyFn()}</BlueRainProvider>);
 addDecorator(BlueRainDecorator);
 

@@ -1,12 +1,14 @@
 {
   "expo": {
-		"sdkVersion": "23.0.0",
+		"sdkVersion": "25.0.0",
+    "platforms": ["ios", "android"],
 		"packagerOpts": {
       "sourceExts": [
         "ts",
         "tsx"
       ],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
-    }
+		},
+		"entryPoint": "./node_modules/react-native-scripts/build/bin/crna-entry.js"
   }
 }

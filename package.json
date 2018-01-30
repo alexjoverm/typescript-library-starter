@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "dist/--libraryname--.umd.js",
   "module": "dist/--libraryname--.es5.js",
   "typings": "dist/types/--libraryname--.d.ts",
   "files": [
@@ -94,6 +94,7 @@
     "mapCoverage": true
   },
   "devDependencies": {
+    "@blueeast/bluerain-platform-reactxp": "^1.1.8",
     "@blueeast/tslint-config-blueeast": "^0.4.0",
     "@storybook/addon-actions": "^3.3.1",
     "@storybook/addon-links": "^3.3.1",
@@ -121,7 +122,7 @@
     "react-dom": "^16.2.0",
     "react-native-scripts": "1.8.1",
     "react-native-storybook-loader": "^1.7.0",
-    "react-native-typescript-transformer": "^1.1.4",
+    "react-native-typescript-transformer": "^1.2.3",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.52.0",
@@ -137,9 +138,9 @@
     "validate-commit-msg": "^2.12.2"
   },
   "dependencies": {
-    "@blueeast/bluerain-os": "^0.4.8",
-    "expo": "^23.0.4",
-    "react": "^16.2.0",
-    "react-native": "^0.50.3"
+    "@blueeast/bluerain-os": "^1.0.2",
+    "expo": "^25.0.0",
+    "react": "16.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz"
   }
 }
