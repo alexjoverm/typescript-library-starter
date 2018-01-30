@@ -15,7 +15,7 @@ export default {
   ],
   sourcemap: true,
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: [],
+  external:  Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.peerDependencies || {})),
   watch: {
     include: 'dist/es/**',
   },

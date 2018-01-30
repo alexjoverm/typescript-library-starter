@@ -1,4 +1,4 @@
-import DummyClass from "../src/--libraryname--"
+import DummyPlugin from "../src/--libraryname--"
 
 /**
  * Dummy test
@@ -8,7 +8,7 @@ describe("Dummy test", () => {
     expect(true).toBeTruthy()
   })
 
-  it("DummyClass is instantiable", () => {
-    expect(new DummyClass()).toBeInstanceOf(DummyClass)
+  it("DummyPlugin is instantiable", () => {
+    expect(new DummyPlugin()).toBeInstanceOf(DummyPlugin)
   })
 })
