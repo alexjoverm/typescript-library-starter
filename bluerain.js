@@ -9,7 +9,7 @@ module.exports = {
 	],
 	plugins:[
 		// All bluerain plugins will be added here
-		// require('./di'),
+		// require('./'),
 	],
 	config: {
 		// Configurations for bluerain-os will be added here
