@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc && tsc --module commonjs --outDir dist/lib && rollup -c rollup.config.ts && typedoc --out dist/docs --target es6 --theme minimal --mode file src && bundlesize",
+    "build": "bluerain build plugin",
     "start": "tsc -w & rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -94,6 +94,7 @@
     "mapCoverage": true
   },
   "devDependencies": {
+    "@blueeast/bluerain-cli":"^1.0.0",
     "@blueeast/bluerain-platform-reactxp": "^1.1.8",
     "@blueeast/tslint-config-blueeast": "^0.4.0",
     "@storybook/addon-actions": "^3.3.1",
@@ -125,10 +126,6 @@
     "react-native-typescript-transformer": "^1.2.3",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.52.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-sourcemaps": "^0.4.2",
     "semantic-release": "^8.0.0",
     "ts-jest": "^22.0.0",
     "ts-node": "^4.0.1",
