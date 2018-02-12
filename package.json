@@ -9,7 +9,7 @@
   "files": [
     "dist"
   ],
-  "author": "--username-- <--usermail-->",
+  "author": "BlueEast Team <code@blueeast.com>",
   "repository": {
     "type": "git",
     "url": ""
@@ -21,22 +21,34 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs --outDir dist/lib && rollup -c rollup.config.ts && typedoc --out dist/docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
+    "build": "bluerain buiild plugin",
+    "start": "tsc -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls && codecov",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "postinstall": "ts-node tools/init"
+    "postinstall": "ts-node tools/init",
+    "storybook": "start-storybook -p 6006",
+    "storybook-native": "storybook start -p 7007",
+    "prestorybook-native": "rnstl",
+    "build-storybook": "build-storybook",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/--libraryname--.es5.js",
+      "maxSize": "3 kB"
+    }
+  ],
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --no-semi --single-quote",
+      "prettier --write --use-tabs --single-quote",
       "git add"
     ]
   },
@@ -47,6 +59,13 @@
     "validate-commit-msg": {
       "types": "conventional-commit-types",
       "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    },
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./storybook/storyLoader.tsx"
     }
   },
   "jest": {
@@ -75,6 +94,18 @@
     "mapCoverage": true
   },
   "devDependencies": {
+    "@blueeast/bluerain-cli":"^1.0.0",
+    "@blueeast/bluerain-platform-reactxp": "^1.1.8",
+    "@blueeast/tslint-config-blueeast": "^0.4.0",
+    "@storybook/addon-actions": "^3.3.1",
+    "@storybook/addon-links": "^3.3.1",
+    "@storybook/react": "^3.3.1",
+    "@storybook/react-native": "^3.3.1",
+    "@types/react-native": "^0.51.9",
+    "@types/storybook__react": "^3.0.6",
+    "awesome-typescript-loader": "^3.4.1",
+    "bundlesize": "^0.15.2",
+    "codecov": "^2.3.1",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
     "colors": "^1.1.2",
@@ -88,21 +119,27 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.4.4",
     "prompt": "^1.0.0",
+    "prop-types": "^15.6.0",
+    "react-dom": "^16.2.0",
+    "react-native-scripts": "1.8.1",
+    "react-native-storybook-loader": "^1.7.0",
+    "react-native-typescript-transformer": "^1.2.3",
     "replace-in-file": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.54.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.10.0",
-    "semantic-release": "^12.2.2",
+    "semantic-release": "^8.0.0",
     "ts-jest": "^22.0.0",
-    "ts-node": "^4.1.0",
-    "tslint": "^5.8.0",
+    "ts-node": "^4.0.1",
+    "tslint": "^5.4.3",
     "tslint-config-prettier": "^1.1.0",
     "tslint-config-standard": "^7.0.0",
     "typedoc": "^0.10.0",
     "typescript": "^2.6.2",
     "validate-commit-msg": "^2.12.2"
+  },
+  "dependencies": {
+    "@blueeast/bluerain-os": "^1.0.2",
+    "expo": "^25.0.0",
+    "react": "16.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz"
   }
 }
