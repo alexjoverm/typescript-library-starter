@@ -8,7 +8,6 @@ coverage
 dist
 compiled
 .awcache
-
-
 # expo
 .expo/
+.rpt2_cache
