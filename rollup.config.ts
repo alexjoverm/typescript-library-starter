@@ -22,7 +22,7 @@ export default {
   },
   plugins: [
     // Compile TypeScript files
-    typescript(),
+    typescript({ useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Allow node_modules resolution, so you can use 'external' to control
