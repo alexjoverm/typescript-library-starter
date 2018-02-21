@@ -94,7 +94,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.10.0",
+    "rollup-plugin-typescript2": "^0.11.1",
     "semantic-release": "^12.2.2",
     "ts-jest": "^22.0.0",
     "ts-node": "^4.1.0",
