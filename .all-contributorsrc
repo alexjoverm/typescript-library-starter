@@ -174,14 +174,13 @@
       ]
     },
     {
-
       "login": "lifeiscontent",
       "name": "Aaron Reisman",
       "avatar_url": "https://avatars3.githubusercontent.com/u/180963?v=4",
       "profile": "https://github.com/lifeiscontent",
       "contributions": [
         "code"
-        ]
+      ]
     },
     {
       "login": "kid-sk",
@@ -209,6 +208,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "cyphercodes",
+      "name": "Rayan Salhab",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7407177?v=4",
+      "profile": "http://linkedin.com/in/rayan-salhab/",
+      "contributions": [
+        "code"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }
