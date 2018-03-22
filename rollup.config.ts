@@ -3,6 +3,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
+import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
@@ -21,6 +22,8 @@ export default {
     include: 'src/**',
   },
   plugins: [
+    // Allow json resolution
+    json(),
     // Compile TypeScript files
     typescript({ useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
