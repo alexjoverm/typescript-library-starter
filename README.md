@@ -150,6 +150,7 @@ Remove `npm run report-coverage` from `.travis.yml`
 Here are some projects that use `typescript-library-starter`:
 
 - [NOEL - A universal, human-centric, replayable event emitter](https://github.com/lifenautjoe/noel)
+- [redis-messaging-manager - Pubsub messaging library, using redis and rxjs](https://github.com/tomyitav/redis-messaging-manager)
 
 ## Credits
 
