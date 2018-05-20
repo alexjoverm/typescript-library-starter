@@ -36,7 +36,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --no-semi --single-quote",
+      "prettier --write",
       "git add"
     ]
   },
@@ -73,6 +73,10 @@
     },
     "collectCoverage": true,
     "mapCoverage": true
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
