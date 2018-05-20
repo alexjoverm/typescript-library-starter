@@ -71,8 +71,7 @@
         "statements": 95
       }
     },
-    "collectCoverage": true,
-    "mapCoverage": true
+    "collectCoverage": true
   },
   "prettier": {
     "semi": false,
