@@ -8,7 +8,7 @@ const pkg = JSON.parse(
 )
 
 pkg.scripts.prepush = "npm run test:prod && npm run build"
-pkg.scripts.commitmsg = "validate-commit-msg"
+pkg.scripts.commitmsg = "commitlint -E GIT_PARAMS"
 
 writeFileSync(
   path.resolve(__dirname, "..", "package.json"),
