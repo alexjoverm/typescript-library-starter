@@ -1,0 +1,6 @@
+{
+  "delete": true,
+  "directory": "./src",
+  "location": "all",
+  "singleQuotes": true
+}
