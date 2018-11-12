@@ -1,19 +1,20 @@
 language: node_js
-branches:
-  only:
-    - master
-    - /^greenkeeper/.*$/
 cache:
-  yarn: true
   directories:
-    - node_modules
+    - ~/.npm
 notifications:
   email: false
 node_js:
-  - node
+  - '10'
+  - '11'
+  - '8'
+  - '6'
 script:
   - npm run test:prod && npm run build
 after_success:
-  - npm run report-coverage
-  - npm run deploy-docs
-  - npm run semantic-release
+  - npm run travis-deploy-once "npm run report-coverage"
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run deploy-docs"; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run semantic-release"; fi
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
