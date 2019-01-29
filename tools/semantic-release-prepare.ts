@@ -16,7 +16,7 @@ writeFileSync(
 )
 
 // Call husky to set up the hooks
-fork(path.resolve(__dirname, "..", "node_modules", "husky", "bin", "install"))
+fork(path.resolve(__dirname, "..", "node_modules", "husky", "lib", "installer", 'bin'), ['install'])
 
 console.log()
 console.log(colors.green("Done!!"))
