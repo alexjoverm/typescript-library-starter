@@ -131,7 +131,7 @@ function libraryNameSuggestedAccept() {
 /**
  * The library name is suggested by looking at the directory name of the
  * tools parent directory and converting it to kebab-case
- * 
+ *
  * The regex for this looks for any non-word or non-digit character, or
  * an underscore (as it's a word character), and replaces it with a dash.
  * Any leading or trailing dashes are then removed, before the string is
@@ -160,7 +160,7 @@ function libraryNameSuggestedIsDefault() {
 
 /**
  * Calls all of the functions needed to setup the library
- * 
+ *
  * @param libraryName
  */
 function setupLibrary(libraryName: string) {
@@ -176,7 +176,7 @@ function setupLibrary(libraryName: string) {
 
   removeItems()
 
-  modifyContents(libraryName, username, usermail)
+  modifyContents(libraryName, new Date().getUTCFullYear().toString(), username, usermail)
 
   renameItems(libraryName)
 
@@ -202,20 +202,20 @@ function removeItems() {
 
 /**
  * Updates the contents of the template files with the library name or user details
- * 
- * @param libraryName 
- * @param username 
- * @param usermail 
+ *
+ * @param libraryName
+ * @param username
+ * @param usermail
  */
-function modifyContents(libraryName: string, username: string, usermail: string) {
+function modifyContents(libraryName: string, year: string, username: string, usermail: string) {
   console.log(colors.underline.white("Modified"))
 
   let files = modifyFiles.map(f => path.resolve(__dirname, "..", f))
   try {
     const changes = replace.sync({
       files,
-      from: [/--libraryname--/g, /--username--/g, /--usermail--/g],
-      to: [libraryName, username, usermail]
+      from: [/--libraryname--/g, /--year--/g, /--username--/g, /--usermail--/g],
+      to: [libraryName, year, username, usermail]
     })
     console.log(colors.yellow(modifyFiles.join("\n")))
   } catch (error) {
@@ -227,8 +227,8 @@ function modifyContents(libraryName: string, username: string, usermail: string)
 
 /**
  * Renames any template files to the new library name
- * 
- * @param libraryName 
+ *
+ * @param libraryName
  */
 function renameItems(libraryName: string) {
   console.log(colors.underline.white("Renamed"))
