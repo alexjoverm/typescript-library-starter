@@ -5,7 +5,6 @@
 [![Travis](https://img.shields.io/travis/azerion/typescript-library-starter.svg)](https://travis-ci.org/azerion/typescript-library-starter)
 [![Coveralls](https://img.shields.io/coveralls/azerion/typescript-library-starter.svg)](https://coveralls.io/github/azerion/typescript-library-starter)
 [![Dev Dependencies](https://david-dm.org/azerion/typescript-library-starter/dev-status.svg)](https://david-dm.org/azerion/typescript-library-starter?type=dev)
-[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://paypal.me/AJoverMorales)
 
 A starter project that makes creating a TypeScript library extremely easy.
 
