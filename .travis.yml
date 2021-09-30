@@ -1,20 +1,30 @@
 language: node_js
+
 cache:
   directories:
     - ~/.npm
+
 notifications:
   email: false
+
 node_js:
-  - '10'
-  - '11'
-  - '8'
-  - '6'
-script:
-  - npm run test:prod && npm run build
-after_success:
-  - npm run travis-deploy-once "npm run report-coverage"
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run deploy-docs"; fi
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run semantic-release"; fi
+  - 10
+  - 14
+  - 16
+
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npm run test:prod
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npm run build
+          - npm run semantic-release
