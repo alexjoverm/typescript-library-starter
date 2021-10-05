@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
-import { terser } from 'rollup-plugin-terser'
+import { default as typescript } from '@rollup/plugin-typescript'
 import json from '@rollup/plugin-json'
 
 const pkg = require('./package.json')
@@ -11,7 +11,7 @@ const libraryName = '--libraryname--'
 export default {
   input: `src/${libraryName}.ts`,
   output: [
-    { file: libraryName, format: 'esm', sourcemap: true },
+    { file: `dist/${libraryName}.js`, format: 'cjs' , sourcemap: true},
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [],
@@ -22,7 +22,7 @@ export default {
     // Allow json resolution
     json(),
     // Compile TypeScript files
-    terser(),
+    typescript(),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Allow node_modules resolution, so you can use 'external' to control
