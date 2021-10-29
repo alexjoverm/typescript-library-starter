@@ -1,4 +1,5 @@
-import DummyClass from "../src/--libraryname--"
+// @ts-ignore
+import DummyClass from '../src/--libraryname--'
 
 /**
  * Dummy test

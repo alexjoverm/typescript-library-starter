@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts {src,test}/* --fix && prettier --write \"{src,test}/**/*.{js,ts}\"",
     "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs ./src/--libraryname--.ts",
+    "build": "ts-node --module commonjs && rollup -c rollup.config.ts && typedoc --out docs ./src/--libraryname--.ts",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
@@ -32,8 +32,9 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "postinstall": "ts-node tools/init",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "init": "npm run postinstall",
+    "postinstall": "ts-node tools/init"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -89,9 +90,10 @@
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
-    "@rollup/plugin-typescript": "^8.2.5",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.10.2",
+    "@types/prompt": "^1.1.1",
+    "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "colors": "^1.4.0",
@@ -102,22 +104,24 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "gh-pages": "^3.2.3",
+    "git-url-parse": "^11.6.0",
     "husky": "^1.0.1",
     "jest": "^27.2.4",
     "jest-config": "^27.2.4",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.1",
-    "prompt": "^1.0.0",
+    "prompt": "^1.2.0",
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "rollup": "^2.57.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
     "semantic-release": "^18.0.0",
     "shelljs": "^0.8.3",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.4",
     "typescript": "^4.4.3"
-  },
-  "dependencies": {}
+  }
 }

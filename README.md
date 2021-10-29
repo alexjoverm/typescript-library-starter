@@ -13,8 +13,8 @@ A starter project that makes creating a TypeScript library extremely easy.
 ### Usage
 
 ```bash
-git clone https://github.com/azerion/typescript-library-starter.git YOURFOLDERNAME
-cd YOURFOLDERNAME
+git clone https://github.com/azerion/typescript-library-starter.git <YOUR_FOLDER_NAME>
+cd <YOUR_FOLDER_NAME>
 
 # Run npm install and write your library name when asked. That's all!
 npm install
@@ -24,14 +24,14 @@ npm install
 
 ### Features
 
-- Zero-setup. After running `npm install` things will setup for you :wink:
-- **[RollupJS](https://rollupjs.org/)** for multiple optimized bundles following the [standard convention](http://2ality.com/2017/04/setting-up-multi-platform-packages.html) and [Tree-shaking](https://alexjoverm.github.io/2017/03/06/Tree-shaking-with-Webpack-2-TypeScript-and-Babel/)
-- Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
-- **[Prettier](https://github.com/prettier/prettier)** and **[TSLint](https://palantir.github.io/tslint/)** for code formatting and consistency
-- **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
-- Automatic types `(*.d.ts)` file generation
-- **[Travis](https://travis-ci.org)** integration and **[Coveralls](https://coveralls.io/)** report
-- (Optional) **Automatic releases and changelog**, using [Semantic release](https://github.com/semantic-release/semantic-release), [Commitizen](https://github.com/commitizen/cz-cli), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Husky](https://github.com/typicode/husky) (for the git hooks)
+ - Zero-setup. After running `npm install` things will setup for you :wink:
+ - **[RollupJS](https://rollupjs.org/)** for multiple optimized bundles following the [standard convention](http://2ality.com/2017/04/setting-up-multi-platform-packages.html) and [Tree-shaking](https://alexjoverm.github.io/2017/03/06/Tree-shaking-with-Webpack-2-TypeScript-and-Babel/)
+ - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
+ - **[Prettier](https://github.com/prettier/prettier)** and **[TSLint](https://palantir.github.io/tslint/)** for code formatting and consistency
+ - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
+ - Automatic types `(*.d.ts)` file generation
+ - **[Travis](https://travis-ci.org)** integration and **[Coveralls](https://coveralls.io/)** report
+ - (Optional) **Automatic releases and changelog**, using [Semantic release](https://github.com/semantic-release/semantic-release), [Commitizen](https://github.com/commitizen/cz-cli), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Husky](https://github.com/typicode/husky) (for the git hooks)
 
 ### Importing library
 
@@ -49,26 +49,27 @@ import something from 'mylib/dist/lib/something'
 
 ### NPM scripts
 
-- `npm t`: Run test suite
-- `npm start`: Run `npm run build` in watch mode
-- `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
-- `npm run test:prod`: Run linting and generate coverage
-- `npm run build`: Generate bundles and typings, create docs
-- `npm run lint`: Lints code
-- `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
+ - `npm t`: Run test suite
+ - `npm start`: Run `npm run build` in watch mode
+ - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
+ - `npm run test:prod`: Run linting and generate coverage
+ - `npm run build`: Generate bundles and typings, create docs
+ - `npm run lint`: Lints code
+ - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
+ - `npm init`: Run init script manually to change the library name
 
 ### Excluding peerDependencies
 
 On library development, one might want to set some peer dependencies, and thus remove those from the final bundle. You can see in [Rollup docs](https://rollupjs.org/#peer-dependencies) how to do that.
 
-Good news: the setup is here for you, you must only include the dependency name in `external` property within `rollup.config.ts`. For example, if you want to exclude `lodash`, just write there `external: ['lodash']`.
+Good news: the setup is here for you, you must only include the dependency name in `external` property within `rollup.config.js`. For example, if you want to exclude `lodash`, just write there `external: ['lodash']`.
 
 ### Automatic releases
 
 _**Prerequisites**: you need to create/login accounts and add your project to:_
-- [npm](https://www.npmjs.com/)
-- [Travis CI](https://travis-ci.org)
-- [Coveralls](https://coveralls.io)
+ - [npm](https://www.npmjs.com/)
+ - [Travis CI](https://travis-ci.org)
+ - [Coveralls](https://coveralls.io)
 
 _**Prerequisite for Windows**: Semantic-release uses
 **[node-gyp](https://github.com/nodejs/node-gyp)** so you will need to
@@ -101,8 +102,8 @@ Automatic releases are possible thanks to [semantic release](https://github.com/
 There is already set a `precommit` hook for formatting your code with Prettier :nail_care:
 
 By default, there are two disabled git hooks. They're set up when you run the `npm run semantic-release-prepare` script. They make sure:
-- You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
-- Your build is not going to fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
+ - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
+ - Your build is not going to fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
 
 This makes more sense in combination with [automatic releases](#automatic-releases)
 
@@ -124,15 +125,15 @@ import "core-js/fn/promise"
 #### What is `npm install` doing on first run?
 
 It runs the script `tools/init` which sets up everything for you. In short, it:
-- Configures RollupJS for the build, which creates the bundles
-- Configures `package.json` (typings file, main file, etc)
-- Renames main src and test files
+ - Configures RollupJS for the build, which creates the bundles
+ - Configures `package.json` (typings file, main file, etc)
+ - Renames main src and test files
 
 #### What if I don't want git-hooks, automatic releases or semantic-release?
 
 Then you may want to:
-- Remove `commitmsg`, `postinstall` scripts from `package.json`. That will not use those git hooks to make sure you make a conventional commit
-- Remove `npm run semantic-release` from `.travis.yml`
+ - Remove `commitmsg`, `postinstall` scripts from `package.json`. That will not use those git hooks to make sure you make a conventional commit
+ - Remove `npm run semantic-release` from `.travis.yml`
 
 #### What if I don't want to use coveralls or report my coverage?
 

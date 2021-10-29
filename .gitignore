@@ -10,3 +10,5 @@ compiled
 .awcache
 .rpt2_cache
 docs
+tools/data.json
+.nojekyll
