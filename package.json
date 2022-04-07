@@ -37,7 +37,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write",
+      "prettier --write"
     ]
   },
   "config": {
